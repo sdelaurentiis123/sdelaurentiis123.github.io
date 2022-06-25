@@ -6,8 +6,3 @@ body{
     justify-content: center;
     align-items: center;
 }
-canvas{
-    display:flex;
-    flex-direction: column;
-    box-shadow: 20px 10px 50px
-}
