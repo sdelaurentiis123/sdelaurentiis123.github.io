@@ -14,15 +14,26 @@ let yvel=0;
 let applex=Math.floor(Math.random()*20);
 let appley=Math.floor(Math.random()*20);
 
+const snakebody=[];
+let bodylength=0;
+
+
 document.body.addEventListener('keydown', keydown);
+
+class snakepart{
+    constructor(x, y){
+        this.x=x;
+        this.y=y;
+    }
+}
 
 function drawGame(){
     
     let speed=7;
     clearScreen();
-    changesnakepos();
     drawsnake();
-    apple()
+    apple();
+    changesnakepos();
     
     setTimeout(drawGame, 1000/speed);
 
@@ -31,17 +42,28 @@ function drawGame(){
 
 function drawsnake(){
 
+    for(let i=0; i<snakebody.length; i++){
+        let part = snakebody[i];
+        ctx.fillStyle='dimgray';
+        ctx.fillRect(part.x*tilecount, part.y*tilecount, tilesize, tilesize);
+    }
+    snakebody.push(new snakepart(headx,heady));
+    if(snakebody.length>bodylength){
+        snakebody.shift();
+
+    }
     ctx.fillStyle='black';
 
     ctx.fillRect(headx*tilecount, heady*tilecount, tilesize, tilesize);
+
 
 }
 
 function changesnakepos(){
     headx=headx+xvel;
     heady=heady+yvel;
-}
-
+    }
+//has something to do with length and velocity figure out!!!
 function clearScreen(){
 
     var grd = ctx.createRadialGradient(200, 
@@ -59,8 +81,9 @@ function apple(){
     if ((headx==applex) && (heady==appley)){
         applex=Math.floor(Math.random()*20);
         appley=Math.floor(Math.random()*20);
-
+        bodylength++;
     }
+    
     ctx.fillStyle='red';
     ctx.fillRect(applex*tilecount, appley*tilecount, tilesize, tilesize);
 }
