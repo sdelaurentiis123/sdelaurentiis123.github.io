@@ -11,6 +11,8 @@ let heady=15;
 let xvel= 0;
 let yvel=0;
 
+let score=0;
+
 let applex=Math.floor(Math.random()*20);
 let appley=Math.floor(Math.random()*20);
 
@@ -34,6 +36,11 @@ function drawGame(){
     drawsnake();
     apple();
     changesnakepos();
+    drawscore();
+    if(gameover()){
+        return;
+    }
+    
     
     setTimeout(drawGame, 1000/speed);
 
@@ -82,6 +89,7 @@ function apple(){
         applex=Math.floor(Math.random()*20);
         appley=Math.floor(Math.random()*20);
         bodylength++;
+        score++;
     }
     
     ctx.fillStyle='red';
@@ -120,6 +128,40 @@ function keydown(event){
 
     }
 
+function drawscore(){
+    ctx.fillStyle="white"
+    ctx.font="10px Verdana"
+    ctx.fillText("Score: "+score, canvas.clientWidth-50,10)
+}
+
+function gameover(){
+    let gameovervar=false;
+    if(headx<0){
+        gameovervar=true;
+    }
+    if(headx==tilecount){
+        gameovervar=true;
+    }
+    if(heady<0){
+        gameovervar=true;
+    }
+    if(heady==tilecount){
+        gameovervar=true;
+    }
+    for (let i=0; i<snakebody.length;i++){
+        part=snakebody[i];
+        if((part.x==headx)&&(part.y==heady)){
+            gameovervar=true;
+        }
+    }
+    if (gameovervar){
+        ctx.fillStyle='white';
+        ctx.font='35px Arial';
+        ctx.fillText('Game Over!', 100, 100)
+        
+    }
+return gameovervar;
+}
 
 drawGame();
 
