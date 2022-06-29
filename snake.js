@@ -63,6 +63,11 @@ function drawsnake(){
 
     ctx.fillRect(headx*tilecount, heady*tilecount, tilesize, tilesize);
 
+    if((xvel==0)&&(yvel==0)){
+        ctx.fillStyle="white"
+        ctx.font='20px Arial';
+        ctx.fillText('Use Arrow Keys To Play!', 90, 50)
+    }
 
 }
 
@@ -158,6 +163,8 @@ function gameover(){
         ctx.fillStyle='white';
         ctx.font='35px Arial';
         ctx.fillText('Game Over!', 100, 100)
+        ctx.font='20px Arial';
+        ctx.fillText('Refresh Page To Play Again', 75, 150)
         
     }
 return gameovervar;
