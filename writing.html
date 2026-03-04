@@ -4,63 +4,269 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Writing — Stan DeLaurentiis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg: #ffffff;
+    --bg-nav: #ffffff;
+    --text: #333333;
+    --text-secondary: #555555;
+    --text-muted: #999999;
+    --accent: #1a6dd4;
+    --accent-hover: #1558b0;
+    --border: #e0e0e0;
+    --highlight-bg: #f7f7f7;
+    --progress-bar: #1a6dd4;
+  }
+
+  [data-theme="dark"] {
+    --bg: #1a1a2e;
+    --bg-nav: #16213e;
+    --text: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #777777;
+    --accent: #4da6ff;
+    --accent-hover: #7bbfff;
+    --border: #2a2a4a;
+    --highlight-bg: #16213e;
+    --progress-bar: #4da6ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
     font-size: 15px;
-    line-height: 1.6;
-    color: #333;
-    background: #fff;
-    max-width: 560px;
-    margin: 0 auto;
-    padding: 80px 24px 120px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    transition: background 0.3s, color 0.3s;
   }
 
-  a { color: #1a6dd4; text-decoration: none; }
-  a:hover { text-decoration: underline; }
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--progress-bar);
+    z-index: 1001;
+    transition: width 0.1s linear;
+  }
 
-  .back {
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    background: var(--bg-nav);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: 800px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nav-links a {
+    color: var(--text);
+    text-decoration: none;
     font-size: 14px;
-    color: #999;
-    margin-bottom: 32px;
-    display: block;
+    font-weight: 500;
+    transition: color 0.2s;
   }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .nav-icons a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .nav-icons a:hover { color: var(--accent); }
+
+  #theme-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s, border-color 0.2s;
+    line-height: 1;
+  }
+
+  #theme-toggle:hover {
+    background: var(--highlight-bg);
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 76px 24px 80px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; color: var(--accent-hover); }
 
   h1 {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0 0 28px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text);
   }
 
-  .post {
-    margin-bottom: 20px;
-  }
-
-  .post a {
-    color: #222;
-    font-weight: 500;
-  }
-
-  .post .meta {
-    font-size: 13px;
-    color: #aaa;
-    margin-top: 1px;
-  }
-
-  .post .preview {
+  .back-link {
+    display: inline-block;
     font-size: 14px;
-    color: #777;
-    margin-top: 3px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .back-link:hover { color: var(--accent); }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .post-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-list li:last-child { border-bottom: none; }
+
+  .post-title {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .post-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .post-preview {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .empty-state {
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 20px 0;
+  }
+
+  footer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 24px; }
+    .nav-links { gap: 14px; }
+    .nav-icons { gap: 10px; }
   }
 </style>
 </head>
 <body>
 
-<a href="index.html" class="back">← back</a>
+<div id="progress-bar"></div>
 
-<h1>Writing</h1>
+<nav>
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="index.html">about</a>
+      <a href="writing.html">writing</a>
+    </div>
+    <div class="nav-icons">
+      <a href="mailto:sod2112@columbia.edu" title="Email">email</a>
+      <a href="https://scholar.google.com/citations?user=-UeEc_oAAAAJ&hl=en" title="Google Scholar">scholar</a>
+      <a href="https://github.com/sdelaurentiis123" title="GitHub">github</a>
+      <a href="https://x.com/sdelaurentiis_/" title="X">x</a>
+      <button id="theme-toggle" title="Toggle dark mode">☀️</button>
+    </div>
+  </div>
+</nav>
 
-<p>Coming soon.</p>
+<main>
+
+  <a href="index.html" class="back-link">← back</a>
+
+  <h1>Writing</h1>
+
+  <p class="empty-state">Coming soon.</p>
+
+</main>
+
+<footer>
+  Stan DeLaurentiis
+</footer>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+
+  function setTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+    localStorage.setItem('theme', theme);
+  }
+
+  const saved = localStorage.getItem('theme');
+  if (saved) {
+    setTheme(saved);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    setTheme('dark');
+  }
+
+  toggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progress-bar').style.width = progress + '%';
+  });
+</script>
 
 </body>
 </html>
