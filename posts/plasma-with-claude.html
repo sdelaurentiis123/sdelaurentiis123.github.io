@@ -247,6 +247,59 @@
     line-height: 1.5;
   }
 
+  article .resources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 16px;
+    margin: 8px 0 28px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--highlight-bg);
+    font-size: 14px;
+  }
+
+  article .resources strong {
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-right: 4px;
+  }
+
+  article .resources a {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  article .data-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 12px 16px;
+    margin: 12px 0 20px;
+    border-left: 3px solid var(--accent);
+    background: var(--highlight-bg);
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  article .data-row .data-cell {
+    display: flex;
+    flex-direction: column;
+  }
+
+  article .data-row .data-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  article .data-row .data-value {
+    color: var(--text);
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 15px;
+  }
+
   footer {
     max-width: 800px;
     margin: 0 auto;
@@ -294,7 +347,12 @@
 
   <article>
 
-    <p class="lede">Last month I shipped a small workshop paper on neural surrogates for magnetohydrodynamic (MHD) turbulence. It is a controlled study: when you pretrain a Fourier Neural Operator on one MHD regime and fine-tune on another with only 1% target data, what actually transfers? Total human time was about 25 hours; total cloud spend was under $20. Claude Code was in the loop the whole way.</p>
+    <p class="lede">Last month I shipped a small workshop paper on neural surrogates for magnetohydrodynamic (MHD) turbulence. It is a controlled study: when you pretrain a Fourier Neural Operator on one MHD regime and fine-tune on another with only 1% target data, what actually transfers? Total human time was about 15 hours over a weekend; total cloud spend was under $20. Claude Code was in the loop the whole way.</p>
+
+    <div class="resources">
+      <span><strong>paper:</strong> <a href="plasma-paper.pdf">PDF</a></span>
+      <span><strong>code &amp; data:</strong> <a href="https://github.com/sdelaurentiis123/well-work">github.com/sdelaurentiis123/well-work</a></span>
+    </div>
 
     <p>The headline answer is a clean pair. In-domain MHD pretraining cuts validation error by <strong>35%</strong> versus a from-scratch baseline at matched architecture. Pretraining on the <em>wrong</em> domain &mdash; supernova hydrodynamics with the same architecture &mdash; <strong>hurts by 14%</strong>. Source corpus matters; pretraining is not free regularization.</p>
 
@@ -303,16 +361,46 @@
       <figcaption>Matched-architecture transfer at 1% target data. Three pretrain seeds per condition. MHD pretraining beats scratch by 35%; non-MHD pretraining hurts by 14%.</figcaption>
     </figure>
 
-    <p>The more interesting answer is what fine-tuning <em>breaks</em>. Pretraining transfers spatial statistics: the perpendicular turbulent cascade tracks ground truth across 1.5 decades of wavenumber. But fine-tuning introduces a <em>new</em> long-horizon instability. By autoregressive step 50, the fine-tuned model's error blows up to roughly 5&times; worse than the from-scratch baseline, even though it is better at step 1. The pretrained checkpoint rolled directly on the target with no fine-tuning at all fails <em>differently</em> &mdash; the imposed background magnetic field collapses to zero. So fine-tuning swaps one failure mode for another. It does not add instability to a stable baseline; it rewrites which axis breaks.</p>
+    <p>The more interesting answer is what fine-tuning <em>breaks</em>. Pretraining transfers spatial statistics: the perpendicular turbulent cascade of the magnetic field at one-step prediction tracks ground truth across roughly 1.5 decades of wavenumber. The from-scratch 1%-data baseline loses high-<em>k</em> power by nearly two orders of magnitude beyond <em>k</em><sub>&perp;</sub> &asymp; 8. The pretrained-then-fine-tuned model holds.</p>
+
+    <figure>
+      <img src="fig-cascade.png" alt="Perpendicular cascade preservation: log-log plot of E(k_perp) for B_x. Scratch at 1% data falls off sharply past k_perp ~ 8; MHD pretrain + FT tracks ground truth across the inertial range.">
+      <figcaption>Perpendicular cascade of B<sub>x</sub> at step-1 prediction, averaged over 10 held-out test trajectories. From-scratch at 1% data (red) loses high-<em>k</em><sub>&perp;</sub> power; MHD pretrain + fine-tune (blue) tracks ground truth (black) across the inertial range and closely follows the 100%-data baseline.</figcaption>
+    </figure>
+
+    <p>But fine-tuning introduces a <em>new</em> long-horizon instability. By autoregressive step 50, the fine-tuned model's error blows up to roughly 5&times; worse than the from-scratch baseline, even though it is better at step 1. The same pretrained checkpoint rolled directly on the target with no fine-tuning at all fails <em>differently</em>: instead of inflating, the imposed background magnetic field collapses toward zero.</p>
 
     <figure>
       <img src="fig-rollout.png" alt="Long-horizon rollout VRMSE vs autoregressive step. Scratch (1% data) plateaus near 2; MHD pretrain + FT diverges past step 20 to ~11; MHD pretrain zero-FT plateaus near 3.">
-      <figcaption>Autoregressive rollout error vs step. The fine-tuned model (blue) is best at step 1 but diverges past step 20. The same pretrained checkpoint with no fine-tuning at all (orange dashed) plateaus around 3 via a different failure mode &mdash; guide-field collapse instead of late-stage inflation.</figcaption>
+      <figcaption>Autoregressive rollout error vs step. Fine-tuned (blue) is best at step 1 but diverges past step 20. Same pretrained checkpoint with no fine-tuning (orange dashed) plateaus around 3 via a different failure mode.</figcaption>
     </figure>
+
+    <p>The two pretraining-lineage models fail in <em>opposite directions</em> on the guide field. Ground-truth &langle;B<sub>x</sub>&rangle; sits at 1.0 throughout the rollout. With no fine-tuning, the pretrained checkpoint pushes it to <strong>0.04</strong> by step 50 (collapse). With fine-tuning, it inflates to <strong>3.68</strong> (over-saturation). Same pretraining initialization, opposite breakages, neither one stable.</p>
+
+    <div class="data-row">
+      <div class="data-cell">
+        <span class="data-label">Ground truth</span>
+        <span class="data-value">&langle;B<sub>x</sub>&rangle; = 1.001</span>
+      </div>
+      <div class="data-cell">
+        <span class="data-label">Scratch (1%)</span>
+        <span class="data-value">0.885</span>
+      </div>
+      <div class="data-cell">
+        <span class="data-label">Pretrain + FT</span>
+        <span class="data-value">3.680</span>
+      </div>
+      <div class="data-cell">
+        <span class="data-label">Pretrain zero-FT</span>
+        <span class="data-value">0.044</span>
+      </div>
+    </div>
+
+    <p>Fine-tuning does not add instability to a stable baseline. It swaps one failure mode for another, and rewrites which axis breaks.</p>
 
     <p>That is the lede if you came for the science. <strong>One-step accuracy is not a long-horizon stability metric.</strong> For plasma applications where you actually want to roll out tens of thousands of steps &mdash; tokamak transport emulation, astrophysical MHD surveys &mdash; this is the part that matters. Closing it plausibly takes either architectural constraints (divergence-free <em>B</em> parametrization, conservation-aware updates) or training-recipe changes (pushforward, iterative refinement). We tested none of those. The paper is honest about this; the takeaway is "here is a controlled diagnostic of where the easy recipe breaks," not "here is how to fix it."</p>
 
-    <p>Full writeup: <a href="plasma-paper.pdf">paper PDF</a>. The rest of this post is about how it actually got built.</p>
+    <p>The rest of this post is about how it actually got built.</p>
 
     <hr>
 
@@ -375,7 +463,7 @@
     <h2>The boring numbers</h2>
 
     <ul>
-      <li>Total wall-clock human time: about 25 hours across two weeks.</li>
+      <li>Total wall-clock human time: about 15 hours over a weekend.</li>
       <li>Total cloud spend: under $20 (vast.ai 4090, ~$0.40/hr).</li>
       <li>Total compute: ~30 GPU-hours pretrain + ~10 GPU-hours fine-tune.</li>
       <li>Final paper: 10 pages, 7 figures, 1 table, 19 citations, 0 LaTeX errors.</li>
