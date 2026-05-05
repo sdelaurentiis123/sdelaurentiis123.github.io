@@ -223,6 +223,30 @@
     margin-bottom: 22px;
   }
 
+  article figure {
+    margin: 28px 0;
+  }
+
+  article figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: #ffffff;
+  }
+
+  [data-theme="dark"] article figure img {
+    background: #ffffff;
+  }
+
+  article figcaption {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
+
   footer {
     max-width: 800px;
     margin: 0 auto;
@@ -274,7 +298,17 @@
 
     <p>The headline answer is a clean pair. In-domain MHD pretraining cuts validation error by <strong>35%</strong> versus a from-scratch baseline at matched architecture. Pretraining on the <em>wrong</em> domain &mdash; supernova hydrodynamics with the same architecture &mdash; <strong>hurts by 14%</strong>. Source corpus matters; pretraining is not free regularization.</p>
 
+    <figure>
+      <img src="fig-transfer.png" alt="Bar chart: matched-architecture transfer at 1% target data. Scratch 0.465, NS pretrain 0.528, MHD pretrain 0.301.">
+      <figcaption>Matched-architecture transfer at 1% target data. Three pretrain seeds per condition. MHD pretraining beats scratch by 35%; non-MHD pretraining hurts by 14%.</figcaption>
+    </figure>
+
     <p>The more interesting answer is what fine-tuning <em>breaks</em>. Pretraining transfers spatial statistics: the perpendicular turbulent cascade tracks ground truth across 1.5 decades of wavenumber. But fine-tuning introduces a <em>new</em> long-horizon instability. By autoregressive step 50, the fine-tuned model's error blows up to roughly 5&times; worse than the from-scratch baseline, even though it is better at step 1. The pretrained checkpoint rolled directly on the target with no fine-tuning at all fails <em>differently</em> &mdash; the imposed background magnetic field collapses to zero. So fine-tuning swaps one failure mode for another. It does not add instability to a stable baseline; it rewrites which axis breaks.</p>
+
+    <figure>
+      <img src="fig-rollout.png" alt="Long-horizon rollout VRMSE vs autoregressive step. Scratch (1% data) plateaus near 2; MHD pretrain + FT diverges past step 20 to ~11; MHD pretrain zero-FT plateaus near 3.">
+      <figcaption>Autoregressive rollout error vs step. The fine-tuned model (blue) is best at step 1 but diverges past step 20. The same pretrained checkpoint with no fine-tuning at all (orange dashed) plateaus around 3 via a different failure mode &mdash; guide-field collapse instead of late-stage inflation.</figcaption>
+    </figure>
 
     <p>That is the lede if you came for the science. <strong>One-step accuracy is not a long-horizon stability metric.</strong> For plasma applications where you actually want to roll out tens of thousands of steps &mdash; tokamak transport emulation, astrophysical MHD surveys &mdash; this is the part that matters. Closing it plausibly takes either architectural constraints (divergence-free <em>B</em> parametrization, conservation-aware updates) or training-recipe changes (pushforward, iterative refinement). We tested none of those. The paper is honest about this; the takeaway is "here is a controlled diagnostic of where the easy recipe breaks," not "here is how to fix it."</p>
 
