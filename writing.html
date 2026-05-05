@@ -159,15 +159,25 @@
   }
 
   .post-list li {
-    padding: 12px 0;
+    padding: 14px 0;
     border-bottom: 1px solid var(--border);
   }
 
   .post-list li:last-child { border-bottom: none; }
 
+  .post-list li a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-list li a:hover { text-decoration: none; }
+  .post-list li a:hover .post-title { color: var(--accent); }
+
   .post-title {
     font-weight: 500;
     color: var(--text);
+    transition: color 0.2s;
   }
 
   .post-meta {
@@ -231,7 +241,15 @@
 
   <h1>Writing</h1>
 
-  <p class="empty-state">Coming soon.</p>
+  <ul class="post-list">
+    <li>
+      <a href="posts/plasma-with-claude.html">
+        <div class="post-title">A plasma physics paper, with Claude</div>
+        <div class="post-meta">May 2026</div>
+        <div class="post-preview">A small workshop paper on neural MHD surrogates: 35% gain from in-domain pretraining, 14% penalty from wrong-domain, and a long-horizon instability that fine-tuning introduces from nowhere. ~25 human hours, &lt;$20 cloud.</div>
+      </a>
+    </li>
+  </ul>
 
 </main>
 
