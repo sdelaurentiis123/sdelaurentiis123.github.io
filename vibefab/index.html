@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vibefab — runs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #06090d; --panel: #0b1017; --line: #1a2431; --line-bright: #2a3a4d;
+    --ink: #cfdae6; --ink-dim: #64768a; --accent: #55d7f2; --amber: #e2a24b;
+    --display: "Chakra Petch", sans-serif; --mono: "IBM Plex Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink);
+         font: 13px/1.5 var(--mono); padding: 48px clamp(20px, 6vw, 90px);
+         background-image:
+           linear-gradient(var(--line) 1px, transparent 1px),
+           linear-gradient(90deg, var(--line) 1px, transparent 1px);
+         background-size: 90px 90px; }
+  h1 { font-family: var(--display); font-weight: 600; font-size: 26px;
+       letter-spacing: .14em; text-transform: uppercase; margin: 0; }
+  h1 em { color: var(--accent); font-style: normal; }
+  .sub { color: var(--ink-dim); margin: 6px 0 36px; max-width: 62ch; }
+  .grid { display: grid; gap: 16px;
+           grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
+  a.card { display: block; background: var(--panel); border: 1px solid var(--line);
+            border-radius: 5px; padding: 16px 18px; text-decoration: none;
+            color: var(--ink); transition: border-color .15s, transform .15s; }
+  a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card h3 { font-family: var(--display); font-weight: 500; font-size: 15px;
+             margin: 0 0 10px; letter-spacing: .04em; }
+  .card .steps { color: var(--ink-dim); font-size: 11px; margin-bottom: 12px;
+                  line-height: 1.7; }
+  .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+  .chip { font-size: 10px; padding: 2px 8px; border-radius: 9px;
+           border: 1px solid var(--line-bright); color: var(--ink-dim);
+           letter-spacing: .06em; }
+  .meta { display: flex; justify-content: space-between; font-size: 10.5px;
+           color: var(--ink-dim); border-top: 1px solid var(--line);
+           padding-top: 10px; }
+  .meta b { color: var(--accent); font-weight: 500; }
+</style>
+</head>
+<body>
+  <h1>vibe<em>fab</em></h1>
+  <p class="sub">Virtual fabrication runs — plasma-etched, deposited, planarized
+  and rendered from a real level-set + ballistic-transport solver. Click a run
+  to orbit it.</p>
+  <p style="margin:-22px 0 32px">
+  <a href="chat.html" style="font-family:var(--display);color:var(--accent);
+     text-decoration:none;border:1px solid rgba(85,215,242,.4);
+     border-radius:5px;padding:8px 16px;letter-spacing:.1em;
+     text-transform:uppercase;font-size:12px">▶ open the live fab chat</a>
+</p>
+  <div class="grid"><a class="card" href="copper-damascene/viewer.html">
+  <h3>copper-damascene</h3>
+  <div class="steps">0. substrate<br>1. mask (trench)<br>2. etch to 0.35µm<br>3. strip<br>4. deposit liner 0.03µm<br>5. deposit copper 0.21µm<br>6. CMP planarize</div>
+  <div class="chips"><span class="chip">silicon</span><span class="chip">liner</span><span class="chip">copper</span></div>
+  <div class="meta"><span>dx <b>20nm</b></span><span>14 frames</span>
+  <span>sim <b>8.78s</b></span></div>
+</a>
+<a class="card" href="deep-via/viewer.html">
+  <h3>deep-via</h3>
+  <div class="steps">0. substrate<br>1. mask (via)<br>2. etch to 0.8µm<br>3. wet etch 0.04µm<br>4. deposit film 0.05µm<br>5. strip</div>
+  <div class="chips"><span class="chip">silicon</span><span class="chip">film</span></div>
+  <div class="meta"><span>dx <b>20nm</b></span><span>14 frames</span>
+  <span>sim <b>25.7s</b></span></div>
+</a>
+<a class="card" href="gds-layer1/viewer.html">
+  <h3>gds-layer1</h3>
+  <div class="steps">0. substrate<br>1. mask (gds L1)<br>2. etch to 0.45µm<br>3. strip</div>
+  <div class="chips"><span class="chip">silicon</span></div>
+  <div class="meta"><span>dx <b>25nm</b></span><span>7 frames</span>
+  <span>sim <b>11.09s</b></span></div>
+</a>
+<a class="card" href="l-and-pads/viewer.html">
+  <h3>l-and-pads</h3>
+  <div class="steps">0. substrate<br>1. mask (3 polygons)<br>2. etch to 0.5µm<br>3. deposit film 0.05µm<br>4. strip</div>
+  <div class="chips"><span class="chip">silicon</span><span class="chip">film</span></div>
+  <div class="meta"><span>dx <b>25nm</b></span><span>11 frames</span>
+  <span>sim <b>14.04s</b></span></div>
+</a>
+
+
+
+<a class="card" href="trench-liner/viewer.html">
+  <h3>trench-liner</h3>
+  <div class="steps">0. substrate<br>1. mask (trench)<br>2. etch to 0.7µm<br>3. deposit film 0.06µm<br>4. strip</div>
+  <div class="chips"><span class="chip">silicon</span><span class="chip">film</span></div>
+  <div class="meta"><span>dx <b>20nm</b></span><span>12 frames</span>
+  <span>sim <b>21.03s</b></span></div>
+</a></div>
+</body>
+</html>

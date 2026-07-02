@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vibefab — chat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #06090d; --panel: #0b1017; --line: #1a2431; --line-bright: #2a3a4d;
+    --ink: #cfdae6; --ink-dim: #64768a; --accent: #55d7f2;
+    --accent-dim: rgba(85,215,242,.14); --amber: #e2a24b;
+    --display: "Chakra Petch", sans-serif; --mono: "IBM Plex Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+               font: 13px/1.5 var(--mono); overflow: hidden; }
+  #layout { display: grid; grid-template-columns: 400px 1fr; height: 100vh; }
+
+  /* ---- chat column ---- */
+  #chatcol { display: flex; flex-direction: column; border-right: 1px solid var(--line);
+             background: var(--panel); min-width: 0; }
+  #chathead { padding: 14px 18px 12px; border-bottom: 1px solid var(--line); }
+  #chathead .brand { font-family: var(--display); font-weight: 600; font-size: 15px;
+                     letter-spacing: .14em; text-transform: uppercase; }
+  #chathead .brand em { color: var(--accent); font-style: normal; }
+  #chathead .sub { color: var(--ink-dim); font-size: 10.5px; letter-spacing: .06em;
+                   margin-top: 2px; }
+  #msgs { flex: 1; overflow-y: auto; padding: 18px 16px; display: flex;
+          flex-direction: column; gap: 12px; }
+  .msg { max-width: 92%; padding: 9px 13px; border-radius: 6px; font-size: 12.5px;
+         white-space: pre-wrap; word-wrap: break-word; }
+  .msg.user { align-self: flex-end; background: var(--accent-dim);
+              border: 1px solid rgba(85,215,242,.25); }
+  .msg.agent { align-self: flex-start; background: #0f1620;
+               border: 1px solid var(--line); }
+  .msg.status { align-self: flex-start; color: var(--ink-dim); border: none;
+                background: none; padding: 0 4px; font-size: 11px;
+                letter-spacing: .06em; }
+  .msg.status.busy::after { content: ""; display: inline-block; width: 1.2em;
+                            animation: dots 1.2s steps(4, end) infinite;
+                            overflow: hidden; vertical-align: bottom;
+                            white-space: nowrap; }
+  @keyframes dots { 0% { content: ""; } 25% { content: "."; }
+                    50% { content: ".."; } 75% { content: "..."; } }
+  .report { align-self: flex-start; font-size: 10.5px; color: var(--accent);
+            background: var(--accent-dim); border: 1px solid rgba(85,215,242,.2);
+            border-radius: 4px; padding: 5px 10px; letter-spacing: .04em; }
+  details.flow { align-self: flex-start; max-width: 92%; font-size: 11px; }
+  details.flow summary { cursor: pointer; color: var(--ink-dim);
+                         letter-spacing: .08em; font-size: 10px;
+                         text-transform: uppercase; }
+  details.flow pre { background: #0f1620; border: 1px solid var(--line);
+                     border-radius: 5px; padding: 10px 12px; overflow-x: auto;
+                     margin: 6px 0 0; color: #9fb8cf; }
+
+  #inputrow { display: flex; gap: 8px; padding: 12px 14px 14px;
+              border-top: 1px solid var(--line); }
+  #inp { flex: 1; background: #0f1620; color: var(--ink); resize: none;
+         border: 1px solid var(--line-bright); border-radius: 5px;
+         font: 12.5px/1.4 var(--mono); padding: 9px 12px; height: 58px; }
+  #inp:focus { outline: none; border-color: var(--accent); }
+  #send { font-family: var(--display); font-size: 12px; letter-spacing: .1em;
+          background: var(--accent-dim); color: var(--accent);
+          border: 1px solid rgba(85,215,242,.4); border-radius: 5px;
+          padding: 0 16px; cursor: pointer; text-transform: uppercase; }
+  #send:disabled { opacity: .4; cursor: default; }
+
+  /* ---- viewer column ---- */
+  #stage { position: relative; min-width: 0; }
+  #viewer { width: 100%; height: 100%; border: 0; background: var(--bg); }
+  #empty { position: absolute; inset: 0; display: flex; flex-direction: column;
+           align-items: center; justify-content: center; gap: 10px;
+           color: var(--ink-dim); background:
+             linear-gradient(var(--line) 1px, transparent 1px),
+             linear-gradient(90deg, var(--line) 1px, transparent 1px);
+           background-size: 90px 90px; background-color: var(--bg); }
+  #empty .big { font-family: var(--display); font-size: 19px; letter-spacing: .1em;
+                color: var(--ink); text-transform: uppercase; }
+  #empty .hint { font-size: 11.5px; max-width: 46ch; text-align: center; }
+  #empty .hint b { color: var(--accent); font-weight: 500; }
+</style>
+</head>
+<body>
+<div id="layout">
+  <section id="chatcol">
+    <header id="chathead">
+      <div class="brand">vibe<em>fab</em> <span style="color:var(--ink-dim)">/ chat</span></div>
+      <div class="sub">describe a structure · the fab runs it · refine it</div>
+    </header>
+    <div id="msgs">
+      <div class="msg agent">Fab's hot. Describe a structure or a process — e.g.
+"a copper damascene trench, 300 nm wide, 350 nm deep" — and I'll run it. Then
+tell me what to change.</div>
+    </div>
+    <div id="inputrow">
+      <textarea id="inp" placeholder="etch me something…"></textarea>
+      <button id="send">run</button>
+    </div>
+  </section>
+  <section id="stage">
+    <iframe id="viewer" title="3d viewer"></iframe>
+    <div id="empty">
+      <div class="big">no structure yet</div>
+      <div class="hint">the 3D viewer appears here after the first run —
+try <b>a 300nm-wide via, 0.8µm deep, with a thin nitride liner</b></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const API = "https://sdelaurentiis123--vibefab-web.modal.run";   // "" = same origin (local); site build injects the worker URL
+const msgs = document.getElementById('msgs');
+const inp = document.getElementById('inp');
+const send = document.getElementById('send');
+const viewer = document.getElementById('viewer');
+const empty = document.getElementById('empty');
+let messages = [];               // conversation history lives in the browser
+
+function add(kind, text) {
+  const el = document.createElement('div');
+  el.className = `msg ${kind}`;
+  el.textContent = text;
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+  return el;
+}
+function addReport(text) {
+  const el = document.createElement('div');
+  el.className = 'report';
+  el.textContent = text;
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function addFlow(yaml) {
+  const d = document.createElement('details');
+  d.className = 'flow';
+  const pre = document.createElement('pre');
+  pre.textContent = yaml;
+  d.innerHTML = '<summary>flow yaml</summary>';
+  d.appendChild(pre);
+  msgs.appendChild(d);
+}
+
+async function submit() {
+  const text = inp.value.trim();
+  if (!text || send.disabled) return;
+  inp.value = '';
+  add('user', text);
+  send.disabled = true;
+  const status = add('status busy', 'thinking');
+  let agentEl = null;
+  let raw = '';
+
+  const handle = (ev) => {
+    switch (ev.type) {
+      case 'token': {
+        if (!agentEl) agentEl = add('agent', '');
+        raw += ev.text;
+        const cut = raw.indexOf('```');
+        agentEl.textContent = cut >= 0 ? raw.slice(0, cut).trim() : raw;
+        if (cut >= 0) status.textContent = 'writing flow';
+        msgs.scrollTop = msgs.scrollHeight;
+        break;
+      }
+      case 'flow':
+        if (agentEl) agentEl.textContent = ev.reply;
+        addFlow(ev.yaml);
+        break;
+      case 'status':
+        if (ev.text.includes('retrying')) { raw = ''; agentEl = null; }
+        status.textContent = ev.text;
+        status.classList.add('busy');
+        break;
+      case 'progress':
+        status.textContent = ev.text;
+        break;
+      case 'result':
+        addReport(ev.report);
+        empty.style.display = 'none';
+        if (ev.viewer_html) viewer.srcdoc = ev.viewer_html;
+        else viewer.src = ev.viewer + '?t=' + Date.now();
+        break;
+      case 'done':
+        if (ev.reply) {
+          if (agentEl) agentEl.textContent = ev.reply;
+          else add('agent', ev.reply);
+        }
+        if (ev.messages) messages = ev.messages;
+        if (ev.error) add('status', `⚠ ${ev.error}`);
+        break;
+    }
+  };
+
+  try {
+    const res = await fetch(API + '/api/chat/stream', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text, messages }),
+    });
+    if (!res.ok || !res.body) throw new Error('HTTP ' + res.status);
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let buf = '';
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let i;
+      while ((i = buf.indexOf('\n\n')) >= 0) {
+        const chunk = buf.slice(0, i); buf = buf.slice(i + 2);
+        if (chunk.startsWith('data: ')) handle(JSON.parse(chunk.slice(6)));
+      }
+    }
+  } catch (err) {
+    add('status', `⚠ ${err.message}`);
+  }
+  status.remove();
+  send.disabled = false;
+  inp.focus();
+}
+send.onclick = submit;
+inp.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(); }
+});
+inp.focus();
+</script>
+</body>
+</html>
