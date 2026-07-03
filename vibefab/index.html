@@ -45,10 +45,15 @@
   .meta b { color: var(--accent); font-weight: 500; }
   a.card.design { border-color: #2a3550; }
   a.card.design:hover { border-color: #8a7dff; }
-  a.card.design .badge { display: inline-block; font-size: 9px;
+  a.card .badge { display: inline-block; font-size: 9px;
     letter-spacing: .16em; text-transform: uppercase; color: #a99dff;
     border: 1px solid #3a3560; border-radius: 9px; padding: 1px 8px;
     margin-bottom: 8px; }
+  a.card.design { border-color: #2a3550; }
+  a.card.design:hover { border-color: #8a7dff; }
+  a.card.physical { border-color: #2a3f3a; }
+  a.card.physical:hover { border-color: #4bb377; }
+  a.card.physical .badge { color: #6fd0a0; border-color: #2f5540; }
 </style>
 </head>
 <body>
@@ -85,6 +90,14 @@
   <div class="chips"><span class="chip">verilog</span><span class="chip">yosys</span></div>
   <div class="meta"><span>gates <b>3</b></span>
   <span>depth <b>2</b></span><span>6/1 i/o</span></div>
+</a>
+<a class="card physical" href="layout-full_adder/layout.html">
+  <div class="badge">physical</div>
+  <h3>full_adder</h3>
+  <div class="steps">standard-cell layout · GDS · 3D fab</div>
+  <div class="chips"><span class="chip">gds</span><span class="chip">std-cell</span></div>
+  <div class="meta"><span>cells <b>7</b></span>
+  <span>4.84×1.0 µm²</span><span>7 layers</span></div>
 </a>
 <a class="card" href="copper-damascene/viewer.html">
   <h3>copper-damascene</h3>
