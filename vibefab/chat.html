@@ -77,8 +77,28 @@
   #send:disabled { opacity: .4; cursor: default; }
 
   /* ---- viewer column ---- */
-  #stage { position: relative; min-width: 0; }
-  #viewer { width: 100%; height: 100%; border: 0; background: var(--bg); }
+  #stage { position: relative; min-width: 0; display: flex; flex-direction: column; }
+  #tabbar { display: flex; gap: 2px; padding: 8px 10px 0; border-bottom: 1px solid var(--line);
+            background: #080c12; min-height: 40px; align-items: flex-end; }
+  .tab { font-family: var(--display); font-size: 11.5px; letter-spacing: .06em;
+         color: var(--ink-dim); background: none; border: 1px solid transparent;
+         border-bottom: none; border-radius: 5px 5px 0 0; padding: 7px 15px;
+         cursor: pointer; text-transform: uppercase; transition: color .15s, background .15s; }
+  .tab:hover { color: var(--ink); }
+  .tab.active { color: var(--accent); background: var(--bg);
+                border-color: var(--line); }
+  .tab .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+              margin-right: 6px; vertical-align: middle; }
+  .tab[data-v="verilog"] .dot { background: #8ab4ff; }
+  .tab[data-v="schematic"] .dot { background: #a99dff; }
+  .tab[data-v="layout"] .dot { background: #6fd0a0; }
+  .tab[data-v="fab"] .dot { background: #55d7f2; }
+  #viewhost { flex: 1; position: relative; min-height: 0; }
+  .view { position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+          background: var(--bg); display: none; }
+  .view.active { display: block; }
+  pre.vcode { margin: 0; padding: 20px 24px; overflow: auto; color: #9fb8cf;
+              font: 12.5px/1.65 var(--mono); white-space: pre; }
   #empty { position: absolute; inset: 0; display: flex; flex-direction: column;
            align-items: center; justify-content: center; gap: 10px;
            color: var(--ink-dim); background:
@@ -104,10 +124,11 @@
       </div>
     </header>
     <div id="msgs">
-      <div class="msg agent">Whole stack's open. Ask for a circuit — "design a
-full adder" — and I'll synthesize the gate schematic. Or ask for a structure —
-"a copper damascene trench, 300 nm wide" — and I'll fabricate it in 3D. Then
-tell me what to change.</div>
+      <div class="msg agent">Whole stack, one build. Ask for a circuit —
+"design a full adder" — and a Schematic tab appears. Say "lay it out and
+fabricate it" and Layout + 3D Fab tabs grow onto the same build. Tab between
+Verilog, schematic, layout, and the fabricated 3D structure as we iterate. Or
+ask for a bare structure — "a copper damascene trench, 300 nm wide". Go.</div>
     </div>
     <div id="inputrow">
       <textarea id="inp" placeholder="etch me something…"></textarea>
@@ -115,11 +136,18 @@ tell me what to change.</div>
     </div>
   </section>
   <section id="stage">
-    <iframe id="viewer" title="3d viewer"></iframe>
-    <div id="empty">
-      <div class="big">nothing built yet</div>
-      <div class="hint">schematics and 3D structures appear here — try
-<b>design a 2-bit counter</b> or <b>a 300nm via, 0.8µm deep, nitride liner</b></div>
+    <div id="tabbar"></div>
+    <div id="viewhost">
+      <pre id="v-verilog" class="view vcode"></pre>
+      <iframe id="v-schematic" class="view" title="schematic"></iframe>
+      <iframe id="v-layout" class="view" title="layout"></iframe>
+      <iframe id="v-fab" class="view" title="3d fab"></iframe>
+      <div id="empty">
+        <div class="big">nothing built yet</div>
+        <div class="hint">design a circuit and it grows tabs — Verilog,
+schematic, layout, 3D fab — for one build. Try <b>design a full adder</b>,
+then <b>lay it out and fabricate it</b>.</div>
+      </div>
     </div>
   </section>
 </div>
@@ -129,9 +157,56 @@ const API = "https://sdelaurentiis123--vibefab-web.modal.run";   // "" = same or
 const msgs = document.getElementById('msgs');
 const inp = document.getElementById('inp');
 const send = document.getElementById('send');
-const viewer = document.getElementById('viewer');
+const tabbar = document.getElementById('tabbar');
 const empty = document.getElementById('empty');
 let messages = [];               // conversation history lives in the browser
+
+/* a build is one design with multiple views (tabs); the agent grows it */
+const VIEW_ORDER = ['verilog', 'schematic', 'layout', 'fab'];
+const VIEW_LABEL = { verilog: 'Verilog', schematic: 'Schematic',
+                     layout: 'Layout', fab: '3D Fab' };
+let build = { name: null, views: {} };
+let activeView = null;
+const isHtml = (v) => typeof v === 'string' && v.trimStart().startsWith('<');
+
+function showView(name) {
+  activeView = name;
+  empty.style.display = name ? 'none' : 'flex';
+  for (const v of VIEW_ORDER) {
+    const el = document.getElementById('v-' + v);
+    el.classList.toggle('active', v === name);
+  }
+  if (!name) return;
+  const val = build.views[name];
+  const el = document.getElementById('v-' + name);
+  if (name === 'verilog') { el.textContent = val; }
+  else if (isHtml(val)) { el.srcdoc = val; }
+  else { el.src = val + (val.includes('?') ? '' : '?t=' + Date.now()); }
+  for (const t of tabbar.children) t.classList.toggle('active', t.dataset.v === name);
+}
+function renderTabs() {
+  tabbar.innerHTML = '';
+  for (const v of VIEW_ORDER) {
+    if (!(v in build.views)) continue;
+    const b = document.createElement('button');
+    b.className = 'tab' + (v === activeView ? ' active' : '');
+    b.dataset.v = v;
+    b.innerHTML = `<span class="dot"></span>${VIEW_LABEL[v]}`;
+    b.onclick = () => showView(v);
+    tabbar.appendChild(b);
+  }
+}
+function applyResult(ev) {
+  if (ev.build !== build.name) build = { name: ev.build, views: {} };
+  Object.assign(build.views, ev.views || {});
+  saveBuild(tid, build);
+  // activate the most-advanced view that just arrived
+  const arrived = VIEW_ORDER.filter(v => v in (ev.views || {}));
+  const pick = arrived.length ? arrived[arrived.length - 1]
+             : VIEW_ORDER.filter(v => v in build.views).pop();
+  renderTabs();
+  showView(pick || null);
+}
 
 /* warm the worker while the user types (kills the cold-start preflight wait) */
 fetch(API + '/healthz').catch(() => {});
@@ -151,33 +226,40 @@ function persist() {
 }
 function idb() {
   return new Promise((res, rej) => {
-    const r = indexedDB.open('vibefab', 1);
-    r.onupgradeneeded = () => r.result.createObjectStore('viewers');
+    const r = indexedDB.open('vibefab', 2);
+    r.onupgradeneeded = () => {
+      const db = r.result;
+      if (!db.objectStoreNames.contains('builds')) db.createObjectStore('builds');
+    };
     r.onsuccess = () => res(r.result);
     r.onerror = () => rej(r.error);
   });
 }
-async function saveViewer(id, entry) {
+async function saveBuild(id, b) {
   try {
     const db = await idb();
-    db.transaction('viewers', 'readwrite').objectStore('viewers')
-      .put(entry, id);
+    db.transaction('builds', 'readwrite').objectStore('builds').put(b, id);
   } catch {}
 }
-async function restoreViewer(id) {
+async function loadBuild(id) {
+  build = { name: null, views: {} };
+  activeView = null;
   try {
     const db = await idb();
-    const entry = await new Promise((res) => {
-      const rq = db.transaction('viewers').objectStore('viewers').get(id);
+    const b = await new Promise((res) => {
+      const rq = db.transaction('builds').objectStore('builds').get(id);
       rq.onsuccess = () => res(rq.result);
       rq.onerror = () => res(null);
     });
-    if (!entry) { viewer.removeAttribute('srcdoc'); viewer.src = 'about:blank';
-                  empty.style.display = 'flex'; return; }
-    empty.style.display = 'none';
-    if (entry.mode === 'srcdoc') viewer.srcdoc = entry.v;
-    else viewer.src = entry.v;
-  } catch { empty.style.display = 'flex'; }
+    if (b && b.views) {
+      build = b;
+      renderTabs();
+      showView(VIEW_ORDER.filter(v => v in build.views).pop() || null);
+      return;
+    }
+  } catch {}
+  renderTabs();
+  showView(null);
 }
 function record(kind, text, label) {
   const t = threads[tid];
@@ -207,7 +289,7 @@ function openThread(id) {
   tid = id;
   messages = threads[tid].messages || [];
   renderTranscript(threads[tid]);
-  restoreViewer(tid);
+  loadBuild(tid);
   threadBar();
   persist();
 }
@@ -292,14 +374,7 @@ async function submit() {
       case 'result':
         addReport(ev.report);
         record('report', ev.report);
-        empty.style.display = 'none';
-        if (ev.viewer_html) {
-          viewer.srcdoc = ev.viewer_html;
-          saveViewer(tid, { mode: 'srcdoc', v: ev.viewer_html });
-        } else {
-          viewer.src = ev.viewer + '?t=' + Date.now();
-          saveViewer(tid, { mode: 'src', v: ev.viewer });
-        }
+        applyResult(ev);
         break;
       case 'done':
         if (ev.reply) {
