@@ -1,0 +1,1 @@
+{"name": "mux4", "kind": "design", "stats": {"gates": 3, "depth": 2, "inputs": 6, "outputs": 1}, "verilog": "module mux4(input [3:0] d, input [1:0] s, output y);\n  assign y = d[s];\nendmodule\n"}

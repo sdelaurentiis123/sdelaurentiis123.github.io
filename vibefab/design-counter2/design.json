@@ -1,0 +1,1 @@
+{"name": "counter2", "kind": "design", "stats": {"gates": 4, "depth": 1, "inputs": 2, "outputs": 2}, "verilog": "module counter2(input clk, input rst, output [1:0] q);\n  reg [1:0] q;\n  always @(posedge clk) q <= rst ? 2'b0 : q + 1;\nendmodule\n"}

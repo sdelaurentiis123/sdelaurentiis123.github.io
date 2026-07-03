@@ -96,7 +96,7 @@
   <section id="chatcol">
     <header id="chathead">
       <div class="brand">vibe<em>fab</em> <span style="color:var(--ink-dim)">/ chat</span></div>
-      <div class="sub">describe a structure · the fab runs it · refine it</div>
+      <div class="sub">design a circuit or fab a structure · one conversation</div>
       <div id="threadbar">
         <select id="threadsel" title="threads"></select>
         <button class="tbtn2" id="newthread" title="new thread">+</button>
@@ -104,8 +104,9 @@
       </div>
     </header>
     <div id="msgs">
-      <div class="msg agent">Fab's hot. Describe a structure or a process — e.g.
-"a copper damascene trench, 300 nm wide, 350 nm deep" — and I'll run it. Then
+      <div class="msg agent">Whole stack's open. Ask for a circuit — "design a
+full adder" — and I'll synthesize the gate schematic. Or ask for a structure —
+"a copper damascene trench, 300 nm wide" — and I'll fabricate it in 3D. Then
 tell me what to change.</div>
     </div>
     <div id="inputrow">
@@ -116,9 +117,9 @@ tell me what to change.</div>
   <section id="stage">
     <iframe id="viewer" title="3d viewer"></iframe>
     <div id="empty">
-      <div class="big">no structure yet</div>
-      <div class="hint">the 3D viewer appears here after the first run —
-try <b>a 300nm-wide via, 0.8µm deep, with a thin nitride liner</b></div>
+      <div class="big">nothing built yet</div>
+      <div class="hint">schematics and 3D structures appear here — try
+<b>design a 2-bit counter</b> or <b>a 300nm via, 0.8µm deep, nitride liner</b></div>
     </div>
   </section>
 </div>
@@ -178,16 +179,16 @@ async function restoreViewer(id) {
     else viewer.src = entry.v;
   } catch { empty.style.display = 'flex'; }
 }
-function record(kind, text) {
+function record(kind, text, label) {
   const t = threads[tid];
-  if (t) { t.transcript.push({ kind, text }); persist(); }
+  if (t) { t.transcript.push({ kind, text, label }); persist(); }
 }
 function renderTranscript(t) {
   msgs.innerHTML = '';
   add('agent', GREETING);
   for (const item of t.transcript) {
     if (item.kind === 'report') addReport(item.text);
-    else if (item.kind === 'flow') addFlow(item.text);
+    else if (item.kind === 'flow') addFlow(item.text, item.label);
     else add(item.kind, item.text);
   }
 }
@@ -240,12 +241,12 @@ function addReport(text) {
   msgs.appendChild(el);
   msgs.scrollTop = msgs.scrollHeight;
 }
-function addFlow(yaml) {
+function addFlow(code, label) {
   const d = document.createElement('details');
   d.className = 'flow';
   const pre = document.createElement('pre');
-  pre.textContent = yaml;
-  d.innerHTML = '<summary>flow yaml</summary>';
+  pre.textContent = code;
+  d.innerHTML = `<summary>${label || 'flow yaml'}</summary>`;
   d.appendChild(pre);
   msgs.appendChild(d);
 }
@@ -277,8 +278,8 @@ async function submit() {
       }
       case 'flow':
         if (agentEl) agentEl.textContent = ev.reply;
-        addFlow(ev.yaml);
-        record('flow', ev.yaml);
+        addFlow(ev.yaml, ev.label);
+        record('flow', ev.yaml, ev.label);
         break;
       case 'status':
         if (ev.text.includes('retrying')) { raw = ''; agentEl = null; }

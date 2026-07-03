@@ -43,6 +43,12 @@
            color: var(--ink-dim); border-top: 1px solid var(--line);
            padding-top: 10px; }
   .meta b { color: var(--accent); font-weight: 500; }
+  a.card.design { border-color: #2a3550; }
+  a.card.design:hover { border-color: #8a7dff; }
+  a.card.design .badge { display: inline-block; font-size: 9px;
+    letter-spacing: .16em; text-transform: uppercase; color: #a99dff;
+    border: 1px solid #3a3560; border-radius: 9px; padding: 1px 8px;
+    margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -56,7 +62,31 @@
      border-radius:5px;padding:8px 16px;letter-spacing:.1em;
      text-transform:uppercase;font-size:12px">▶ open the live fab chat</a>
 </p>
-  <div class="grid"><a class="card" href="copper-damascene/viewer.html">
+  <div class="grid"><a class="card design" href="design-counter2/schematic.html">
+  <div class="badge">logic</div>
+  <h3>counter2</h3>
+  <div class="steps">synthesized gate schematic</div>
+  <div class="chips"><span class="chip">verilog</span><span class="chip">yosys</span></div>
+  <div class="meta"><span>gates <b>4</b></span>
+  <span>depth <b>1</b></span><span>2/2 i/o</span></div>
+</a>
+<a class="card design" href="design-full_adder/schematic.html">
+  <div class="badge">logic</div>
+  <h3>full_adder</h3>
+  <div class="steps">synthesized gate schematic</div>
+  <div class="chips"><span class="chip">verilog</span><span class="chip">yosys</span></div>
+  <div class="meta"><span>gates <b>5</b></span>
+  <span>depth <b>3</b></span><span>3/2 i/o</span></div>
+</a>
+<a class="card design" href="design-mux4/schematic.html">
+  <div class="badge">logic</div>
+  <h3>mux4</h3>
+  <div class="steps">synthesized gate schematic</div>
+  <div class="chips"><span class="chip">verilog</span><span class="chip">yosys</span></div>
+  <div class="meta"><span>gates <b>3</b></span>
+  <span>depth <b>2</b></span><span>6/1 i/o</span></div>
+</a>
+<a class="card" href="copper-damascene/viewer.html">
   <h3>copper-damascene</h3>
   <div class="steps">0. substrate<br>1. mask (trench)<br>2. etch to 0.35µm<br>3. strip<br>4. deposit liner 0.03µm<br>5. deposit copper 0.21µm<br>6. CMP planarize</div>
   <div class="chips"><span class="chip">silicon</span><span class="chip">liner</span><span class="chip">copper</span></div>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vibefab — mux4 schematic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { color-scheme: dark; --bg:#06090d; --panel:#0b1017; --line:#1a2431;
+    --line-bright:#2a3a4d; --ink:#cfdae6; --ink-dim:#64768a; --accent:#55d7f2;
+    --display:"Chakra Petch",sans-serif; --mono:"IBM Plex Mono",monospace; }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink);
+    font:13px/1.5 var(--mono); padding:40px clamp(20px,5vw,70px);
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:90px 90px; }
+  h1 { font-family:var(--display); font-weight:600; font-size:22px;
+    letter-spacing:.12em; text-transform:uppercase; margin:0 0 2px; }
+  h1 em { color:var(--accent); font-style:normal; }
+  .name { color:var(--ink-dim); letter-spacing:.06em; margin-bottom:20px; }
+  .name b { color:var(--ink); }
+  .stats { display:flex; gap:26px; margin-bottom:22px; }
+  .stat .n { font-family:var(--display); font-size:22px; color:var(--accent);
+    font-variant-numeric:tabular-nums; }
+  .stat .l { font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-dim); }
+  .board { background:var(--panel); border:1px solid var(--line);
+    border-radius:6px; padding:8px; overflow:auto; margin-bottom:20px; }
+  svg.schematic { display:block; min-width:100%; }
+  .wire { fill:none; stroke:#5a7186; stroke-width:1.4; }
+  .stub { stroke:#5a7186; stroke-width:1.4; }
+  .gate { fill:#101a26; stroke:#8fb4cf; stroke-width:1.6; stroke-linejoin:round; }
+  .bubble { fill:#101a26; stroke:#8fb4cf; stroke-width:1.6; }
+  .port { fill:#e2a24b; }
+  .glabel { fill:#8fb4cf; font:600 9px var(--mono); text-anchor:middle; }
+  .plabel { fill:#cfdae6; font:11px var(--mono); }
+  .plabel.in { text-anchor:end; } .plabel.out { text-anchor:start; }
+  details.src { max-width:760px; }
+  details.src summary { cursor:pointer; color:var(--ink-dim); font-size:10px;
+    letter-spacing:.1em; text-transform:uppercase; }
+  details.src pre { background:var(--panel); border:1px solid var(--line);
+    border-radius:6px; padding:14px 16px; overflow-x:auto; color:#9fb8cf;
+    font-size:12px; }
+</style></head><body>
+  <h1>vibe<em>fab</em> <span style="color:var(--ink-dim);font-size:14px">/ design</span></h1>
+  <div class="name">module <b>mux4</b> · synthesized gate schematic</div>
+  <div class="stats">
+    <div class="stat"><div class="n">3</div><div class="l">gates</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">logic depth</div></div>
+    <div class="stat"><div class="n">6/1</div><div class="l">in / out</div></div>
+  </div>
+  <div class="board"><svg viewBox="0 0 716 492" xmlns="http://www.w3.org/2000/svg" class="schematic">
+<path class="wire" d="M138.0,215.0 H182.5 V206.5 H239.0"/>
+<path class="wire" d="M138.0,277.0 H188.5 V215.0 H239.0"/>
+<path class="wire" d="M138.0,339.0 H194.5 V223.5 H239.0"/>
+<path class="wire" d="M138.0,91.0 H182.5 V268.5 H239.0"/>
+<path class="wire" d="M138.0,153.0 H188.5 V277.0 H239.0"/>
+<path class="wire" d="M138.0,339.0 H194.5 V285.5 H239.0"/>
+<path class="wire" d="M285.0,277.0 H322.0 V237.5 H371.0"/>
+<path class="wire" d="M285.0,215.0 H328.0 V246.0 H371.0"/>
+<path class="wire" d="M138.0,401.0 H260.5 V254.5 H371.0"/>
+<path class="wire" d="M417.0,246.0 H465.5 V246.0 H526.0"/>
+<g transform="translate(239.0,198.0)">
+<path class="gate" d="M8,1 L34,11 L34,23 L8,33 Z"/>
+<line class="stub" x1="-6.0" y1="8.5" x2="0.0" y2="8.5"/>
+<line class="stub" x1="-6.0" y1="17.0" x2="0.0" y2="17.0"/>
+<line class="stub" x1="-6.0" y1="25.5" x2="0.0" y2="25.5"/>
+</g>
+<g transform="translate(239.0,260.0)">
+<path class="gate" d="M8,1 L34,11 L34,23 L8,33 Z"/>
+<line class="stub" x1="-6.0" y1="8.5" x2="0.0" y2="8.5"/>
+<line class="stub" x1="-6.0" y1="17.0" x2="0.0" y2="17.0"/>
+<line class="stub" x1="-6.0" y1="25.5" x2="0.0" y2="25.5"/>
+</g>
+<g transform="translate(371.0,229.0)">
+<path class="gate" d="M8,1 L34,11 L34,23 L8,33 Z"/>
+<line class="stub" x1="-6.0" y1="8.5" x2="0.0" y2="8.5"/>
+<line class="stub" x1="-6.0" y1="17.0" x2="0.0" y2="17.0"/>
+<line class="stub" x1="-6.0" y1="25.5" x2="0.0" y2="25.5"/>
+</g>
+<circle class="port" cx="130.0" cy="91.0" r="3"/>
+<text class="plabel in" x="121.0" y="94.0">d[0]</text>
+<circle class="port" cx="130.0" cy="153.0" r="3"/>
+<text class="plabel in" x="121.0" y="156.0">d[1]</text>
+<circle class="port" cx="130.0" cy="215.0" r="3"/>
+<text class="plabel in" x="121.0" y="218.0">d[2]</text>
+<circle class="port" cx="130.0" cy="277.0" r="3"/>
+<text class="plabel in" x="121.0" y="280.0">d[3]</text>
+<circle class="port" cx="130.0" cy="339.0" r="3"/>
+<text class="plabel in" x="121.0" y="342.0">s[0]</text>
+<circle class="port" cx="130.0" cy="401.0" r="3"/>
+<text class="plabel in" x="121.0" y="404.0">s[1]</text>
+<circle class="port" cx="526.0" cy="246.0" r="3"/>
+<text class="plabel out" x="535.0" y="249.0">y</text>
+</svg></div>
+  <details class="src"><summary>verilog source</summary><pre>module mux4(input [3:0] d, input [1:0] s, output y);
+  assign y = d[s];
+endmodule
+</pre></details>
+</body></html>
