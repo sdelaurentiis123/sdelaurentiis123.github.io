@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab notebook · Stan DeLaurentiis</title>
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" href="../assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-nav: #ffffff;
+    --text: #333333;
+    --text-secondary: #555555;
+    --text-muted: #999999;
+    --accent: #1a6dd4;
+    --accent-hover: #1558b0;
+    --border: #e0e0e0;
+    --highlight-bg: #f7f7f7;
+  }
+  [data-theme="dark"] {
+    --bg: #1a1a2e;
+    --bg-nav: #16213e;
+    --text: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #777777;
+    --accent: #4da6ff;
+    --accent-hover: #7bbfff;
+    --border: #2a2a4a;
+    --highlight-bg: #16213e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    transition: background 0.3s, color 0.3s;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; height: 52px;
+    background: var(--bg-nav); border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; z-index: 1000;
+  }
+  .nav-inner { width: 100%; max-width: 800px; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-links { display: flex; align-items: center; gap: 20px; }
+  .nav-links a { color: var(--text); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: var(--accent); }
+  #theme-toggle {
+    background: none; border: 1px solid var(--border); color: var(--text);
+    cursor: pointer; font-size: 16px; padding: 4px 8px; border-radius: 6px; line-height: 1;
+  }
+  #theme-toggle:hover { background: var(--highlight-bg); }
+  main { max-width: 800px; margin: 0 auto; padding: 76px 24px 80px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; color: var(--accent-hover); }
+  h1 { font-family: 'Roboto Slab', serif; font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .intro { color: var(--text-secondary); margin-bottom: 32px; max-width: 640px; }
+  .entry { padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .entry:last-of-type { border-bottom: none; }
+  .entry .date { color: var(--text-muted); font-size: 14px; }
+  .entry h3 { font-family: 'Roboto Slab', serif; font-size: 17px; font-weight: 700; margin: 2px 0 4px; }
+  .entry h3 a { color: var(--text); }
+  .entry h3 a:hover { color: var(--accent); text-decoration: none; }
+  .entry p { color: var(--text-secondary); font-size: 14px; max-width: 680px; }
+  footer {
+    max-width: 800px; margin: 0 auto; padding: 20px 24px;
+    border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="../index.html">about</a>
+      <a href="../writing.html">writing</a>
+      <a href="./">lab</a>
+    </div>
+    <div class="nav-links">
+      <button id="theme-toggle" title="Toggle dark mode">☀️</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <h1>lab notebook</h1>
+  <p class="intro">
+    Working notes from ongoing research — written as the work happens, not after. Exploratory and
+    work-in-progress by design: single-trajectory experiments, numbers with stated caveats, dead-ends
+    included. Read them as a record of what was tried and what came out, not as finished results.
+  </p>
+
+  <div class="entry">
+    <span class="date">Jul 2026</span>
+    <h3><a href="tcv-architectures.html">Emulating TCV edge turbulence: an architecture notebook</a></h3>
+    <p>Four model families — a deterministic ViT operator, a geometry-aware graph transformer,
+    predictive self-supervision, and latent diffusion — each tried on one Hermes-3/BOUT++ trajectory
+    of tokamak edge turbulence, scored on physics gates rather than pointwise error. The recurring
+    enemy is "the freeze": the collapse of MSE-trained models onto the conditional mean.</p>
+  </div>
+
+  <div class="entry">
+    <span class="date">Jul 2026</span>
+    <h3><a href="tcv-conditioning.html">Anchored rollouts: conditioning the emulator on sparse diagnostics</a></h3>
+    <p>Given the generative emulator of notebook I, what can a realistic set of edge diagnostics
+    (gas-puff imaging, divertor Langmuir probes, reflectometry) actually constrain? Anchored rollouts
+    with synthetic sensors, two misleading signals caught along the way, and a first-pass observability
+    estimate with its caveats stated up front.</p>
+  </div>
+</main>
+
+<footer>
+  Stan DeLaurentiis
+</footer>
+
+<script>
+  const toggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  function setTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+    localStorage.setItem('theme', theme);
+  }
+  const saved = localStorage.getItem('theme');
+  if (saved) { setTheme(saved); }
+  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) { setTheme('dark'); }
+  toggle.addEventListener('click', () => {
+    setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+</script>
+
+</body>
+</html>
