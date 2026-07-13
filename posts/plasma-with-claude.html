@@ -319,27 +319,12 @@
     .nav-icons { gap: 10px; }
   }
 </style>
+<script defer src="/assets/nav.js"></script>
 </head>
 <body>
 
-<div id="progress-bar"></div>
 
-<nav>
-  <div class="nav-inner">
-    <div class="nav-links">
-      <a href="../index.html">about</a>
-      <a href="../writing.html">writing</a>
-    </div>
-    <div class="nav-icons">
-      <a href="mailto:sod2112@columbia.edu" title="Email">email</a>
-      <a href="https://scholar.google.com/citations?user=-UeEc_oAAAAJ&hl=en" title="Google Scholar">scholar</a>
-      <a href="https://github.com/sdelaurentiis123" title="GitHub">github</a>
-      <a href="https://x.com/sdelaurentiis_/" title="X">x</a>
-      <a href="../resume.pdf" title="CV">cv</a>
-      <button id="theme-toggle" title="Toggle dark mode">☀️</button>
-    </div>
-  </div>
-</nav>
+<nav data-site-nav></nav>
 
 <main>
 
@@ -482,35 +467,7 @@
   Stan DeLaurentiis
 </footer>
 
-<script>
-  const toggle = document.getElementById('theme-toggle');
-  const html = document.documentElement;
 
-  function setTheme(theme) {
-    html.setAttribute('data-theme', theme);
-    toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
-    localStorage.setItem('theme', theme);
-  }
-
-  const saved = localStorage.getItem('theme');
-  if (saved) {
-    setTheme(saved);
-  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    setTheme('dark');
-  }
-
-  toggle.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    setTheme(current === 'dark' ? 'light' : 'dark');
-  });
-
-  window.addEventListener('scroll', () => {
-    const scrollTop = document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-    document.getElementById('progress-bar').style.width = progress + '%';
-  });
-</script>
 
 </body>
 </html>

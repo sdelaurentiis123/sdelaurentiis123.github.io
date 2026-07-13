@@ -295,28 +295,12 @@
     .news-date { width: auto; }
   }
 </style>
+<script defer src="/assets/nav.js"></script>
 </head>
 <body>
 
-<div id="progress-bar"></div>
 
-<nav>
-  <div class="nav-inner">
-    <div class="nav-links">
-      <a href="index.html">about</a>
-      <a href="writing.html">writing</a>
-      <a href="lab/">lab</a>
-    </div>
-    <div class="nav-icons">
-      <a href="mailto:sod2112@columbia.edu" title="Email">email</a>
-      <a href="https://scholar.google.com/citations?user=-UeEc_oAAAAJ&hl=en" title="Google Scholar">scholar</a>
-      <a href="https://github.com/sdelaurentiis123" title="GitHub">github</a>
-      <a href="https://x.com/sdelaurentiis_/" title="X">x</a>
-      <a href="resume.pdf" title="CV">cv</a>
-      <button id="theme-toggle" title="Toggle dark mode">☀️</button>
-    </div>
-  </div>
-</nav>
+<nav data-site-nav></nav>
 
 <main>
 
@@ -325,7 +309,7 @@
       <h1>Stan DeLaurentiis</h1>
       <p class="subtitle">Applied AI · Plasma Physics · New York</p>
       <p class="bio">
-        Now building in AI and plasma physics — mostly pointing transformers at turbulent fluids and seeing what they get wrong. Before this it was fluid simulations of binary black hole systems. On leave from Columbia. Based in New York.
+        Now building in AI and plasma physics — mostly pointing transformers at turbulent fluids and seeing what they get wrong. Before this it was fluid simulations of binary black hole systems. Based in New York.
       </p>
     </div>
     <img src="pfp.JPG" alt="Stan DeLaurentiis" class="profile-photo">
@@ -412,38 +396,7 @@
   Stan DeLaurentiis
 </footer>
 
-<script>
-  // Dark mode toggle
-  const toggle = document.getElementById('theme-toggle');
-  const html = document.documentElement;
 
-  function setTheme(theme) {
-    html.setAttribute('data-theme', theme);
-    toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
-    localStorage.setItem('theme', theme);
-  }
-
-  // Init: check localStorage, then system preference
-  const saved = localStorage.getItem('theme');
-  if (saved) {
-    setTheme(saved);
-  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    setTheme('dark');
-  }
-
-  toggle.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    setTheme(current === 'dark' ? 'light' : 'dark');
-  });
-
-  // Scroll progress bar
-  window.addEventListener('scroll', () => {
-    const scrollTop = document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-    document.getElementById('progress-bar').style.width = progress + '%';
-  });
-</script>
 
 </body>
 </html>

@@ -72,21 +72,11 @@
     border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--text-muted);
   }
 </style>
+<script defer src="/assets/nav.js"></script>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <div class="nav-links">
-      <a href="../index.html">about</a>
-      <a href="../writing.html">writing</a>
-      <a href="./">lab</a>
-    </div>
-    <div class="nav-links">
-      <button id="theme-toggle" title="Toggle dark mode">☀️</button>
-    </div>
-  </div>
-</nav>
+<nav data-site-nav></nav>
 
 <main>
   <h1>lab notebook</h1>
@@ -119,21 +109,7 @@
   Stan DeLaurentiis
 </footer>
 
-<script>
-  const toggle = document.getElementById('theme-toggle');
-  const html = document.documentElement;
-  function setTheme(theme) {
-    html.setAttribute('data-theme', theme);
-    toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
-    localStorage.setItem('theme', theme);
-  }
-  const saved = localStorage.getItem('theme');
-  if (saved) { setTheme(saved); }
-  else if (window.matchMedia('(prefers-color-scheme: dark)').matches) { setTheme('dark'); }
-  toggle.addEventListener('click', () => {
-    setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  });
-</script>
+
 
 </body>
 </html>
