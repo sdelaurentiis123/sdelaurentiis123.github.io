@@ -134,14 +134,14 @@
   try { unlocked = !!localStorage.getItem("staticrypt_passphrase"); } catch (e) {}
   if (unlocked) {
     document.querySelectorAll(".internal-only").forEach(function (el) { el.style.display = ""; });
-    var bar = document.querySelector(".sitebar-left");
+    var bar = document.querySelector(".sitebar-inner") || document.querySelector(".sitebar-left");
     if (bar) {
       var tag = document.createElement("a");
       tag.href = "/signin/"; tag.textContent = "internal ✓"; tag.style.color = "#b58900";
       bar.appendChild(tag);
     }
   } else {
-    var bar = document.querySelector(".sitebar-left");
+    var bar = document.querySelector(".sitebar-inner") || document.querySelector(".sitebar-left");
     if (bar) {
       var tag = document.createElement("a");
       tag.href = "/signin/"; tag.textContent = "sign in";

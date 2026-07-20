@@ -68,6 +68,9 @@
     ICONS.forEach(function (i) {
       right += '<a href="' + i.href + '"' + (i.smHide ? " data-sm-hide" : "") + ' title="' + i.label + '">' + i.label + "</a>";
     });
+    var authed = false;
+    try { authed = !!localStorage.getItem("staticrypt_passphrase"); } catch (e) {}
+    right += '<a href="/signin/" id="sn-signin"' + (authed ? ' style="color:#b58900"' : "") + ' title="internal access">' + (authed ? "internal &#10003;" : "sign in") + "</a>";
     right += '<button id="sn-theme" title="Toggle dark mode">☀️</button>';
 
     nav.innerHTML = '<div class="sn-inner"><div class="sn-left">' + left + '</div><div class="sn-right">' + right + "</div></div>";
