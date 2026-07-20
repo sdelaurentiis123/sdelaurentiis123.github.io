@@ -86,6 +86,13 @@
     included. Read them as a record of what was tried and what came out, not as finished results.
   </p>
 
+  <div class="entry internal-only" style="display:none">
+    <span class="date">Jul 2026</span>
+    <h3><a href="/internal/">petch: full internal evidence pack <span style="font-size:.7em;border:1px solid #b58900;color:#b58900;border-radius:4px;padding:0 .4em;vertical-align:middle">internal</span></a></h3>
+    <p>The complete deck including the blind-transfer protocol and the proposed design-partner
+    pilot — everything on the public evidence page plus the sections that stay off the open web.</p>
+  </div>
+
   <div class="entry">
     <span class="date">Jul 2026</span>
     <h3><a href="petch-evidence.html">petch: a first-principles 3-D plasma-etch profile engine — technical evidence pack</a></h3>
@@ -121,5 +128,27 @@
 
 
 
+<script>
+(function () {
+  var unlocked = false;
+  try { unlocked = !!localStorage.getItem("staticrypt_passphrase"); } catch (e) {}
+  if (unlocked) {
+    document.querySelectorAll(".internal-only").forEach(function (el) { el.style.display = ""; });
+    var bar = document.querySelector(".sitebar-left");
+    if (bar) {
+      var tag = document.createElement("a");
+      tag.href = "/signin/"; tag.textContent = "internal ✓"; tag.style.color = "#b58900";
+      bar.appendChild(tag);
+    }
+  } else {
+    var bar = document.querySelector(".sitebar-left");
+    if (bar) {
+      var tag = document.createElement("a");
+      tag.href = "/signin/"; tag.textContent = "sign in";
+      bar.appendChild(tag);
+    }
+  }
+})();
+</script>
 </body>
 </html>
