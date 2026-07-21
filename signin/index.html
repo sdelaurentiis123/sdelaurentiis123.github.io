@@ -171,6 +171,213 @@
                     font-size: 16px;
                 }
             }
+
+            :root {
+                color-scheme: light;
+                --signin-background: #f7f7f5;
+                --signin-surface: #ffffff;
+                --signin-text: #1f2933;
+                --signin-muted: #667085;
+                --signin-border: #d8dee6;
+                --signin-accent: #1a6dd4;
+                --signin-accent-hover: #1558b0;
+                --signin-error: #b42318;
+                --signin-focus: rgba(26, 109, 212, 0.18);
+            }
+
+            * { box-sizing: border-box; }
+
+            .staticrypt-body {
+                min-height: 100%;
+                background: var(--signin-background);
+                color: var(--signin-text);
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            }
+
+            .staticrypt-content {
+                min-height: 100vh;
+                height: auto;
+                display: grid;
+                place-items: center;
+                margin: 0;
+                padding: 32px 20px;
+                background: var(--signin-background);
+                font-family: inherit;
+            }
+
+            .staticrypt-page {
+                width: 100%;
+                max-width: 420px;
+                padding: 0;
+                margin: 0;
+            }
+
+            .staticrypt-home-link {
+                display: inline-block;
+                margin-bottom: 20px;
+                color: var(--signin-muted);
+                font-size: 14px;
+                text-decoration: none;
+            }
+
+            .staticrypt-home-link:hover { color: var(--signin-accent); }
+
+            .staticrypt-form {
+                max-width: none;
+                margin: 0;
+                padding: 34px;
+                border: 1px solid #e4e7ec;
+                border-radius: 14px;
+                background: var(--signin-surface);
+                box-shadow: 0 14px 40px rgba(31, 41, 51, 0.08);
+                text-align: left;
+            }
+
+            .staticrypt-instructions {
+                margin: 0 0 28px;
+            }
+
+            .staticrypt-title {
+                margin: 0 0 8px;
+                font-size: 26px;
+                font-weight: 650;
+                letter-spacing: -0.02em;
+            }
+
+            .staticrypt-subtitle {
+                margin: 0;
+                color: var(--signin-muted);
+                font-size: 15px;
+                line-height: 1.5;
+            }
+
+            .staticrypt-field { margin-bottom: 18px; }
+
+            .staticrypt-field label,
+            .staticrypt-password-label {
+                display: block;
+                margin-bottom: 7px;
+                color: var(--signin-text);
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .staticrypt-form input[type="text"],
+            .staticrypt-form input[type="password"] {
+                width: 100%;
+                height: 44px;
+                padding: 0 12px;
+                border: 1px solid var(--signin-border);
+                border-radius: 8px;
+                background: var(--signin-surface);
+                color: var(--signin-text);
+                font: inherit;
+                font-size: 16px;
+                outline: none;
+                transition: border-color 0.15s, box-shadow 0.15s;
+            }
+
+            .staticrypt-form input:focus {
+                border-color: var(--signin-accent);
+                box-shadow: 0 0 0 3px var(--signin-focus);
+            }
+
+            .staticrypt-password-container {
+                position: relative;
+                margin: 0 0 18px;
+                background: transparent;
+            }
+
+            .staticrypt-password-container input { padding-right: 44px !important; }
+
+            .staticrypt-toggle-password-visibility {
+                position: absolute;
+                top: 50%;
+                right: 5px;
+                display: grid;
+                width: 34px;
+                height: 34px;
+                padding: 7px;
+                transform: translateY(-50%);
+                border: 0;
+                border-radius: 6px;
+                background: transparent;
+                cursor: pointer;
+            }
+
+            .staticrypt-toggle-password-visibility:hover { background: #f2f4f7; }
+
+            .staticrypt-toggle-password-visibility:focus-visible {
+                outline: 2px solid var(--signin-accent);
+                outline-offset: 1px;
+            }
+
+            label.staticrypt-remember {
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                margin: 2px 0 20px;
+                color: var(--signin-muted);
+                font-size: 14px;
+                cursor: pointer;
+            }
+
+            .staticrypt-remember input[type="checkbox"] {
+                width: 16px;
+                height: 16px;
+                margin: 0;
+                transform: none;
+                accent-color: var(--signin-accent);
+            }
+
+            .staticrypt-error {
+                margin: -4px 0 16px;
+                color: var(--signin-error);
+                font-size: 14px;
+                line-height: 1.4;
+            }
+
+            .staticrypt-form .staticrypt-decrypt-button {
+                width: 100%;
+                min-height: 44px;
+                padding: 10px 16px;
+                border: 0;
+                border-radius: 8px;
+                background: var(--signin-accent);
+                color: #ffffff;
+                font: inherit;
+                font-size: 15px;
+                font-weight: 650;
+                cursor: pointer;
+                transition: background 0.15s, transform 0.05s;
+            }
+
+            .staticrypt-form .staticrypt-decrypt-button:hover { background: var(--signin-accent-hover); }
+            .staticrypt-form .staticrypt-decrypt-button:active { transform: translateY(1px); }
+
+            .staticrypt-form .staticrypt-decrypt-button:focus-visible {
+                outline: 3px solid var(--signin-focus);
+                outline-offset: 2px;
+            }
+
+            .staticrypt-form .staticrypt-decrypt-button:disabled {
+                cursor: wait;
+                opacity: 0.7;
+            }
+
+            .staticrypt-spinner { border-right-color: var(--signin-accent); }
+
+            @media (max-width: 480px) {
+                .staticrypt-content {
+                    align-items: start;
+                    padding-top: 24px;
+                }
+
+                .staticrypt-form {
+                    padding: 26px 22px;
+                    border-radius: 12px;
+                }
+            }
         </style>
     </head>
 
@@ -181,28 +388,44 @@
 
         <div id="staticrypt_content" class="staticrypt-content hidden">
             <div class="staticrypt-page">
+                <a class="staticrypt-home-link" href="/">&larr; Back to site</a>
                 <div class="staticrypt-form">
                     <div class="staticrypt-instructions">
-                        <p class="staticrypt-title">Sign in — Stan DeLaurentiis</p>
-                        <p>sdelaurentiis123@gmail.com</p>
+                        <h1 class="staticrypt-title">Sign in</h1>
+                        <p class="staticrypt-subtitle">Enter your credentials to access internal notes.</p>
                     </div>
 
-                    <hr class="staticrypt-hr" />
-
                     <form id="staticrypt-form" action="#" method="post">
+                        <div class="staticrypt-field">
+                            <label for="staticrypt-username">Username</label>
+                            <input
+                                id="staticrypt-username"
+                                type="text"
+                                name="username"
+                                autocomplete="username"
+                                autocapitalize="none"
+                                spellcheck="false"
+                                required
+                                autofocus
+                            />
+                        </div>
+
+                        <label class="staticrypt-password-label" for="staticrypt-password">Password</label>
                         <div class="staticrypt-password-container">
                             <input
                                 id="staticrypt-password"
                                 type="password"
                                 name="password"
-                                placeholder="Password"
-                                autofocus
+                                autocomplete="current-password"
+                                required
                             />
 
                             <img
                                 class="staticrypt-toggle-password-visibility"
                                 alt="Show password"
                                 title="Show password"
+                                role="button"
+                                tabindex="0"
                                 src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNS4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjQgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTM4LjggNS4xQzI4LjQtMy4xIDEzLjMtMS4yIDUuMSA5LjJTLTEuMiAzNC43IDkuMiA0Mi45bDU5MiA0NjRjMTAuNCA4LjIgMjUuNSA2LjMgMzMuNy00LjFzNi4zLTI1LjUtNC4xLTMzLjdMNTI1LjYgMzg2LjdjMzkuNi00MC42IDY2LjQtODYuMSA3OS45LTExOC40YzMuMy03LjkgMy4zLTE2LjcgMC0yNC42Yy0xNC45LTM1LjctNDYuMi04Ny43LTkzLTEzMS4xQzQ2NS41IDY4LjggNDAwLjggMzIgMzIwIDMyYy02OC4yIDAtMTI1IDI2LjMtMTY5LjMgNjAuOEwzOC44IDUuMXpNMjIzLjEgMTQ5LjVDMjQ4LjYgMTI2LjIgMjgyLjcgMTEyIDMyMCAxMTJjNzkuNSAwIDE0NCA2NC41IDE0NCAxNDRjMCAyNC45LTYuMyA0OC4zLTE3LjQgNjguN0w0MDggMjk0LjVjOC40LTE5LjMgMTAuNi00MS40IDQuOC02My4zYy0xMS4xLTQxLjUtNDcuOC02OS40LTg4LjYtNzEuMWMtNS44LS4yLTkuMiA2LjEtNy40IDExLjdjMi4xIDYuNCAzLjMgMTMuMiAzLjMgMjAuM2MwIDEwLjItMi40IDE5LjgtNi42IDI4LjNsLTkwLjMtNzAuOHpNMzczIDM4OS45Yy0xNi40IDYuNS0zNC4zIDEwLjEtNTMgMTAuMWMtNzkuNSAwLTE0NC02NC41LTE0NC0xNDRjMC02LjkgLjUtMTMuNiAxLjQtMjAuMkw4My4xIDE2MS41QzYwLjMgMTkxLjIgNDQgMjIwLjggMzQuNSAyNDMuN2MtMy4zIDcuOS0zLjMgMTYuNyAwIDI0LjZjMTQuOSAzNS43IDQ2LjIgODcuNyA5MyAxMzEuMUMxNzQuNSA0NDMuMiAyMzkuMiA0ODAgMzIwIDQ4MGM0Ny44IDAgODkuOS0xMi45IDEyNi4yLTMyLjVMMzczIDM4OS45eiIvPjwvc3ZnPg=="
                             />
                         </div>
@@ -212,7 +435,9 @@
                             Remember me
                         </label>
 
-                        <input type="submit" class="staticrypt-decrypt-button" value="DECRYPT" />
+                        <p id="staticrypt-error" class="staticrypt-error hidden" role="alert" aria-live="polite"></p>
+
+                        <button id="staticrypt-submit" type="submit" class="staticrypt-decrypt-button">Sign in</button>
                     </form>
                 </div>
             </div>
@@ -816,7 +1041,7 @@ exports.init = init;
 
   return exports;
 })());
-            const templateError = "Bad password!",
+            const templateError = "Incorrect username or password.",
                 templateToggleAltShow = "Show password",
                 templateToggleAltHide = "Hide password",
                 isRememberEnabled = true,
@@ -843,7 +1068,7 @@ exports.init = init;
                     // hide loading screen
                     document.getElementById("staticrypt_loading").classList.add("hidden");
                     document.getElementById("staticrypt_content").classList.remove("hidden");
-                    document.getElementById("staticrypt-password").focus();
+                    document.getElementById("staticrypt-username").focus();
 
                     // show the remember me checkbox
                     if (isRememberEnabled) {
@@ -874,17 +1099,64 @@ exports.init = init;
                 }
             });
 
-            // handle password form submission
+            toggleIcon.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    toggleIcon.click();
+                }
+            });
+
+            const acceptedUsernames = ["sdelaurentiis123", "sdelaurentiis123@gmail.com"];
+            const errorMessage = document.getElementById("staticrypt-error");
+            const submitButton = document.getElementById("staticrypt-submit");
+
+            function showSignInError() {
+                errorMessage.textContent = templateError;
+                errorMessage.classList.remove("hidden");
+            }
+
+            function clearSignInError() {
+                errorMessage.textContent = "";
+                errorMessage.classList.add("hidden");
+            }
+
+            document.getElementById("staticrypt-username").addEventListener("input", clearSignInError);
+            document.getElementById("staticrypt-password").addEventListener("input", clearSignInError);
+
+            // handle sign-in form submission
             document.getElementById("staticrypt-form").addEventListener("submit", async function (e) {
                 e.preventDefault();
 
-                const password = document.getElementById("staticrypt-password").value,
+                const usernameInput = document.getElementById("staticrypt-username"),
+                    passwordInput = document.getElementById("staticrypt-password"),
+                    username = usernameInput.value.trim().toLowerCase(),
+                    password = passwordInput.value,
                     isRememberChecked = document.getElementById("staticrypt-remember").checked;
 
-                const { isSuccessful } = await staticrypt.handleDecryptionOfPage(password, isRememberChecked);
+                clearSignInError();
 
-                if (!isSuccessful) {
-                    alert(templateError);
+                if (!acceptedUsernames.includes(username)) {
+                    showSignInError();
+                    usernameInput.focus();
+                    return;
+                }
+
+                submitButton.disabled = true;
+                submitButton.textContent = "Signing in…";
+
+                try {
+                    const { isSuccessful } = await staticrypt.handleDecryptionOfPage(password, isRememberChecked);
+
+                    if (!isSuccessful) {
+                        showSignInError();
+                        passwordInput.focus();
+                        passwordInput.select();
+                    }
+                } finally {
+                    if (document.body.contains(submitButton)) {
+                        submitButton.disabled = false;
+                        submitButton.textContent = "Sign in";
+                    }
                 }
             });
         </script>
