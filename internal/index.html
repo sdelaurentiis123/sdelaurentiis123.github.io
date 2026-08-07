@@ -669,9 +669,10 @@ function init(staticryptConfig, templateConfig) {
             };
         }
 
-        // remember the hashedPassword and set its expiration if necessary
+        // Keep an authenticated session for this tab, or persist it when requested.
         if (isRememberEnabled && isRememberChecked) {
             window.localStorage.setItem(rememberPassphraseKey, hashedPassword);
+            window.sessionStorage.removeItem(rememberPassphraseKey);
 
             // set the expiration if the duration isn't 0 (meaning no expiration)
             if (rememberDurationInDays > 0) {
@@ -680,6 +681,10 @@ function init(staticryptConfig, templateConfig) {
                     (new Date().getTime() + rememberDurationInDays * 24 * 60 * 60 * 1000).toString()
                 );
             }
+        } else {
+            window.sessionStorage.setItem(rememberPassphraseKey, hashedPassword);
+            window.localStorage.removeItem(rememberPassphraseKey);
+            window.localStorage.removeItem(rememberExpirationKey);
         }
 
         return {
@@ -700,6 +705,7 @@ function init(staticryptConfig, templateConfig) {
         } else {
             localStorage.removeItem(rememberPassphraseKey);
             localStorage.removeItem(rememberExpirationKey);
+            sessionStorage.removeItem(rememberPassphraseKey);
         }
     }
 
@@ -765,7 +771,8 @@ function init(staticryptConfig, templateConfig) {
             }
         }
 
-        const hashedPassword = localStorage.getItem(rememberPassphraseKey);
+        const hashedPassword =
+            sessionStorage.getItem(rememberPassphraseKey) || localStorage.getItem(rememberPassphraseKey);
 
         if (hashedPassword) {
             // try to decrypt

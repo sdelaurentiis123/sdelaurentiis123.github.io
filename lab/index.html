@@ -131,7 +131,12 @@
 <script>
 (function () {
   var unlocked = false;
-  try { unlocked = !!localStorage.getItem("staticrypt_passphrase"); } catch (e) {}
+  try {
+    unlocked = !!(
+      sessionStorage.getItem("staticrypt_passphrase") ||
+      localStorage.getItem("staticrypt_passphrase")
+    );
+  } catch (e) {}
   if (unlocked) {
     document.querySelectorAll(".internal-only").forEach(function (el) { el.style.display = ""; });
     var bar = document.querySelector(".sitebar-inner") || document.querySelector(".sitebar-left");
