@@ -411,7 +411,7 @@ $('#dsetchip').textContent=`${D.which} run · shot ${D.shot} · dt ${D.dt_us.toF
   const W=230,H=400,pad=14;const sc=Math.min((W-2*pad)/(rmax-rmin),(H-2*pad)/(zmax-zmin));const X=r=>pad+(r-rmin)*sc,Y=z=>H-pad-(z-zmin)*sc;
   let lo=1e9,hi=-1e9;for(const row of Ne)for(const v of row){lo=Math.min(lo,v);hi=Math.max(hi,v);}
   let s='';
-  for(let x=0;x<NX-1;x++)for(let y=0;y<31;y++){if(Math.abs(y-15.5)<1&&y===15)continue; // skip the branch cut between y=15 and 16 only where cells jump
+  for(let x=0;x<NX-1;x++)for(let y=0;y<31;y++){
     const pts=[[R[x][y],Z[x][y]],[R[x+1][y],Z[x+1][y]],[R[x+1][y+1],Z[x+1][y+1]],[R[x][y+1],Z[x][y+1]]];
     const dmax=Math.max(...pts.map((p,i)=>Math.hypot(p[0]-pts[(i+1)%4][0],p[1]-pts[(i+1)%4][1])));if(dmax>0.3)continue;
     const c=SEQ(Math.log(Ne[x][y]/lo+1e-6)/Math.log(hi/lo));
@@ -649,7 +649,7 @@ function wallSurface(){const x=NX-1;const pos=[],idx=[];const zs=[];for(let z=0;
   return new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x8a94a0,side:THREE.DoubleSide,transparent:true,opacity:0.16,roughness:1,depthWrite:false}));}
 function xsecMesh(vol,F){const pos=[],col=[],idx=[];
   for(let x=0;x<NX;x++)for(let y=0;y<NY;y++){pos.push(R[x][y],-0.002,Z[x][y]);col.push(...DIV(dispVal(vol,x,y,0,F)));}
-  for(let x=0;x<NX-1;x++)for(let y=0;y<NY-1;y++){if(y===15)continue;if(Math.hypot(R[x][y]-R[x+1][y+1],Z[x][y]-Z[x+1][y+1])>0.3)continue;const a=x*NY+y,b=a+1,c=a+NY,d=c+1;idx.push(a,c,b,b,c,d);}
+  for(let x=0;x<NX-1;x++)for(let y=0;y<NY-1;y++){if(Math.hypot(R[x][y]-R[x+1][y+1],Z[x][y]-Z[x+1][y+1])>0.3)continue;const a=x*NY+y,b=a+1,c=a+NY,d=c+1;idx.push(a,c,b,b,c,d);}
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setAttribute('color',new THREE.Float32BufferAttribute(col,3));g.setIndex(idx);
   return new THREE.Mesh(g,new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide}));}
 function isoMesh(vol,level,sign,color){const s=isosurface(vol,level,sign,mapper,IX);const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(s.pos,3));g.setIndex(new THREE.BufferAttribute(s.idx,1));g.computeVertexNormals();
