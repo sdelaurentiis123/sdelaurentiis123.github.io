@@ -295,13 +295,6 @@ details{background:var(--surface);border:1px solid var(--line);border-radius:6px
 </div>
 </div>
 <div class="tab" id="tab-atlas" hidden>
-<section class="card" id="atlas-intro"><h2 style="font-size:20px;margin:0 0 6px">What this tab answers</h2>
-<div class="notes" style="font-size:14px;max-width:none">
-<p style="max-width:none"><b>The question.</b> Given the outboard-midplane plane at time t, how much of each divertor-target plane at time t + τ is determined by it, which model class extracts it, and where on the plate the rest comes from. This is Ben's experiment 1 (whole plane in, whole plane out) and, at the end, the first pass of experiment 2 (a camera-sized window in).</p>
-<p style="max-width:none"><b>How it is scored.</b> Every model is fitted on the first 65 % of a run, a 30-frame gap is discarded, and the remaining frames are scored without ever being seen. Two numbers are reported for everything: the <b>correlation</b> between predicted and true planes (is the pattern right, regardless of amplitude) and the <b>RMSE skill</b> 1 − MSE/Var (is the error smaller than predicting the mean; 0 = predicting the mean, negative = worse). The n = 0 / n≠0 split separates the toroidally averaged profile from the fluctuating pattern.</p>
-<p style="max-width:none"><b>The models, in one line each.</b> <i>Per-mode linear (ridge)</i>: one linear map per toroidal mode number, symmetry built in. <i>PCA ridge</i>: generic linear map on 256 principal components. <i>Field-line identity</i>: the aligned midplane plane times a gain per row, no learning. <i>Downstream persistence / self-ridge</i>: the plate's own past, the bar for what upstream adds. <i>CNNs, U-Net, ViT, GAOT</i>: the neural challengers. Full definitions at the bottom.</p>
-<p style="max-width:none"><b>The answer, so you can read the rest against it.</b> The per-mode linear map is the best model on every run, target and lag; temperature planes are predicted to 0.8–0.95, density to 0.5–0.8, the outer heat-flux plane worst; upstream beats the plate's own memory after about two frames; no neural model, including a geometry-aware operator transformer in a pre-registered pilot, beats the linear map; and a single fixed-angle window recovers most of what the whole plane can predict.</p>
-</div></section>
 <div class="controls">
   <div class="seg" id="runseg"></div>
   <div class="seg" id="modelseg"></div>
@@ -358,6 +351,13 @@ details{background:var(--surface);border:1px solid var(--line);border-radius:6px
 <li>q on the new runs is the Hermes-3 parallel energy flux efe_tot + efi_tot at the target-adjacent face; on the old runs it is the index-space proxy (Pe + Pi)|Vi|.</li>
 <li>Because the target decorrelates within a few frames, scores beyond τ ≈ 2 frames measure decorrelation rather than information; the informative columns are the first three.</li>
 </ul></section>
+<section class="card" id="atlas-intro"><h2 style="font-size:20px;margin:0 0 6px">What this tab answered, in summary</h2>
+<div class="notes" style="font-size:14px;max-width:none">
+<p style="max-width:none"><b>The question.</b> Given the outboard-midplane plane at time t, how much of each divertor-target plane at time t + τ is determined by it, which model class extracts it, and where on the plate the rest comes from. This is Ben's experiment 1 (whole plane in, whole plane out) and, at the end, the first pass of experiment 2 (a camera-sized window in).</p>
+<p style="max-width:none"><b>How it is scored.</b> Every model is fitted on the first 65 % of a run, a 30-frame gap is discarded, and the remaining frames are scored without ever being seen. Two numbers are reported for everything: the <b>correlation</b> between predicted and true planes (is the pattern right, regardless of amplitude) and the <b>RMSE skill</b> 1 − MSE/Var (is the error smaller than predicting the mean; 0 = predicting the mean, negative = worse). The n = 0 / n≠0 split separates the toroidally averaged profile from the fluctuating pattern.</p>
+<p style="max-width:none"><b>The models, in one line each.</b> <i>Per-mode linear (ridge)</i>: one linear map per toroidal mode number, symmetry built in. <i>PCA ridge</i>: generic linear map on 256 principal components. <i>Field-line identity</i>: the aligned midplane plane times a gain per row, no learning. <i>Downstream persistence / self-ridge</i>: the plate's own past, the bar for what upstream adds. <i>CNNs, U-Net, ViT, GAOT</i>: the neural challengers. Full definitions at the bottom.</p>
+<p style="max-width:none"><b>The answer.</b> The per-mode linear map is the best model on every run, target and lag; temperature planes are predicted to 0.8–0.95, density to 0.5–0.8, the outer heat-flux plane worst; upstream beats the plate's own memory after about two frames; no neural model, including a geometry-aware operator transformer in a pre-registered pilot, beats the linear map; and a single fixed-angle window recovers most of what the whole plane can predict.</p>
+</div></section>
 </div></div>
 <div class="tip" id="tip" hidden></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
