@@ -1,0 +1,23 @@
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/barlow-condensed-600.ttf') format('truetype')}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/source-sans-3-400.ttf') format('truetype')}
+@font-face{font-family:'Source Sans 3';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/source-sans-3-600.ttf') format('truetype')}
+body{font-family:'Source Sans 3',system-ui,sans-serif;font-size:16px;line-height:1.45}
+main{max-width:1240px}h1,h2,h3{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:600;letter-spacing:.005em}
+h1{font-size:46px}h2{font-size:29px}h3{font-size:21px}h4{font-weight:600}
+header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:17px}.lede{max-width:610px;margin-top:12px;font-size:16px}
+.header-note{font-size:13px}.local-label{font-size:12px}.tabs button{font-family:'Source Sans 3',sans-serif;font-size:14px;border:1px solid var(--line);border-bottom:0;background:#e9edec;padding:10px 18px}.tabs button[aria-selected=true]{box-shadow:none;background:white}
+button,select{font-family:'Source Sans 3',sans-serif;font-size:14px}.task-note{max-width:810px;margin-bottom:17px}
+.score-side h3{font-family:'Source Sans 3',sans-serif;font-size:15px}.score .value{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:32px;letter-spacing:0}
+.result-section{margin-top:30px}#neural-results>p{max-width:920px;margin:9px 0}.science-panel{align-self:start}.science-figure figcaption{max-width:1000px;font-size:13px}
+.meeting-response{border-top:1px solid var(--line);margin-top:38px;padding-top:23px}.meeting-response .eyebrow{margin-bottom:5px}
+.meeting-answers{margin:17px 0 20px}.meeting-answers>div{display:grid;grid-template-columns:235px minmax(0,1fr);gap:28px;border-top:1px solid var(--line);padding:14px 0}
+.meeting-answers dt{font-weight:600}.meeting-answers dd{margin:0;max-width:790px;color:var(--muted);font-size:15px}.next-discussion{border-left:3px solid var(--orange);padding:2px 0 3px 16px}.next-discussion p{max-width:900px;margin-top:6px}.meeting-response>.small{margin-top:16px}
+.torus-panel{background:white;border:1px solid var(--line);padding:15px 19px;border-radius:6px}.torus-panel>summary{font-size:16px}.torus-figure{padding-top:18px}.torus-stage{position:relative;background:#101117;border:1px solid var(--line);border-radius:4px;overflow:hidden}.torus-stage canvas{display:block;width:100%;height:auto;aspect-ratio:1.6;touch-action:none;cursor:grab}.torus-stage canvas:active{cursor:grabbing}.torus-stage canvas:focus-visible{outline:2px solid var(--orange);outline-offset:-3px}
+.torus-tools{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;color:var(--muted);margin-top:10px}.torus-tools label{display:flex;flex-direction:row;align-items:center}.torus-legend-ticks{display:flex;justify-content:space-between;font:11px/1.8 ui-monospace,monospace}.torus-figure>figcaption{font-size:13px;color:var(--muted);line-height:1.5}
+@media(max-width:760px){main{padding:22px 14px}.lede{font-size:15px}h1{font-size:42px}.tabs button{font-size:12px;padding:10px 7px}.header-note{margin-top:12px}.meeting-answers>div{grid-template-columns:1fr;gap:5px}.meeting-answers dd{font-size:14px}.torus-panel{padding:12px}.torus-tools{flex-wrap:wrap}.torus-stage canvas{aspect-ratio:1.1}.score .value{font-size:26px}.science-figure figcaption{font-size:12px}}
+
+.ben-compare-control{display:flex;flex-direction:row;align-items:center;gap:8px;font-size:13px;margin:16px 0}.ben-compare-control input{width:auto}#torus-ben-reference img{display:block;width:100%;height:auto}#torus-ben-reference{border-top:1px solid var(--line);padding-top:14px}
+
+#torus-overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;aspect-ratio:auto}
+.torus-tools{flex-wrap:wrap}
+#torus-volume-note label{display:inline-flex;gap:8px;align-items:center;margin-left:12px}#torus-opacity{width:120px}
