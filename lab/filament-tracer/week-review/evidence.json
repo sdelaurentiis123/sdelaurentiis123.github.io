@@ -1,0 +1,245 @@
+{
+  "scope": "Archived numerical-source review; no new runs",
+  "sources": {
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/low/direct.json": "55f980bbb134d13561238047e60e0bc14ee084deb193ee7c2c458eff664833ab",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/low/specialist_chain.json": "9b14b592ac49c4e8ee0deba2b52d663067581024109be326886b20f999b530ae",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/low/specialist_true.json": "2be2d6c5e81637b3e74aa4baaceac4c0f5b5d0b4c5455e85798b9da6e3ace3e4",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/high/direct.json": "837c5a76e26f6c1823d650a9208c41e34e7dd8f49bef645883362cfdd50e707b",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/high/specialist_chain.json": "42fd855979057c6f9e6324b2ec206d32f608faa6397083207275e0a2098ab0e3",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/high/specialist_true.json": "c1a4e9c547edf5db4486e2fbda9ebb4d543919f2f12fb98a68a63691a67ab51f",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/full/direct.json": "a98088d0837818ed3be9f3a7f00d839e9b4e4bd19f1504fe35f4eec780b6df11",
+    "docs/chained_reconstruction_2026-09-16/collected/results/unet/NTPhi/full/direct.json": "8ee7d72075df53a705156fa532d685470c2198a2e28d09e424538a14a4e7f028",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/full/specialist_chain.json": "9ced94c9491d9ea5a047c6ba4aee40ebb61d5d67ccc431636255aeac72162ecf",
+    "docs/chained_reconstruction_2026-09-16/collected/results/unet/NTPhi/full/specialist_chain.json": "df27e93dd94795ea1514feb6b59ab55af114e7773213ef6cb5d279994807a698",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/full/shared_chain.json": "524c39afc86f0f4361bf329a67bc03cc665906a3463ab27ebf9b376cb449cadd",
+    "docs/chained_reconstruction_2026-09-16/collected/results/unet/NTPhi/full/shared_chain.json": "e449dcc1e80151ad4692c7cc49a026adf88877e6b0cd6321a80326e43018cd90",
+    "docs/first_step_study_2026-09-16/collected/results/mixed/low/equal/metadata.json": "34f8ec3388f1008375c7c620f767e4c2958ed63aa3457da5ecdf233b1147ead6",
+    "docs/first_step_study_2026-09-16/collected/results/mixed/low/equal/scores.json": "c5a1d71731e979872aeb6f42f7ea58e448e32eab917b01d211581af4bfbb804d",
+    "docs/first_step_study_2026-09-16/collected/results/mixed/low/first4/metadata.json": "bad9cc18065e36203bc6f45559cbf5e4cbbc6315e7bf0140bc6da56ec83d8235",
+    "docs/first_step_study_2026-09-16/collected/results/mixed/low/first4/scores.json": "eb319b56ef2ec0ec9eb25d169118ec80c6e09ee6805e1768bd73f1244ea62864",
+    "docs/first_step_study_2026-09-16/collected/results/first/low/equal/metadata.json": "9b3995fdc38ff23e67714f1c08ef5d97074ed4ca5f73c3139837923e17f15883",
+    "docs/first_step_study_2026-09-16/collected/results/first/low/equal/scores.json": "1362562968a39400b26c232415b9c96e8ac2ec001fa9e7f341a95bd5e15d1551",
+    "docs/first_step_study_2026-09-16/collected/results/first/low/first4/metadata.json": "71d47a390d45cb9d48e569c54f8c3e01c897f7a0d47741bdb60406d245a56d04",
+    "docs/first_step_study_2026-09-16/collected/results/first/low/first4/scores.json": "b20343ae92f8bf58d38f128130a5c6a30c703338b9d5e775176e95ae3cc0d900",
+    "docs/first_step_study_2026-09-16/collected/results/mixed/high/equal/metadata.json": "1e63d811d6257b6ffe48bacf18ea7d930ffcecc2dc1c78d9dcd9158660607027",
+    "docs/first_step_study_2026-09-16/collected/results/mixed/high/equal/scores.json": "00eccd9d304947083fc94cf5ea72634cc307a0ccb0ae386e2ceb91284b05f2ea",
+    "docs/first_step_study_2026-09-16/collected/results/mixed/high/first4/metadata.json": "dfa0280ed587bfa8790e62fe35693c3a44c30d7979733c8532534616a9f238ba",
+    "docs/first_step_study_2026-09-16/collected/results/mixed/high/first4/scores.json": "aa2221bc34a51d80bc088d59d5537f7e734ea0607456c833b77e8ab0b0193162",
+    "docs/first_step_study_2026-09-16/collected/results/first/high/equal/metadata.json": "b8d3be41e10d488b1a202822bfe7b14595fa4255f0dba0342fc7ccb284bab557",
+    "docs/first_step_study_2026-09-16/collected/results/first/high/equal/scores.json": "bb7b246c0e1b4dadb537f5317c6d30f18ec5a38bb175e85dd4b46ce891e96dac",
+    "docs/first_step_study_2026-09-16/collected/results/first/high/first4/metadata.json": "3015fa80fb993ca3586fa44547a5ecbe4a21af58874b467b39a2a0872707e227",
+    "docs/first_step_study_2026-09-16/collected/results/first/high/first4/scores.json": "9da2b98f38217b732252d5c0482f2bbf7e8525883e97ee9e20ec892628f5a704",
+    "docs/window_reconstruction_2026-09-16/window_scores.json": "fcb471785ae9c1240fa0fc9b4b1342718d33f3243f760784b3908c9d82294daa",
+    "docs/window_reconstruction_2026-09-16/collected/results/low/1/full/metadata.json": "70bb0c6a711ccda33d74a1612c5ca359c8def018487bcb9beed2cf3d11a30a5e",
+    "docs/window_reconstruction_2026-09-16/collected/results/low/1/curriculum/metadata.json": "1eb418c41903dad36ba264269cc9c4fec9987c808fbd2d73ff9b3906182aa2ab",
+    "docs/window_reconstruction_2026-09-16/collected/results/low/5/full/metadata.json": "1ab9f3419020af2c25a769617f0552ed9ae6c9962e34e3fa025ab31f31d5185b",
+    "docs/window_reconstruction_2026-09-16/collected/results/low/5/curriculum/metadata.json": "516aeb2ae1bc1d927a4fae3bed86ac5a220886dcadf827d6fbab29de392d8409",
+    "docs/window_reconstruction_2026-09-16/collected/results/high/1/full/metadata.json": "8b09cb23aaec92f6dbb0e0040014bf174c1b1aca27c18aaeb5a9392c81ab76a4",
+    "docs/window_reconstruction_2026-09-16/collected/results/high/1/curriculum/metadata.json": "9b78b003ee5e5c720e482a98a98913dc957147d297d492438cd42ca7bb1da61a",
+    "docs/window_reconstruction_2026-09-16/collected/results/high/5/full/metadata.json": "d9d8928a6b7fa79c81816851e3468371721256f429c5d6696e762d06a90f66b8",
+    "docs/window_reconstruction_2026-09-16/collected/results/high/5/curriculum/metadata.json": "cc71c7e67e64dd273aa4461f29e012d3b2f1e1614df38bab0bc33d279e443181",
+    "docs/upstream_sweep_2026-09-12/retrieved/summary.json": "f3304a19fdf0f9ad3ded21389723681d9b8f41086535e5ad0e51ac51f7a7c713"
+  },
+  "ridge_endpoint_Te": [
+    [
+      "low",
+      "0.9098",
+      "0.9581",
+      "0.0212"
+    ],
+    [
+      "high",
+      "0.2256",
+      "0.2237",
+      "0.0081"
+    ]
+  ],
+  "fullwidth_ridge_unet": [
+    [
+      "Direct",
+      "0.5403",
+      "0.5710"
+    ],
+    [
+      "Specialist chain",
+      "0.5727",
+      "0.7062"
+    ],
+    [
+      "Shared chain",
+      "0.6979",
+      "0.6973"
+    ]
+  ],
+  "first_step_arms": [
+    [
+      "low",
+      "mixed",
+      "equal",
+      "0.9938",
+      "5 / 2"
+    ],
+    [
+      "low",
+      "mixed",
+      "first4",
+      "0.9957",
+      "5 / 2"
+    ],
+    [
+      "low",
+      "first",
+      "equal",
+      "0.9836",
+      "5 / 2"
+    ],
+    [
+      "low",
+      "first",
+      "first4",
+      "0.9500",
+      "10 / 9"
+    ],
+    [
+      "high",
+      "mixed",
+      "equal",
+      "0.3393",
+      "8 / 5"
+    ],
+    [
+      "high",
+      "mixed",
+      "first4",
+      "0.3404",
+      "8 / 5"
+    ],
+    [
+      "high",
+      "first",
+      "equal",
+      "0.3601",
+      "8 / 5"
+    ],
+    [
+      "high",
+      "first",
+      "first4",
+      "0.3469",
+      "10 / 7"
+    ]
+  ],
+  "window_endpoint_scores": [
+    [
+      "low",
+      1,
+      "Ridge",
+      "0.02770",
+      "0.9540"
+    ],
+    [
+      "low",
+      1,
+      "Attention \u00b7 full",
+      "0.02793",
+      "1.0294"
+    ],
+    [
+      "low",
+      1,
+      "Attention \u00b7 curriculum",
+      "0.02810",
+      "1.0016"
+    ],
+    [
+      "low",
+      5,
+      "Ridge",
+      "0.02767",
+      "0.9106"
+    ],
+    [
+      "low",
+      5,
+      "Attention \u00b7 full",
+      "0.02792",
+      "0.9628"
+    ],
+    [
+      "low",
+      5,
+      "Attention \u00b7 curriculum",
+      "0.02826",
+      "1.0099"
+    ],
+    [
+      "high",
+      1,
+      "Ridge",
+      "0.01227",
+      "0.2734"
+    ],
+    [
+      "high",
+      1,
+      "Attention \u00b7 full",
+      "0.01248",
+      "0.2956"
+    ],
+    [
+      "high",
+      1,
+      "Attention \u00b7 curriculum",
+      "0.01241",
+      "0.4039"
+    ],
+    [
+      "high",
+      5,
+      "Ridge",
+      "0.00924",
+      "0.2575"
+    ],
+    [
+      "high",
+      5,
+      "Attention \u00b7 full",
+      "0.01254",
+      "0.3147"
+    ],
+    [
+      "high",
+      5,
+      "Attention \u00b7 curriculum",
+      "0.01267",
+      "0.4016"
+    ]
+  ],
+  "input_ablation": [
+    [
+      "n\u2091, T\u2091",
+      "0.01320",
+      "0.2996"
+    ],
+    [
+      "+ \u03c6",
+      "0.01063",
+      "0.2658"
+    ],
+    [
+      "+ V\u1d62",
+      "0.01146",
+      "0.2810"
+    ],
+    [
+      "+ P\u2091",
+      "0.01314",
+      "0.2988"
+    ],
+    [
+      "All five",
+      "0.01055",
+      "0.2622"
+    ]
+  ]
+}
