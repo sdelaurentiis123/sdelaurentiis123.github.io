@@ -1,0 +1,1832 @@
+{
+  "native_metric_checks": 234,
+  "checks": [
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 19,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 19,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 20,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 20,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 21,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 21,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 22,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 22,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 23,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 23,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 24,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 24,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 25,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 25,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 26,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 26,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 27,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 27,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 28,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 28,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 29,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 29,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 30,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 30,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 31,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 31,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 19,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 19,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 20,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 20,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 21,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 21,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 22,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 22,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 23,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 23,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 24,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 24,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 25,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 25,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 26,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 26,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 27,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 27,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 28,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 28,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 29,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 29,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 30,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 30,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 31,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 31,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 19,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 19,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 20,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 20,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 21,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 21,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 22,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 22,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 23,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 23,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 24,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 24,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 25,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 25,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 26,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 26,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 27,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 27,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 28,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 28,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 29,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 29,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 30,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 30,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "ridge",
+      "y": 31,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "full",
+      "model": "unet",
+      "y": 31,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 19,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 19,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 20,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 20,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 21,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 21,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 22,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 22,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 23,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 23,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 24,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 24,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 25,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 25,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 26,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 26,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 27,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 27,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 28,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 28,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 29,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 29,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 30,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 30,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 31,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 31,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 19,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 19,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 20,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 20,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 21,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 21,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 22,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 22,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 23,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 23,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 24,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 24,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 25,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 25,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 26,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 26,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 27,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 27,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 28,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 28,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 29,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 29,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 30,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 30,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 31,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 31,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 19,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 19,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 20,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 20,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 21,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 21,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 22,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 22,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 23,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 23,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 24,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 24,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 25,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 25,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 26,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 26,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 27,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 27,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 28,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 28,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 29,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 29,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 30,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 30,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "ridge",
+      "y": 31,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "low",
+      "model": "attention",
+      "y": 31,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 19,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 19,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 20,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 20,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 21,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 21,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 22,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 22,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 23,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 23,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 24,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 24,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 25,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 25,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 26,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 26,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 27,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 27,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 28,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 28,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 29,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 29,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 30,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 30,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 31,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 31,
+      "field": "Ne",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 19,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 19,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 20,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 20,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 21,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 21,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 22,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 22,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 23,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 23,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 24,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 24,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 25,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 25,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 26,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 26,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 27,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 27,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 28,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 28,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 29,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 29,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 30,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 30,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 31,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 31,
+      "field": "Te",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 19,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 19,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 20,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 20,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 21,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 21,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 22,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 22,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 23,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 23,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 24,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 24,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 25,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 25,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 26,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 26,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 27,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 27,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 28,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 28,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 29,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 29,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 30,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 30,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "ridge",
+      "y": 31,
+      "field": "phi",
+      "native_errors_match": true
+    },
+    {
+      "case": "high",
+      "model": "attention",
+      "y": 31,
+      "field": "phi",
+      "native_errors_match": true
+    }
+  ],
+  "parseval_checks": 27,
+  "sources": {
+    "data/chained_85604_20260916/extraction.json": "41c1bb16f0dfc8fd62b7b78d96408ebd461c1036c360eac9734a3784dbd22a54",
+    "data/chained_85604_20260916/native_29.npy": "f5ad522b23907af3fbc2f54c0a5d51bb007d8d9bd078af45a01153369740295d",
+    "data/chained_85604_20260916/native_20.npy": "c7b9d5435fb567ea77ee7f86cfba2bc4d1a1efe07a8a444d1ad651e610fdfe15",
+    "data/chained_85604_20260916/native_31.npy": "d299fa729ee80df3c521f5f0bce4574255782ed5bf2de7b19e0ce972f1f610a1",
+    "data/chained_85604_20260916/time.npy": "29cce77f32e46e42b9b4f530f1efa1487e8dbb99b48b82fa059294666e945417",
+    "data/chained_85604_20260916/native_24.npy": "6a3eff5281ab89f9d0ae60e07fc78fcd56e988a818bcfb569979c18483861de0",
+    "data/chained_85604_20260916/native_30.npy": "1b417790ca366bed64db4dd1165214c2bf4845c74944c91ed859065d7aa752f4",
+    "data/chained_85604_20260916/native_23.npy": "8e4b6ace281187bc63c1d2c175b88af8b7e3927862abd8cd542dfad638b2e7da",
+    "data/chained_85604_20260916/native_25.npy": "64dfaf35b24c05b764532002dbbd5cc2f304ab73b99969a0a2178f804dae562e",
+    "data/chained_85604_20260916/native_22.npy": "b4c5a1cb3c5eae7be8260776256a142b4362d5f59121eb4f9c0b04317ca30c66",
+    "data/chained_85604_20260916/raw_shift.npy": "14d7a96856b3b557a85589f8d040f8600f04d5a93742fa5bd81a164e171187be",
+    "data/chained_85604_20260916/native_26.npy": "9771b997fa99f36e265d598f6ac53e33ef32e39ec756346386f9b81be24e0e1c",
+    "data/chained_85604_20260916/native_21.npy": "01a8914e4bfc80ac06b134edc3d8cd2b04d7b4aa0e37b9112b8485fa86993347",
+    "data/chained_85604_20260916/native_19.npy": "13bd57e00438f88b7fe861bd55eff9a9bb628eafa60161fe3533009089e6cdf5",
+    "data/chained_85604_20260916/native_27.npy": "98e56c4789beb6145ed1e583932f66b520cfe7fae532a2c3bf42f6e9480f7192",
+    "data/chained_85604_20260916/native_28.npy": "f8fb91132c8368583f36ef7d024eb5aa09c848938df8a964326928026cb44b05",
+    "data/chained_85604_20260916/native_18.npy": "6ae73793a81293b725bd3b5233ac836d011a4381592eb462b1c11f413dfe1c16",
+    "data/geom_refined_85604.npz": "fe7137e6be775453e508cc4388891efe63d5a835e6e3767ceb63b26cb08b8deb",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/all/full/direct.json": "b1cb082c09940b5498dabf820df02784ec64ffb4b632c2cc066c8882dea0755e",
+    "docs/chained_reconstruction_2026-09-16/collected/results/unet/all/full/direct.json": "0db10b2e08ab484ff11f89519fd2837bcdb22119dce08d6b8ae4274fb2ee7b42",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y19_Ne_pred.bin": "69a8a416e2b7552258ecf94d46778ddffa574d4f32c353a2dee22c8cbd5ac9fa",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y19_Ne_pred.bin": "a46b96428b7768b971ea3c3ccc139603bce352966fcc228d1b768a93fc6844be",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y20_Ne_pred.bin": "9148eca1c30e48138435cc86022789b9d8512f1fc7009e063ea4b42688c8dd99",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y20_Ne_pred.bin": "392ca963ddd0e28ad1d4ce14a4a20fb2e73ef5c823ca786ede91d57568cc1400",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y21_Ne_pred.bin": "960af04c7cb46cee0fe020393d09e454221ef4fa4b8c5c67385f36075c116586",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y21_Ne_pred.bin": "586897502cb465f1fdf2b20d3e4f89c25ea7df098445bf46ecb0a54358fe3273",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y22_Ne_pred.bin": "2d4c6aa8938660293c42f4fff2b04647e813cddb5533a8243f899268f273f29e",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y22_Ne_pred.bin": "88385ace41068a5663d93b386dffaa536ccfdb643150e53a48cbf26281ecd3e3",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y23_Ne_pred.bin": "b9adaeb795d7235583bf67eebbc1b3f5519c73fd002d65dab1d2ccb60833db0f",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y23_Ne_pred.bin": "78109efb3023595714f1f19a088db68b4603e0d584ea9c2915177178da448083",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y24_Ne_pred.bin": "0fda7fc0ac4581522ac673d7aaeecacda481f60c8727221a8fbbd0fbd53e2036",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y24_Ne_pred.bin": "a0e6f9bf6c74c41481304f6614828f226f7405912d062ddafaa548faf6d94bfd",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y25_Ne_pred.bin": "dd7383bd3464b96d077a979c05daa827daa4cf44420168113225bbb45e5091cc",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y25_Ne_pred.bin": "00e0ef97cbf74fa6ee9c52277c52c898b82659dc5a5bac68c66441ecc274c6aa",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y26_Ne_pred.bin": "d701719a331bda0d75cca5a88011965ce3027d96308fc0afbb58d70d19e6dcb9",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y26_Ne_pred.bin": "c96247395fcfc5cfe161e401e23e80ac0395d95d7ff84d852d1930eab216dcfa",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y27_Ne_pred.bin": "fb3e5e76a1af7b96f6554bb443556c014db592d04e9ee0bb0bb6a9cc0295a552",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y27_Ne_pred.bin": "e992e92ae2c61c534716a4c012de3e36559687dcb1d9ba2668eb98ca8a908aa6",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y28_Ne_pred.bin": "769abba8ec200c9db874ce5f22feac50decb2568400791715f06706a137f590e",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y28_Ne_pred.bin": "190b8683e9876169f5188b956877552efd177f022900a292289a2fb15687c1b4",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y29_Ne_pred.bin": "3b446f75097a3a7e98193402850f76fbd0914dc5d5411515b7e9d0c23c7611c6",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y29_Ne_pred.bin": "f5a2cec16d58b1c2ec90dcd485ad3d27177e2a0dbd1fa7642a247ebad47af586",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y30_Ne_pred.bin": "3c25c4861132dba5cab5e3a5c10883d6aed6aa2d55f4cf0778ba2aa74ffd2cf1",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y30_Ne_pred.bin": "ce4025c779b6396b4fe2a67543b1bfc707903dc93d006d045a25db3a6ebc53eb",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y31_Ne_pred.bin": "a17fba70893247370becf2df13eb59a155cebcf96bb2d0fd222b79d64b95c7e0",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y31_Ne_pred.bin": "f66bcb5554f158ed8fcfc5426c2e8506e475acc953bf0f34aff365cac4a919e5",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y19_Te_pred.bin": "98e33140ad55f53bb80cb0201de157b3aa08dd1555e59ea21c182b9de62eaa7c",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y19_Te_pred.bin": "344c2f4eb45ea6ce2c17c3fdf1531445f0faf6b4b3979ca7075fb2e12c4b8971",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y20_Te_pred.bin": "eec05ec661c57b442ec8e8cac0b9da5af2361ad139762e0c4478a7139f666cba",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y20_Te_pred.bin": "2071b96b6ed231f82f3fc7596a29832a0f211f82576f9aed9d0f375a7fe0fd88",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y21_Te_pred.bin": "95e3ba5357ffc607c8915caeea3c089154db032de5aa7efe10b2092ece24a465",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y21_Te_pred.bin": "dc4a09a8daf16b0252ef85d294eb03830df1e4784af52d139b174a8b9541fa3f",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y22_Te_pred.bin": "fe545292226c8bae5114fa545110a48360e69ed3c504d223fe395c6720766a62",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y22_Te_pred.bin": "f32b9605ff70f5889052edd66cd1baf88e5a03ab70efe0a0d90928399e38962e",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y23_Te_pred.bin": "4d85cdc5503a9e96917093b3ac7405c3bc20a3efa0f952527ef57c990a6d4646",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y23_Te_pred.bin": "1c50136479f53f61f668c5b9014805aad0726e3d459025ce7a2994e6ea536e5d",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y24_Te_pred.bin": "db788edec2e80947d0bfa70d55e07f78e065bd67008368d149b30672cad3a0dc",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y24_Te_pred.bin": "e0135348b6f992e3a77dd75803288491d9e30c03574874dddadfadb25ecc4cf3",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y25_Te_pred.bin": "85989739ed3be9ee37c0db163f440ed8e69729ba62c21c7c64f91d984f121226",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y25_Te_pred.bin": "4bea0ac81ae842ae38563e7f061b761e67975af6ef268b0ae8a9b306dd60489d",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y26_Te_pred.bin": "d0eb2086f137ae9e3b72eeb186c76dc8c38d1a5c6c261dbabebeceb8585c2992",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y26_Te_pred.bin": "79c73dc2093c5d9786428bcdbb35fa8d49fadb1d88310254f0925a8a571f7dac",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y27_Te_pred.bin": "f712a67ccb87f2d07efe673dd07cf4e494ac571831a787bbc0f01dd6411cdc18",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y27_Te_pred.bin": "3c5d827e9455cf2e522dd63ccd206030d9cd8b529b3cd0fcdef5e50de8998c42",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y28_Te_pred.bin": "f99d9d5ac56631e0abe4070e6d09d680b49480fe024a7411d615681dd90c5aca",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y28_Te_pred.bin": "57ef39d9fff015c8a1d58ee2e0b1396c0aaa8015c47fe8eef375acd9b00d05e2",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y29_Te_pred.bin": "0abd0c27c5e73b9c2d7093096314cccc809e60f39cd058cab17c435892cce220",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y29_Te_pred.bin": "5c52c42f055dd10ddf0a245f69a014f8ef9501b01fe2b975d2e7c4f49e3bbf21",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y30_Te_pred.bin": "5e5d2af7bbc687d2e7b8e049387141269c8040dd59176fad0c59d29f467f23ea",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y30_Te_pred.bin": "c43eca0f0e338ddf9ee69659689a9c839cc21f741a1ce4a30b355429695d0bc5",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y31_Te_pred.bin": "0da38e7566e92aa54979ae2c8477b95f76c177e58c028cc4a294c478e4d76f26",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y31_Te_pred.bin": "1d214e7fe39c01096ff1170164c92f6eaac7479fffbff658c3985ae1bb93c4f9",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y19_phi_pred.bin": "45e7c744e0c283ca0d1421a4ed4dd00a94fc66e41d16d6d61c8eafc8744ebe6e",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y19_phi_pred.bin": "252f2df4fa394bc2d74d1bf2dc740e8de5aec02e814f74fa553eada88d1ddd5b",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y20_phi_pred.bin": "a1e36ce01e6a07a622f624a7b7f69e282c8320bc55122ab355b12185cf94d4e9",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y20_phi_pred.bin": "2ad34eadacf7713ba64e147fcc1cb648927524be7ea1eda2f6926bfad99b2d32",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y21_phi_pred.bin": "2fef787d3c86a7c754e3ad0f6d35596e608da94e8a042ced60dbee2af83b4ba7",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y21_phi_pred.bin": "cb402928474d52a258b7c82797658c759c6f8f0a7f8802a17f7556574dc7051b",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y22_phi_pred.bin": "5d16ad19c7f7b09160a3f185dac5db355de1694bc77f1fc40fdef918279d9d5c",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y22_phi_pred.bin": "db76e9b691f2a5b68100da9e2f725ba9d5f107fc59c7e5390a0f9df323ebeab6",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y23_phi_pred.bin": "cdda6e86fb666400a9cf0b69e2a36acd2ad1efb0a831402377fbb540988e0107",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y23_phi_pred.bin": "19ca4c2a48474b15906a6c0c58b5e7b2b3697df0bafac282867250f1afb37574",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y24_phi_pred.bin": "8a5d4b26c59d28fd88fc8f2e91e03c1b641baa061e247199f1c04f2e41ed4b08",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y24_phi_pred.bin": "0aeafdc26e2b151a3e97f9b579e47b48bb50cb304b68fb9d63fb7c86e53f441c",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y25_phi_pred.bin": "4911d69fdb97056f6f72dfe17909a8e4be5bb657fb9dfc85ff2219a01a68d4d1",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y25_phi_pred.bin": "b2d4735f3372cadb00416d205774893d28c9f68db6e646993ac47c43699f0afd",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y26_phi_pred.bin": "2c76ebfa1add71ce3cb102a3c4564167a688ce5275e69179d25d3db9cda036ec",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y26_phi_pred.bin": "5910fc21c3a0d23375d4bea5bf1ef69bb2810599bb593c77448b226809af80f4",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y27_phi_pred.bin": "35fac62a5ed2ac9768080d3466a9fb33a2e3ee8467f5dc8187441727ac470990",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y27_phi_pred.bin": "8cfb09e0f8dd5954ee28bfac7f312269187d9eaf66230e00303e50745d869b5e",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y28_phi_pred.bin": "0a668ac9bda1126e207f09636bd83b1aa83185f44122802201f6116ea6225fba",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y28_phi_pred.bin": "ff47716cd56b8d57bcf5979a6f13a489a504b75d9646a1b4c3b4f8d4a046ce75",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y29_phi_pred.bin": "bd71ba36816f70bf4866717f10dbd6132bd20ee03d79457a6bd4bab9b6d98270",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y29_phi_pred.bin": "0abe5e0f161c3b05f26630cb699b3cf3a090bd153075f138dcf1ef0d368e868d",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y30_phi_pred.bin": "50817cf7ee2cbdc75c105277bc0e4c87ec029727a7f43d3d7ce15e5064f1f14a",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y30_phi_pred.bin": "efb864934f39401d71d3083b7fdd19351f5a614cbe9707f7f69a2583431a6b41",
+    "docs/chained_reconstruction_2026-09-16/movies/ridge_all_direct_y31_phi_pred.bin": "8a2e55bc0c7d0c3a095a1d84fdc3e4108be5b0074dbe8f7f0025970831c8e6de",
+    "docs/chained_reconstruction_2026-09-16/movies/unet_all_direct_y31_phi_pred.bin": "ded3af3e2d57f51b850d8bf049f3ebc7ab6e2283ab36b2e28f5baa05a3bf3f86",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/low/direct.json": "55f980bbb134d13561238047e60e0bc14ee084deb193ee7c2c458eff664833ab",
+    "docs/first_step_study_2026-09-16/collected/results/mixed/low/equal/scores.json": "c5a1d71731e979872aeb6f42f7ea58e448e32eab917b01d211581af4bfbb804d",
+    "docs/week_review_2026-09-17/source_bands/low/direct.npy": "2ef024c6f462a47381d2801443e45a6b75e898cf2c988696199c28229c04e2e5",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y19_Ne_pred.bin": "25f46820e980db8b68edf2c048fe2e5ce451f67bf78f237a98e85427ec1fc577",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y20_Ne_pred.bin": "fc35c2cd1e141239a217e57c1e015980726905d2f033c53c318bf4d24c39de65",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y21_Ne_pred.bin": "fb5e956d20ffa10c3bdd33448c06daec65cc9ce56c312f8c5ddeb7293ef0fe2c",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y22_Ne_pred.bin": "cbb9a2b1bcb571f0250c2d22bdd11f0343d12f2dffff8fbdad0a20bab0996107",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y23_Ne_pred.bin": "ba0c5a5275d2becc1baa087592cf8d20f1c94722b4b296630ae2e2387e02c694",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y24_Ne_pred.bin": "e0b9f01d5172bec52d85a11a195769e22f0e2403644672ebd617716eac5720f0",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y25_Ne_pred.bin": "2ae0c27fce99a0aaddfc485aca02ac0f2082210ab33ea42d578cb399b0dfe774",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y26_Ne_pred.bin": "c17abe8c2b400b19e5145330ef90398b88449340fc453e0e9b229e21378ea43a",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y27_Ne_pred.bin": "c127e740dfebc9d2e173662c0641bc545e9905dca8d6111b77edd410e68cfe28",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y28_Ne_pred.bin": "aa64de94c7bf0f16eb9b812601502085944d2ca97c1af95ce972996d07d84366",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y29_Ne_pred.bin": "108e2215289b50da4da064386fd0df29ae5b54829775714760e13652fa8048f1",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y30_Ne_pred.bin": "ce0594b6a8372e621830095f4c6b0123537e0b15c73f21018091825444a4a52f",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y31_Ne_pred.bin": "5ba5d684d8276d06d27a415af661208d3981443b13fc63c0fd25d714da81824e",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y19_Te_pred.bin": "580acd9875526086a8a18dc1353a70929d1dab9ecd22af4825b180ae9dedf793",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y20_Te_pred.bin": "c9ce8dbfa6e769c74811306193cc1d3ee0e63b2502e1ab29e22a6ba5d86b7e60",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y21_Te_pred.bin": "ca1d3a404d0ea86e04312433d58bbe751f2574b6b668d9e1024498e6ce54c2c0",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y22_Te_pred.bin": "1f903c898247d5091163ad7e7ad3b214c2257cc363e310732f73b43e9058fa71",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y23_Te_pred.bin": "499914f0b2c7ff3bc4d6ce494847fe0e58c79bf6964fd68f7f45bb9caf2f6cfb",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y24_Te_pred.bin": "d22b0f760382670cf90d407f6284404808db31a0472e2f195d8cba94aae8f932",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y25_Te_pred.bin": "93b34fb56dc7e26567d0e1e1bfe472de05ab87b77feb8fa06f088bf420d71ac9",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y26_Te_pred.bin": "82d6cf1ddd3480c2cfa06f611db13937c93dcdf81e935cd07ab52392dcfba72a",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y27_Te_pred.bin": "17bdeaf7d88d9dfae32e91824961700cbfe4a7cd457959e81f6619f41f171650",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y28_Te_pred.bin": "ba4e7c7673ff82b2ddcde40bb8195af10c5e0905c80cf5edf381454cab5cf136",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y29_Te_pred.bin": "dba8de2f82a76af4774bfff07a2b315817d0f40132404a2be4dedb7520594d24",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y30_Te_pred.bin": "7dd5f9ad338449621471c4edb7266edc3d9dbdd651b3472a4343f4438e136149",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y31_Te_pred.bin": "9a23281f2d8a70c5c87f4381dadc30aea3b9eea4c64bd22c6c7168762cf889b7",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y19_phi_pred.bin": "d665e39b8f59b974ab87125791a6b9945983eb6fa2741a6d4ed3d4c58b37c51b",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y20_phi_pred.bin": "d2de4cb2e984b4f5a6e679dcadbb11bb5a045828349169ff89734c96a499ff41",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y21_phi_pred.bin": "61e9b963ca126635473c174678b2dc8f767cb6bcf6dd7eca117c6c7dbee8ac72",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y22_phi_pred.bin": "36f805f1787be6f0fd23dcaf86ff7ca3bbf8f426e2c7e08c9340772b1404395f",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y23_phi_pred.bin": "caa3cb08cbd0ecd661447c66c67cdec75de4c5a36ffa28cca00e492173cb9c9e",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y24_phi_pred.bin": "a8a6a33034ec69f0d65060fac06764efa4427aa744537749ab47a9b1896c2769",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y25_phi_pred.bin": "3140c376db4f0abd555e8ab6e108dade6d315d81dcc5e596ce468724d53cb983",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y26_phi_pred.bin": "312ec4facb400d12c4b87eba70e8a87fe2d2d74bd08d5442e4f6f690c4644c1d",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y27_phi_pred.bin": "0e81901e339a857a1e557e582101ded71871eb100bec83137edb3e083f9df679",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y28_phi_pred.bin": "5c1ebe1037e6fee822cb5d166b3350f401f850149c08d5b7dd54da34ea6d8134",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y29_phi_pred.bin": "ec782b741a9eca028bd4cf87915545b36a4260e938ce599c4bf797f06f04db08",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y30_phi_pred.bin": "e0ee8089c0d4f303b8b57f08956126532afbbfd8f15dacd5db4547817ce7ea75",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_low_mixed_equal_y31_phi_pred.bin": "9ae142580e253c10286af6390b41b5ffda9fa9e6de872add9552e238a84089ab",
+    "docs/chained_reconstruction_2026-09-16/collected/results/ridge/NTPhi/high/direct.json": "837c5a76e26f6c1823d650a9208c41e34e7dd8f49bef645883362cfdd50e707b",
+    "docs/first_step_study_2026-09-16/collected/results/mixed/high/equal/scores.json": "00eccd9d304947083fc94cf5ea72634cc307a0ccb0ae386e2ceb91284b05f2ea",
+    "docs/week_review_2026-09-17/source_bands/high/direct.npy": "2d78787435be1fecec8109580412e22efcde12a0a15c53f9e80f6991a90c5474",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y19_Ne_pred.bin": "bba166322a5a84dfa73f6ad08337b4f6edd983610c6f12581f52a374f00dac71",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y20_Ne_pred.bin": "f7ed6fec5da9a74ad78eae2b61b62e5e2e87f487b5308a58482879ee9ae85567",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y21_Ne_pred.bin": "c6d1278308245f5680f653f5ee42c460561a99eebae63bd4831c68b896eb433e",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y22_Ne_pred.bin": "ed4eecc66e32a7ddfd2d4defe9017573b861dbecb703cae39e78e5629eca8015",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y23_Ne_pred.bin": "5d7be9d5a0085fbbaaf9f165183ecffa776a55355104279afed55afa8aa55e81",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y24_Ne_pred.bin": "7e6cca34aaa55477aa0a4abaa948e13d16cb9e3146f918bc14fb5aa6379cd856",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y25_Ne_pred.bin": "c77765aea3f4eb6bbb0e2906864dadb14fae4796cfc48692624dcb58359a21d2",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y26_Ne_pred.bin": "cd3550e08fa0dd83392f912dcb569f20a01d187344f8306df5dd0dfce022abcd",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y27_Ne_pred.bin": "eb01813ec28e2ebda562a2fec055013e2e4aeda59e363a34679bc0705c5e0ea3",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y28_Ne_pred.bin": "12aac58c2c0648d8c4ef3e44181fcdee0f255c175c6e1cee75fc1605a4f35122",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y29_Ne_pred.bin": "1f32d325e459a7706bd992ddb4061b8e4297398230e31aa1fce1b76330ac3f31",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y30_Ne_pred.bin": "08837b85be8f4f0464c330a24cd18b6a379fa42070f3725ca343732f28221222",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y31_Ne_pred.bin": "334fb4f5d5d202071eb0b2ddc2adf0cb8714c22e130270dd54341ac1df98d1d1",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y19_Te_pred.bin": "ed8ecce01ee346a6c2119169fc5cb0294ec5506bd3ee4314a3eb733416dd995e",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y20_Te_pred.bin": "657525311b0bb55d16584abbc53c183a910070e88696dbcc9cc0fcb9e2d044ad",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y21_Te_pred.bin": "54ee1abcfbb84da949e2dbb584870146423b0ba4f80a5e19971cf09e79a0f6f7",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y22_Te_pred.bin": "1e7aef2e16d44139bf6f8ff2033d1e11356bbd632d88d54a3e21df2944758089",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y23_Te_pred.bin": "4a736bd116267360343a3fb55aafed57472553186f1a7516d3510fb1e81c1fcf",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y24_Te_pred.bin": "336cdc4a5fd81ce1cd37da63ac15801121f856f9002c6c3a99819012228b457a",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y25_Te_pred.bin": "249408ee25f6787f396484fffc6ef6c2dc6d2e8401a63015b2adc48b62405b4c",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y26_Te_pred.bin": "9b71999ac060f564c860edca11939b40d27fee72e7227c2af3bb8712c184a92a",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y27_Te_pred.bin": "707e804c5bc6a0ba838c5017c384074b22160f7b7800c1eda24a7a0a9f979ec7",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y28_Te_pred.bin": "49ff44324ea0e1525e1ce9894f8f07351e6ad88360e70924641383dbc027a5b9",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y29_Te_pred.bin": "97f5e1751527e5a05c7fbbd76543b855966bb075f3b7396575791d7bfa217342",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y30_Te_pred.bin": "52ff1e41714968c5a23c89b5c282e80a4189a8db7572de026fac501b139a4547",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y31_Te_pred.bin": "ecfbc18e4a6fdae73bb2fbd56121728cb3f5e6093a7f9523eedfbd61bee9dd6d",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y19_phi_pred.bin": "1e125662cc819783a656aaa92bdf42f09b6204151bb41a5f24ebf1cbef131e00",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y20_phi_pred.bin": "316672cb24d2dad6b3ea59554d02ecba3a136450d29ccda93ee241f43cf697c3",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y21_phi_pred.bin": "c13bc49b75bd0aa7f036d7fa346f7c25dc3f3edee077ba0a9740b98ac5817985",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y22_phi_pred.bin": "69a43974019c3fcaec7d9c104bc9b31701f64be8b3e43976b7254e471167c23e",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y23_phi_pred.bin": "f41a9321dbf7ea2673cdbea586af3aa4107b291503c873789b9fd4e3894844c9",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y24_phi_pred.bin": "ab35a5227e692de24a1af9f5bf963faff9c772653382cf0e6e7ca4d2e225272d",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y25_phi_pred.bin": "a920c9650a2b891ce5890a3de0b8f9d427aaf91e350ca36caa2e8d3aa6929dc1",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y26_phi_pred.bin": "56cdeb3299b73515bbcc08e411922ec6d4f5abd15cccb3b414971de6aa53a58b",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y27_phi_pred.bin": "d9dc04ab6e2a0545e8f87f3153920d7eb567a13067b8c40ee95595d4a4b40c35",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y28_phi_pred.bin": "bd9fb7b3a6e6de01f9eaf62397edc894d96a2c6f780105771f8d0f944d483569",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y29_phi_pred.bin": "bca09364c861e23fc75726cd2ada209ac8dc1873b5d3976a906e872f7ef7446c",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y30_phi_pred.bin": "9cd8fd51b20e16f560cc4980f0d8d0fab96d93276edb1227150dcdf67cb46883",
+    "docs/chained_reconstruction_2026-09-16/movies/firststep_NTPhi_high_mixed_equal_y31_phi_pred.bin": "77ab7bf6924a45ce48f78429cb39e167d4264551b823ec46861e59faef1ebf6b",
+    "docs/window_reconstruction_2026-09-16/window_scores.json": "fcb471785ae9c1240fa0fc9b4b1342718d33f3243f760784b3908c9d82294daa"
+  },
+  "no_fitting": true,
+  "movie_frames": 64,
+  "statistic_frames": 648
+}

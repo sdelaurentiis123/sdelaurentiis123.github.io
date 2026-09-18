@@ -1,0 +1,30 @@
+(() => {
+ const $=id=>document.getElementById(id);let D,arrays={},ticket=0,timer=null,frame=0,loading=false;
+ const ids=['observed','truth','ridge','neural','ridgeError','neuralError'];
+ const selected=()=>D.cases[$('physicsCase').value];
+ function stop(){if(timer)clearInterval(timer);timer=null;$('physicsPlay').textContent='Play';}
+ function color(v,lo,hi,div){let k=Math.max(0,Math.min(255,Math.round((v-lo)/(hi-lo)*255)));return (div?D.colormaps.diverging:D.colormaps.sequential)[k];}
+ function transform(a,nr){let f=new Float32Array(nr*81),begin=frame*nr*81,fluct=$('physicsComponent').value==='varying';for(let r=0;r<nr;r++){let m=0;if(fluct){for(let z=0;z<81;z++)m+=a[begin+r*81+z];m/=81;}for(let z=0;z<81;z++)f[r*81+z]=a[begin+r*81+z]-m;}return f;}
+ function panel(id,values,title,limits,div){const c=$(id),a=c.getContext('2d'),entry=selected(),nr=entry.shape[1],fi=D.fields.indexOf($('physicsField').value);const L=70,T=50,W=560,H=336;
+  a.fillStyle='white';a.fillRect(0,0,720,530);a.fillStyle='#203533';a.font='20px system-ui';a.fillText(title,70,29);
+  for(let r=0;r<nr;r++)for(let z=0;z<81;z++){let v=values[r*81+z];a.fillStyle=Number.isFinite(v)?`rgb(${color(v,...limits,div)})`:'#bbb';const x1=Math.floor(L+z*W/81),x2=Math.floor(L+(z+1)*W/81),y1=Math.floor(T+(nr-1-r)*H/nr),y2=Math.floor(T+(nr-r)*H/nr);a.fillRect(x1,y1,x2-x1,y2-y1);}
+  a.fillStyle='#526574';a.font='16px system-ui';a.textAlign='right';for(const r of [0,Math.floor((nr-1)/2),nr-1])a.fillText(entry.radial[0]+r,61,T+(nr-.5-r)*H/nr+5);a.textAlign='center';for(const z of [0,18,36,54,80*72/81])a.fillText(Number(z.toFixed(1)),L+(z+36/81)/72*W,410);a.fillText('Toroidal angle ζ [°]',350,439);a.save();a.translate(22,235);a.rotate(-Math.PI/2);a.fillText('Native radial index x',0,0);a.restore();
+  for(let k=0;k<256;k++){a.fillStyle=`rgb(${color(limits[0]+(limits[1]-limits[0])*k/255,...limits,div)})`;a.fillRect(160+k,464,1,13);}a.fillStyle='#526574';a.font='15px system-ui';a.fillText(limits[0].toPrecision(3),120,477);a.fillText(limits[1].toPrecision(3),462,477);if(div)a.fillText('0',288,494);const field=['nₑ','Tₑ','φ'][fi];const quantity=id.endsWith('Error')?'Prediction − truth':($('physicsComponent').value==='varying'?field+' − ⟨'+field+'⟩ζ':field);a.fillText(quantity+' ['+D.units[fi]+']',320,519);a.textAlign='left';
+ }
+ function draw(){if(loading||!D||!arrays.truth)return;const e=selected(),f=$('physicsField').value,nr=e.shape[1],div=$('physicsComponent').value==='varying';
+  const lim=div?[-e.fluct_limits[f],e.fluct_limits[f]]:e.limits[f];const values={};for(const id of ['observed','truth','ridge','neural'])values[id]=transform(arrays[id],nr);
+  const err=id=>Float32Array.from(values[id],(v,i)=>v-values.truth[i]);values.ridgeError=err('ridge');values.neuralError=err('neural');
+  const labels={observed:'Observed y18',truth:'True y'+$('physicsSection').value,ridge:e.models[1],neural:e.models[2],ridgeError:'Ridge − truth',neuralError:'Neural − truth'};
+  for(const id of ids)panel(id,values[id],labels[id],id.endsWith('Error')?[-e.error_limits[f],e.error_limits[f]]:lim,id.endsWith('Error')||div);
+  $('physicsStamp').textContent=`Regression frame ${frame+1}/64 · t − t₀ = ${D.time_us[frame].toFixed(2)} μs`;
+  $('physicsFrame').value=frame;
+ }
+ async function load(){stop();loading=true;const token=++ticket,c=$('physicsCase').value,e=selected(),f=$('physicsField').value,y=$('physicsSection').value;
+  $('physicsStatus').textContent='Loading original native field samples…';for(const id of ids)$(id).style.opacity='.3';
+  for(const type of ['structure','spacetime','distance']){$('physics_'+type).src=`physics/${c}_${f}_${type}.png`;for(const ext of ['pdf','svg'])$(`physics_${type}_${ext}`).href=`physics/${c}_${f}_${type}.${ext}`;}
+  $('physicsDefinition').textContent=e.observation+'. '+e.comparison_note;
+  try{const files=e.files[`${f}_${y}`];const pairs=await Promise.all(['observed','truth','ridge','neural'].map(async id=>{const response=await fetch('physics/'+files[id==='observed'?'upstream':id]);if(!response.ok)throw Error('Missing '+id+' field');const b=await response.arrayBuffer();if(b.byteLength!==64*e.shape[1]*81*4)throw Error('Unexpected native array size');return[id,new Float32Array(b)];}));if(token!==ticket)return;arrays=Object.fromEntries(pairs);loading=false;for(const id of ids)$(id).style.opacity='1';$('physicsStatus').textContent='Same native cells, shared truth/prediction colour scales. Colour limits may saturate tails; numerical values are unchanged.';draw();}
+  catch(error){if(token!==ticket)return;loading=true;$('physicsStatus').textContent='Movie unavailable: '+error.message;}
+ }
+ fetch('physics/catalog.json').then(r=>r.json()).then(d=>{D=d;for(const[k,v]of Object.entries(d.cases))$('physicsCase').add(new Option(v.label,k));d.fields.forEach((f,i)=>$('physicsField').add(new Option(d.field_labels[i],f)));for(const y of [19,25,31])$('physicsSection').add(new Option('y'+y,y));$('physicsSection').value='31';for(const id of ['physicsCase','physicsField','physicsSection'])$(id).onchange=load;$('physicsComponent').onchange=draw;$('physicsFrame').oninput=()=>{frame=+$('physicsFrame').value;draw();};$('physicsPlay').onclick=()=>{if(loading)return;if(timer){stop();return;}$('physicsPlay').textContent='Pause';timer=setInterval(()=>{frame=(frame+1)%64;draw();},100);};for(const id of ids)$(id).onmousemove=ev=>{if(loading)return;const box=ev.target.getBoundingClientRect(),e=selected(),nr=e.shape[1],z=Math.floor(((ev.clientX-box.left)*720/box.width-70)*81/560),r=nr-1-Math.floor(((ev.clientY-box.top)*530/box.height-50)*nr/336);if(r<0||r>=nr||z<0||z>=81)return;let value;if(id.endsWith('Error')){value=transform(arrays[id==='ridgeError'?'ridge':'neural'],nr)[r*81+z]-transform(arrays.truth,nr)[r*81+z];}else value=transform(arrays[id],nr)[r*81+z];$('physicsHover').textContent=`${id}: x${e.radial[0]+r}, ζ=${(z*72/81).toFixed(3)}° · ${value.toPrecision(7)} ${D.units[D.fields.indexOf($('physicsField').value)]}`;};load();}).catch(e=>$('physicsStatus').textContent=e.message);
+})();
