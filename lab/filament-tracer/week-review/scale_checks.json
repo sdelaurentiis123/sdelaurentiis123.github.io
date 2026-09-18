@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "date_utc": "2026-09-18T13:47:43.536549+00:00",
+  "native_movie_files_unchanged": 90,
+  "native_metric_checks": 234,
+  "profile_residual_identity_checks": 18,
+  "browser_shared_scale_checks": 54,
+  "browser_cases_fields": 9,
+  "focus_selector_checked": true,
+  "residual_contrast_checked": [
+    2,
+    4
+  ],
+  "attention_default": "high",
+  "verification_scope": "CUA browser range/control checks and visual inspection; archived numerical pixel checks predate the new color scales. Movie binary hashes remain unchanged.",
+  "playback_verified_frame": 17
+}
