@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1152pt" height="648pt" viewBox="0 0 1152 648" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-06T11:44:32.571554</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 648
+L 1152 648
+L 1152 0
+L 0 0
+z
+" style="fill: #fcfcfa"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 54.36 274.68
+L 212.04 274.68
+Q 220.68 274.68 220.68 266.04
+L 220.68 140.76
+Q 220.68 132.12 212.04 132.12
+L 54.36 132.12
+Q 45.72 132.12 45.72 140.76
+L 45.72 266.04
+Q 45.72 274.68 54.36 274.68
+z
+" clip-path="url(#pf61b1482db)" style="fill: #e8f1fd; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 259.56 274.68
+L 453.24 274.68
+Q 461.88 274.68 461.88 266.04
+L 461.88 140.76
+Q 461.88 132.12 453.24 132.12
+L 259.56 132.12
+Q 250.92 132.12 250.92 140.76
+L 250.92 266.04
+Q 250.92 274.68 259.56 274.68
+z
+" clip-path="url(#pf61b1482db)" style="fill: #f0f3f6; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 504.36 274.68
+L 640.44 274.68
+Q 649.08 274.68 649.08 266.04
+L 649.08 140.76
+Q 649.08 132.12 640.44 132.12
+L 504.36 132.12
+Q 495.72 132.12 495.72 140.76
+L 495.72 266.04
+Q 495.72 274.68 504.36 274.68
+z
+" clip-path="url(#pf61b1482db)" style="fill: #daf2eb; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 691.56 274.68
+L 824.04 274.68
+Q 832.68 274.68 832.68 266.04
+L 832.68 140.76
+Q 832.68 132.12 824.04 132.12
+L 691.56 132.12
+Q 682.92 132.12 682.92 140.76
+L 682.92 266.04
+Q 682.92 274.68 691.56 274.68
+z
+" clip-path="url(#pf61b1482db)" style="fill: #fff0cf; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 875.16 274.68
+L 1097.64 274.68
+Q 1106.28 274.68 1106.28 266.04
+L 1106.28 140.76
+Q 1106.28 132.12 1097.64 132.12
+L 875.16 132.12
+Q 866.52 132.12 866.52 140.76
+L 866.52 266.04
+Q 866.52 274.68 875.16 274.68
+z
+" clip-path="url(#pf61b1482db)" style="fill: #daf2eb; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 221.597314 203.76
+Q 235.798471 203.76 248.09897 203.76
+" clip-path="url(#pf61b1482db)" style="fill: none; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 241.69897 200.56
+L 248.09897 203.76
+L 241.69897 206.96
+z
+" clip-path="url(#pf61b1482db)" style="fill: #526477; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 462.799512 203.76
+Q 478.801573 203.76 492.902976 203.76
+" clip-path="url(#pf61b1482db)" style="fill: none; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 486.502976 200.56
+L 492.902976 203.76
+L 486.502976 206.96
+z
+" clip-path="url(#pf61b1482db)" style="fill: #526477; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 649.999512 203.76
+Q 666.001573 203.76 680.102976 203.76
+" clip-path="url(#pf61b1482db)" style="fill: none; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 673.702976 200.56
+L 680.102976 203.76
+L 673.702976 206.96
+z
+" clip-path="url(#pf61b1482db)" style="fill: #526477; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 833.599512 203.76
+Q 849.601573 203.76 863.702976 203.76
+" clip-path="url(#pf61b1482db)" style="fill: none; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 857.302976 200.56
+L 863.702976 203.76
+L 857.302976 206.96
+z
+" clip-path="url(#pf61b1482db)" style="fill: #526477; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 61.56 472.68
+L 543.24 472.68
+Q 551.88 472.68 551.88 464.04
+L 551.88 360.36
+Q 551.88 351.72 543.24 351.72
+L 61.56 351.72
+Q 52.92 351.72 52.92 360.36
+L 52.92 464.04
+Q 52.92 472.68 61.56 472.68
+z
+" clip-path="url(#pf61b1482db)" style="fill: #e8f1fd; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 590.76 472.68
+L 1090.44 472.68
+Q 1099.08 472.68 1099.08 464.04
+L 1099.08 360.36
+Q 1099.08 351.72 1090.44 351.72
+L 590.76 351.72
+Q 582.12 351.72 582.12 360.36
+L 582.12 464.04
+Q 582.12 472.68 590.76 472.68
+z
+" clip-path="url(#pf61b1482db)" style="fill: #f0f3f6; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 25px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="46.8" y="43.2" transform="rotate(-0 46.8 43.2)">02  /  Upstream → downstream</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="46.8" y="77.04" transform="rotate(-0 46.8 77.04)">Question: can the pretrained spatial representation infer regions we do not observe?</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="133.2" y="160.823125" transform="rotate(-0 133.2 160.823125)">Observed plane</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(76.789688 210.864844)">Five physical fields</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(64.727813 227.037656)">One upstream location</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="356.4" y="160.768438" transform="rotate(-0 356.4 160.768438)">Full-grid input canvas</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(290.427188 202.778437)">Keep observed values</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(279.915 218.95125)">Fill hidden cells with prior</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(266.30625 235.124062)">Add learned mask embedding</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="572.4" y="160.823125" transform="rotate(-0 572.4 160.823125)">Encoder</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(531.42375 202.778437)">Initialize from</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(529.065 218.95125)">reconstruction</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(519.147187 235.124062)">Fine-tune weights</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="757.8" y="160.823125" transform="rotate(-0 757.8 160.823125)">Latent z</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(705.238125 210.864844)">Same spatial grid</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(708.35625 227.037656)">22,528 numbers</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="986.4" y="160.823125" transform="rotate(-0 986.4 160.823125)">Decoder → native fields</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(908.082188 202.778437)">Decode the whole volume</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(906.801563 218.95125)">Fine-tune decoder weights</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(909.598125 235.124062)">Score downstream region</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="50.4" y="310.078125" transform="rotate(-0 50.4 310.078125)">Observed native plane: y=18 on 85604; y=17 on 85606; radial cells x ≥ 16.</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="302.4" y="380.423125" transform="rotate(-0 302.4 380.423125)">Main task: infer the hidden downstream state</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(221.14875 419.664844)">Input: upstream plane only</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(122.28 435.837656)">Loss: downstream truth versus predicted downstream fields</text>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="840.6" y="380.368438" transform="rotate(-0 840.6 380.368438)">Optional clean replay — training only</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(629.20125 419.664844)">Separate complete volume → same encoder/decoder → reconstruction</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(683.138438 435.837656)">No hidden truth is supplied to the downstream input</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="54" y="523.237969" transform="rotate(-0 54 523.237969)">With clean replay: downstream loss + 0.5 × clean reconstruction loss (the tested replay recipe).</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="54" y="570.718125" transform="rotate(-0 54 570.718125)">Both tasks update the same weights. Replay is an extra training example, not an extra inference input.</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="54" y="613.878281" transform="rotate(-0 54 613.878281)">Clean target-shot replay preserves a task; replaying source-shot examples is a separate choice for shot retention.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pf61b1482db">
+   <rect x="0" y="0" width="1152" height="648"/>
+  </clipPath>
+ </defs>
+</svg>

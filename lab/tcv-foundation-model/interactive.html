@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Plasma forecasts · autoregression through time</title><style>
+body{font:16px/1.45 system-ui;color:#172033;max-width:1550px;margin:20px auto;padding:16px}h1{font-size:28px}a{color:#1759a8}.controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center;background:#f1f5f9;padding:14px;position:sticky;top:0;z-index:1}label{display:flex;gap:8px;align-items:center}select,button{font:inherit;padding:7px}button{cursor:pointer}input[type=range]{width:260px}canvas{width:100%;display:block}canvas[hidden]{display:none}html{overflow-anchor:none;scrollbar-gutter:stable}#play{width:88px}#leadValue{display:inline-block;width:2ch;text-align:right}#clock,#feedback,#spectrumStatus,#heatStatus,#heatScale{font-variant-numeric:tabular-nums}#clock,#feedback,#spectrumStatus,#heatStatus,#heatScale{min-height:2.9em}h2[id]{scroll-margin-top:130px}.controls{border-radius:10px;box-shadow:0 2px 8px #17203312}button[aria-pressed="true"]{background:#dbeafe;border-color:#2563eb}.note{color:#475569;font-size:14px}.clock{font-weight:650;margin:14px 0}#status{min-height:26px}#key{font-size:14px}.legend span{margin-right:18px;white-space:nowrap}#diagram{padding:12px;background:#fafafa;border-left:3px solid #7c3aed}
+</style></head><body>
+<nav><a href="index.html">← TCV state of the work</a></nav>
+<h1>Watch each model roll forward from the same history</h1><p><a href="#power">Power spectrum</a> · <a href="#heat">Target heat flux</a></p>
+<p id="diagram">Four observed volumes → frozen encoder → predict next latent → frozen decoder.<br><strong>The predicted latent goes back into that model’s history.</strong> No future truth is supplied after initialization. Full-target diffusion generates the next latent; Diffusion Plus adds a generated correction to its deterministic forecast.</p>
+<div class="controls">
+<label>Field <select id="field"><option value="0">Density</option><option value="1">Electron temperature</option><option value="2">Ion temperature</option><option value="3">Potential</option><option value="4">Parallel ion velocity</option></select></label>
+<label>Component <select id="component"><option value="1">Fluctuations</option><option value="0">Toroidal mean</option></select></label>
+<label>Start <select id="anchor"><option>503</option><option selected>535</option><option>575</option><option>607</option></select></label>
+<button id="play" disabled>Play</button><label>Lead <input id="lead" type="range" min="1" max="16" value="1"><output id="leadValue">1</output></label>
+<label>Playback <select id="playRange"><option value="all">All 16 steps</option><option value="heat">Saved heat steps</option></select></label>
+<label>Speed <select id="fps"><option value="1">1 frame/s</option><option value="2" selected>2 frames/s</option><option value="4">4 frames/s</option></select></label>
+</div>
+<div class="controls" style="position:static;margin-top:12px"><label>Export physical panel <select id="exportPanel"><option value="maps">Poloidal truth/model/error maps</option><option value="spectra">Toroidal power spectrum</option><option value="heatMaps">Target heat maps</option><option value="heatProfiles">Electron / ion / total heat profiles</option><option value="curves">Displayed-slice RMS and error</option></select></label><button id="exportPNG">Download labeled PNG</button></div><p id="status" role="status">Loading saved trajectory…</p><div class="clock" id="clock"></div><p id="feedback"></p>
+<canvas id="maps" width="1500" height="920" aria-label="Truth and three forecast models, with signed errors below"></canvas>
+<p id="key"></p>
+<p class="note">Top row: truth and each model on the same physical color scale, fixed over all 16 leads. Bottom row: model − truth on a shared signed-error scale, also fixed over time. Display uses 256 color levels. R–Z polygons follow native mesh connectivity. Fluctuations are at fixed native toroidal index 0; this is not a certified constant-physical-azimuth cut. Mean is instantaneous toroidal n=0.</p>
+<h2>How this selected view changes through the rollout</h2>
+<div class="legend"><span style="color:black">● Truth</span><span style="color:#9333ea">● Deterministic</span><span style="color:#2563eb">● Full-target diffusion</span><span style="color:#ea580c">● Diffusion Plus</span></div>
+<canvas id="curves" width="1500" height="350" aria-label="Spatial RMS magnitude and RMSE versus forecast lead"></canvas>
+<p class="note">These curves use native-volume weights on the displayed mean map or single toroidal fluctuation slice. They are <strong>not full-volume fluctuation power or RMSE</strong>. Each point belongs to this one continuous rollout, not a new forecast initialized from truth. Playback is slowed down for viewing. Each diffusion curve is one sample; it does not establish ensemble calibration.</p>
+<h2 id="power">Power spectrum through the rollout</h2>
+<div class="legend"><span style="color:black">● Truth</span><span style="color:#9333ea">● Deterministic</span><span style="color:#2563eb">● Full-target diffusion</span><span style="color:#ea580c">● Diffusion Plus</span></div><p id="spectrumStatus"></p><canvas id="spectra" width="1500" height="380" aria-label="Mode power and total fluctuation variance for truth and three models"></canvas>
+<p class="note">Axes stay fixed through time for the selected field and start. At each lead: native-volume-weighted power in the full volume, with the positive/negative Fourier pair counted together. Summing n &gt; 0 gives fluctuation variance; its square root is fluctuation RMS. Equal power does not establish correct structure locations or phase. The field selector controls these plots; the mean/fluctuation map selector does not change their definition.</p>
+<h2 id="heat">Outer-target heat flux</h2>
+<label>Heat map <select id="heatQuantity"><option value="2">Total</option><option value="0">Electron</option><option value="1">Ion</option></select></label>
+<p>Saved heat steps (use “Saved heat steps” playback to watch only these): <button class="heatStep" data-lead="1">1</button> <button class="heatStep" data-lead="2">2</button> <button class="heatStep" data-lead="4">4</button> <button class="heatStep" data-lead="8">8</button> <button class="heatStep" data-lead="16">16</button></p>
+<p id="heatStatus"></p><canvas id="heatMaps" width="1500" height="420" aria-label="Truth and model target heat maps"></canvas><p id="heatScale"></p>
+<div class="legend"><span style="color:black">● Truth</span><span style="color:#9333ea">● Deterministic</span><span style="color:#2563eb">● Full-target diffusion</span><span style="color:#ea580c">● Diffusion Plus</span></div><canvas id="heatProfiles" width="1500" height="365" aria-label="Electron ion and total target heat profiles"></canvas>
+<p class="note">Recovered outer-target normal sheath heat, not radial internal-energy transport or measured tile loading. Computed from each predicted joint state. Ion heat uses the imposed Bohm boundary speed, so it does not directly test the predicted ion velocity. Profile curves use identical valid cells across truth and all models. No averaging over time or starts. Each diffusion model is one sampled rollout.</p>
+
+
+<script src="display/meta.js"></script><script src="display/rollout_physics.js"></script><script>
+'use strict';
+const M=window.ROLLOUT_META,$=id=>document.getElementById(id),K=M.shape[4],colors=['#111111','#9333ea','#2563eb','#ea580c'];let D=null,playing=false,timer=null,token=0;
+function stop(){playing=false;clearInterval(timer);$('play').textContent='Play';}
+async function load(){stop();D=null;const mine=++token,a=+$('anchor').value;$('play').disabled=true;$('status').textContent='Loading saved trajectory…';
+ if(!window.ROLLOUT_DATA?.[a])await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=`display/anchor_${a}.js`;s.onload=resolve;s.onerror=()=>reject(Error('Cannot load saved trajectory'));document.body.append(s)});
+ if(!window.ROLLOUT_PHYSICS?.[a])await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=`display/physics_${a}.js`;s.onload=resolve;s.onerror=()=>reject(Error('Cannot load saved physics'));document.body.append(s)});
+ if(mine!==token)return;D=window.ROLLOUT_DATA[a];if(!D.values){const s=atob(D.encoded),bytes=new Uint8Array(s.length);for(let i=0;i<s.length;i++)bytes[i]=s.charCodeAt(i);D.values=bytes;delete D.encoded;}
+ $('play').disabled=false;$('status').textContent='Saved free rollout · identical initial observation times for all models';draw();}
+function color(v,lo,hi,palette){let j=Math.round(255*Math.max(0,Math.min(1,(v-lo)/Math.max(hi-lo,1e-30))));return `rgb(${M.palettes[palette][j].join(',')})`;}
+function value(l,c,f,m,k){return D.values[((((l*2+c)*5+f)*7+m)*K+k)];}
+const bounds=M.vertices.flat().reduce((b,p)=>[Math.min(b[0],p[0]),Math.max(b[1],p[0]),Math.min(b[2],p[1]),Math.max(b[3],p[1])],[Infinity,-Infinity,Infinity,-Infinity]);
+function panel(ctx,x,y,w,h,l,c,f,m,isError){const pad=30,[r0,r1,z0,z1]=bounds,scale=Math.min((w-2*pad)/(r1-r0),(h-65)/(z1-z0)),ox=x+(w-(r1-r0)*scale)/2,oy=y+35;
+ const max=isError?D.error_maximum[c][f]:D.maximum[c][f],lo=isError||c===1||D.minimum[c][f]<0?-max:0,palette=lo<0?'signed':'positive';
+ ctx.fillStyle='#172033';ctx.textAlign='center';ctx.font='16px system-ui';ctx.fillText(isError?'Error · '+M.models[m]:M.models[m],x+w/2,y+18);
+ for(let k=0;k<K;k++){const ci=value(l,c,f,isError?m+3:m,k);ctx.fillStyle=`rgb(${M.palettes[palette][ci]})`;ctx.beginPath();M.vertices[k].forEach((p,i)=>{const X=ox+(p[0]-r0)*scale,Y=oy+(z1-p[1])*scale;i?ctx.lineTo(X,Y):ctx.moveTo(X,Y)});ctx.closePath();ctx.fill();}
+ ctx.strokeStyle='#526171';ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox,oy+(z1-z0)*scale);ctx.lineTo(ox+(r1-r0)*scale,oy+(z1-z0)*scale);ctx.stroke();ctx.font='12px system-ui';ctx.fillStyle='#475569';ctx.fillText('R (m)',x+w/2,y+h-9);ctx.save();ctx.translate(x+10,y+h/2);ctx.rotate(-Math.PI/2);ctx.fillText('Z (m)',0,0);ctx.restore();
+ for(const r of [.8,1.0])if(r>=r0&&r<=r1)ctx.fillText(r.toFixed(1),ox+(r-r0)*scale,oy+(z1-z0)*scale+16);
+ ctx.textAlign='right';for(const z of [-.6,-.4,-.2,0,.2])if(z>=z0&&z<=z1)ctx.fillText(z.toFixed(1),ox-5,oy+(z1-z)*scale);}
+function bar(ctx,x,y,width,lo,hi,palette,label){for(let i=0;i<256;i++){ctx.fillStyle=`rgb(${M.palettes[palette][i]})`;ctx.fillRect(x+i*width/256,y,width/256+1,12)}ctx.fillStyle='#172033';ctx.font='13px system-ui';ctx.textAlign='left';ctx.fillText(lo.toPrecision(3),x,y+30);ctx.textAlign='right';ctx.fillText(hi.toPrecision(3),x+width,y+30);ctx.textAlign='center';ctx.fillText(label,x+width/2,y-8);}
+function chart(ctx,x,w,c,f,l,error){const top=45,bottom=290,left=x+65,right=x+w-20;const A=error?D.rmse:D.rms;let max=0;for(let t=0;t<16;t++)for(let m=error?1:0;m<4;m++)max=Math.max(max,A[t][c][f][m]);max=Math.max(max*1.1,1e-20);const px=t=>left+t/15*(right-left),py=v=>bottom-v/max*(bottom-top);
+ ctx.textAlign='center';ctx.font='16px system-ui';ctx.fillStyle='#172033';ctx.fillText((error?'Spatial RMSE against truth':'Spatial RMS magnitude')+' · '+M.units[f],x+w/2,22);ctx.font='12px system-ui';
+ for(let i=0;i<5;i++){let v=max*i/4;ctx.strokeStyle='#e2e8f0';ctx.beginPath();ctx.moveTo(left,py(v));ctx.lineTo(right,py(v));ctx.stroke();ctx.textAlign='right';ctx.fillStyle='#475569';ctx.fillText(v.toPrecision(3),left-7,py(v)+4);}
+ for(let t of [0,3,7,11,15]){ctx.textAlign='center';ctx.fillText(String(t+1),px(t),bottom+20)}ctx.fillText('Forecast lead (saved frames)',x+w/2,bottom+43);
+ ctx.setLineDash([4,4]);ctx.strokeStyle='#64748b';ctx.beginPath();ctx.moveTo(px(l),top);ctx.lineTo(px(l),bottom);ctx.stroke();ctx.setLineDash([]);
+ for(let m=error?1:0;m<4;m++){ctx.strokeStyle=colors[m];ctx.lineWidth=2;ctx.beginPath();for(let t=0;t<16;t++){let xx=px(t),yy=py(A[t][c][f][m]);t?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy)}ctx.stroke();ctx.fillStyle=colors[m];ctx.beginPath();ctx.arc(px(l),py(A[l][c][f][m]),4,0,2*Math.PI);ctx.fill();}}
+function draw(){if(!D)return;const l=+$('lead').value-1,c=+$('component').value,f=+$('field').value;const ctx=$('maps').getContext('2d');ctx.clearRect(0,0,1500,920);for(let m=0;m<4;m++)panel(ctx,375*m,8,375,392,l,c,f,m,false);for(let m=1;m<4;m++)panel(ctx,375*m,462,375,392,l,c,f,m,true);
+ ctx.fillStyle='#475569';ctx.textAlign='left';ctx.font='17px system-ui';ctx.fillText('Same starting history.',30,560);ctx.fillText('Each model then follows',30,591);ctx.fillText('its own predicted states.',30,622);
+ const hi=D.maximum[c][f],lo=c===1||D.minimum[c][f]<0?-hi:0,eh=D.error_maximum[c][f];bar(ctx,400,418,680,lo,hi,lo<0?'signed':'positive',M.fields[f]+' · '+M.units[f]);bar(ctx,540,874,560,-eh,eh,'signed','Signed error · '+M.units[f]);
+ $('leadValue').textContent=l+1;$('clock').textContent=`Start ${D.anchor} → target frame ${D.anchor+l+1} · lead ${l+1} · +${((l+1)*M.cadence).toFixed(2)} μs`;
+ $('feedback').textContent=`Input at this prediction: ${Math.max(4-l,0)} observed history frame(s) + ${Math.min(l,4)} model-generated frame(s). Initial observations: frames ${D.anchor-3}–${D.anchor}.`;
+ $('key').textContent='Fixed color ranges apply to this field, component and start across all models and all 16 forecast leads.';
+ const cc=$('curves').getContext('2d');cc.clearRect(0,0,1500,350);chart(cc,0,750,c,f,l,false);chart(cc,750,750,c,f,l,true);window.rolloutState={anchor:D.anchor,lead:l+1,component:c,field:f,loaded:true};window.drawRolloutPhysics(M,D.anchor,l+1,f);}
+$('play').onclick=()=>{if(playing){stop();return}const steps=$('playRange').value==='heat'?[1,2,4,8,16]:Array.from({length:16},(_,i)=>i+1);if(+$('lead').value>=16||!steps.includes(+$('lead').value)){$('lead').value=steps[0];draw()}playing=true;$('play').textContent='Pause';timer=setInterval(()=>{const next=steps.find(n=>n>+$('lead').value);if(next===undefined){stop();return}$('lead').value=next;draw()},1000/+$('fps').value);};
+$('heatQuantity').onchange=draw;document.querySelectorAll('.heatStep').forEach(b=>b.onclick=()=>{stop();$('lead').value=b.dataset.lead;draw()});
+$('anchor').onchange=()=>load().catch(e=>$('status').textContent=e.message);for(const id of ['field','component','lead'])$(id).oninput=draw;$('fps').onchange=stop;$('playRange').onchange=stop;load().catch(e=>$('status').textContent=e.message);
+</script><script>
+document.getElementById('exportPNG').onclick=()=>{
+ if(!window.rolloutState?.loaded)return;
+ const id=document.getElementById('exportPanel').value,source=document.getElementById(id);
+ const r=window.rolloutState,meta=window.ROLLOUT_META;
+ const out=document.createElement('canvas');out.width=source.width;out.height=source.height+150;const c=out.getContext('2d');
+ c.fillStyle='white';c.fillRect(0,0,out.width,out.height);c.fillStyle='#172033';c.font='bold 22px system-ui';
+ const field=meta.fields[r.field],component=r.component?'Fluctuation (native toroidal index 0)':'Toroidal mean n=0';
+ const names={maps:field+' · '+component,spectra:field+' · full-volume toroidal power',heatMaps:document.getElementById('heatQuantity').selectedOptions[0].text+' target heat',heatProfiles:'Electron / ion / total target heat',curves:field+' · displayed-slice RMS / RMSE'};
+ c.fillText(names[id],24,33);c.font='17px system-ui';c.fillText(`Start ${r.anchor} → frame ${r.anchor+r.lead} · lead ${r.lead} · +${(r.lead*meta.cadence).toFixed(2)} μs`,24,65);
+ c.drawImage(source,0,85);
+ let footer=id.startsWith('heat')?'Recovered sheath estimate; not measured tile heat. Ion closure imposes Bohm speed.':id==='maps'?'R–Z native mesh display; fixed scales across time/models; 256 colors. Fluctuation cut uses native index 0.':'One sampled free rollout per diffusion model. Spectral power does not establish phase alignment.';
+ c.font='15px system-ui';c.fillText(footer,24,out.height-31);c.fillText('Truth: black · deterministic: purple · full-target diffusion: blue · residual diffusion: orange (line panels).',24,out.height-10);
+ const a=document.createElement('a');a.href=out.toDataURL('image/png');a.download=`tcv_${id}_${r.anchor}_lead${r.lead}_field${r.field}.png`;a.click();
+};
+</script></body></html>

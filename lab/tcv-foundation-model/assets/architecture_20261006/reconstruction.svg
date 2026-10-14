@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1152pt" height="648pt" viewBox="0 0 1152 648" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-06T11:44:32.300676</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 648
+L 1152 648
+L 1152 0
+L 0 0
+z
+" style="fill: #fcfcfa"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 54.36 263.88
+L 208.44 263.88
+Q 217.08 263.88 217.08 255.24
+L 217.08 151.56
+Q 217.08 142.92 208.44 142.92
+L 54.36 142.92
+Q 45.72 142.92 45.72 151.56
+L 45.72 255.24
+Q 45.72 263.88 54.36 263.88
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #e8f1fd; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 263.16 263.88
+L 428.04 263.88
+Q 436.68 263.88 436.68 255.24
+L 436.68 151.56
+Q 436.68 142.92 428.04 142.92
+L 263.16 142.92
+Q 254.52 142.92 254.52 151.56
+L 254.52 255.24
+Q 254.52 263.88 263.16 263.88
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #daf2eb; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 482.76 274.68
+L 669.24 274.68
+Q 677.88 274.68 677.88 266.04
+L 677.88 140.76
+Q 677.88 132.12 669.24 132.12
+L 482.76 132.12
+Q 474.12 132.12 474.12 140.76
+L 474.12 266.04
+Q 474.12 274.68 482.76 274.68
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #fff0cf; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 723.96 263.88
+L 888.84 263.88
+Q 897.48 263.88 897.48 255.24
+L 897.48 151.56
+Q 897.48 142.92 888.84 142.92
+L 723.96 142.92
+Q 715.32 142.92 715.32 151.56
+L 715.32 255.24
+Q 715.32 263.88 723.96 263.88
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #daf2eb; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 943.56 263.88
+L 1097.64 263.88
+Q 1106.28 263.88 1106.28 255.24
+L 1106.28 151.56
+Q 1106.28 142.92 1097.64 142.92
+L 943.56 142.92
+Q 934.92 142.92 934.92 151.56
+L 934.92 255.24
+Q 934.92 263.88 943.56 263.88
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #e8f1fd; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 217.996436 203.76
+Q 235.799832 203.76 251.702571 203.76
+" clip-path="url(#p6ca06d88bb)" style="fill: none; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 245.302571 200.56
+L 251.702571 203.76
+L 245.302571 206.96
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #526477; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 437.596436 203.76
+Q 455.399832 203.76 471.302571 203.76
+" clip-path="url(#p6ca06d88bb)" style="fill: none; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 464.902571 200.56
+L 471.302571 203.76
+L 464.902571 206.96
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #526477; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 678.796436 203.76
+Q 696.599832 203.76 712.502571 203.76
+" clip-path="url(#p6ca06d88bb)" style="fill: none; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 706.102571 200.56
+L 712.502571 203.76
+L 706.102571 206.96
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #526477; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 898.396436 203.76
+Q 916.199832 203.76 932.102571 203.76
+" clip-path="url(#p6ca06d88bb)" style="fill: none; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 925.702571 200.56
+L 932.102571 203.76
+L 925.702571 206.96
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #526477; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 281.16 492.12
+L 870.84 492.12
+Q 879.48 492.12 879.48 483.48
+L 879.48 390.6
+Q 879.48 381.96 870.84 381.96
+L 281.16 381.96
+Q 272.52 381.96 272.52 390.6
+L 272.52 483.48
+Q 272.52 492.12 281.16 492.12
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #f0f3f6; stroke: #bac8cf; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 1017.918538 271.792816
+Q 969.916065 368.920734 885.110078 433.246169
+" clip-path="url(#p6ca06d88bb)" style="fill: none; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+    <path d="M 892.143039 431.928041
+L 885.110078 433.246169
+L 888.275353 426.828923
+z
+" clip-path="url(#p6ca06d88bb)" style="fill: #526477; stroke: #526477; stroke-width: 1.7; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 25px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="46.8" y="43.2" transform="rotate(-0 46.8 43.2)">01  /  Full-volume reconstruction</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #526477" x="46.8" y="77.04" transform="rotate(-0 46.8 77.04)">Question: what survives compression when the model sees the complete state?</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="131.4" y="171.623125" transform="rotate(-0 131.4 171.623125)">Complete volume</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(79.261875 210.864844)">Ne · Te · Ti · φ · Vi</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(75.454688 227.037656)">64 × 32 × 81 cells</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="345.6" y="171.623125" transform="rotate(-0 345.6 171.623125)">3D encoder</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(282.270937 210.864844)">Shared convolutional</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(309.06 227.037656)">DC-AE trunk</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="576" y="160.823125" transform="rotate(-0 576 160.823125)">Spatial latent z</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(497.795625 210.864844)">64 channels × 8 × 4 × 11</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(505.667812 227.037656)">22,528 stored numbers</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="806.4" y="171.623125" transform="rotate(-0 806.4 171.623125)">3D decoder</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(749.528437 210.864844)">Learned expansion</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(769.468125 227.037656)">to five fields</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="1020.6" y="171.623125" transform="rotate(-0 1020.6 171.623125)">Reconstruction</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(979.442813 210.864844)">Same volume</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(988.115625 227.037656)">Same time</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="50.4" y="311.518125" transform="rotate(-0 50.4 311.518125)">Before encoding: native toroidal grid 81 → 88; log-density transform and fitting-only normalization.</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="50.4" y="346.078125" transform="rotate(-0 50.4 346.078125)">After decoding: inverse transforms and toroidal grid 88 → 81; score in physical fields on native cells.</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #193047" x="576" y="410.608437" transform="rotate(-0 576 410.608437)">Training: encoder and decoder learn together</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(399.139688 444.504844)">½ normalized mean error + ½ normalized fluctuation error</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; fill: #193047" transform="translate(405.452812 460.677656)">Five fields, native volume weights, boundary supervision</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="54" y="541.237969" transform="rotate(-0 54 541.237969)">Mean = instantaneous toroidal n=0. Fluctuation = full field minus that mean.</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="54" y="582.958125" transform="rotate(-0 54 582.958125)">The latent is a grid of learned features, not 64 physical variables. No input bypasses the bottleneck.</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #193047" x="54" y="621.798281" transform="rotate(-0 54 621.798281)">Reference: balanced boundary-supervised shared codec. Flux, spectra and cross-phase are evaluated separately.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p6ca06d88bb">
+   <rect x="0" y="0" width="1152" height="648"/>
+  </clipPath>
+ </defs>
+</svg>
