@@ -1,0 +1,178 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning the seams · Stan DeLaurentiis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Same tokens as /lab/kinetic-closures/: picture-first scroll, one figure per idea, one line under it. */
+:root {
+  --bg: #f6f7f8; --surface: #ffffff; --ink: #14181d; --ink-2: #48525d; --muted: #6f7a86; --line: #dde2e7;
+  --accent: #1f6fd1; --accent-soft: #e6f0fb; --good: #16865c; --good-soft: #e3f4ec; --bad: #b8402a; --bad-soft: #fbe7e2; --warn: #a96a00; --warn-soft: #fbf0db;
+  --kin: #2a78d6; --flu: #eb6834; --core: #6250d6; --edge: #1baf7a; --figure: #fcfcfb;
+  --display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif; --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif; --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11151a; --surface: #181d23; --ink: #e8ecf0; --ink-2: #b4bec8; --muted: #8995a1; --line: #2a323b;
+  --accent: #6aa8f0; --accent-soft: #1a2a3d; --good: #4cc795; --good-soft: #15302a; --bad: #ec8a74; --bad-soft: #3a1f1a; --warn: #e3b052; --warn-soft: #33281a;
+  --kin: #3987e5; --flu: #d95926; --core: #9085e9; --edge: #199e70; --figure: #f4f4f2; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #11151a; --surface: #181d23; --ink: #e8ecf0; --ink-2: #b4bec8; --muted: #8995a1; --line: #2a323b;
+  --accent: #6aa8f0; --accent-soft: #1a2a3d; --good: #4cc795; --good-soft: #15302a; --bad: #ec8a74; --bad-soft: #3a1f1a; --warn: #e3b052; --warn-soft: #33281a;
+  --kin: #3987e5; --flu: #d95926; --core: #9085e9; --edge: #199e70; --figure: #f4f4f2; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; padding-inline: 16px; padding-block: 28px 64px; }
+a { color: var(--accent); }
+.wrap { max-width: 60rem; margin: 0 auto; display: grid; gap: 40px; }
+p { margin: 0; } h1, h2, h3 { margin: 0; text-wrap: balance; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(1.9rem, 4.4vw, 2.7rem); line-height: 1.08; }
+h2 { font-family: var(--display); font-weight: 600; font-size: 1.5rem; line-height: 1.15; }
+h3 { font-family: var(--display); font-weight: 500; font-size: 1.08rem; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.step { font-family: var(--mono); font-size: 12px; letter-spacing: .05em; color: var(--accent); text-transform: uppercase; }
+.one { font-size: 15.5px; color: var(--ink-2); max-width: 46rem; }
+section { display: grid; gap: 12px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.tile .big { font-family: var(--display); font-weight: 600; font-size: 2rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.tile .lab { font-size: 14px; color: var(--ink-2); }
+.tile.good .big { color: var(--good); } .tile.bad .big { color: var(--bad); } .tile.acc .big { color: var(--accent); }
+.frame { background: var(--figure); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; } .frame img { display: block; width: 100%; height: auto; }
+.scroll { overflow-x: auto; }
+.pipe { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px; overflow-x: auto; }
+.pipe svg { display: block; min-width: 600px; width: 100%; height: auto; font-family: var(--body); }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; min-width: 0; }
+.panel ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; font-size: 15px; }
+.flag { background: var(--warn-soft); border: 1px solid var(--warn); border-radius: 8px; padding: 10px 12px; font-size: 14.5px; }
+.chip { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; border: 1px solid; }
+.chip.run { color: var(--warn); background: var(--warn-soft); border-color: var(--warn); }
+.chip.done { color: var(--good); background: var(--good-soft); border-color: var(--good); }
+table { border-collapse: collapse; width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; font-variant-numeric: tabular-nums; }
+th, td { padding: 9px 12px; border-bottom: 1px solid var(--line); font-size: 13.5px; text-align: right; }
+th:first-child, td:first-child { text-align: left; }
+th { font-weight: 600; color: var(--ink-2); font-size: 12.5px; }
+td.best { color: var(--good); font-weight: 600; } td.worst { color: var(--bad); }
+tr:last-child td { border-bottom: 0; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 12px; }
+footer { font-size: 13.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+<div class="wrap">
+<header style="display:grid;gap:12px">
+  <nav style="font-size:14px"><a href="/lab/">← Lab notebook</a> · <a href="/lab/kinetic-closures/">Kinetic closures</a> · <a href="/lab/tcv-foundation-model/">TCV foundation model</a></nav>
+  <span class="eyebrow">Thesis direction · October 15, 2026 · work in progress</span>
+  <h1>Learning the seams between plasma models</h1>
+  <p class="one">Every practical plasma simulation stitches models together: a fluid code where a kinetic one is too expensive, an edge code that stops where the core begins. The physics that crosses those seams is usually set by a convention. The idea here is one recipe for both: <b>learn what crosses the seam, train it inside the solver, and know when it is wrong</b> so the expensive model can be called. Two seams, two collaborators: Lorenzo Sironi's kinetic turbulence (astrophysics) and Ben Zhu's tokamak edge (fusion).</p>
+</header>
+
+<div class="tiles">
+  <div class="tile good"><span class="big">22%</span><span class="lab">heating-rate error of the learned anisotropy closure, relative to isotropic MHD (best literature rule: 67%)</span></div>
+  <div class="tile acc"><span class="big">0.43–0.54</span><span class="lab">closure skill at the real proton mass, trained only up to m<sub>i</sub>/m<sub>e</sub> = 115 (ten independently trained models)</span></div>
+  <div class="tile bad"><span class="big">90% · 0%</span><span class="lab">Hall MHD explains ~90% of the field-line slip, and none of the field-energy dissipation</span></div>
+  <div class="tile acc"><span class="big">2 λ<sub>r</sub></span><span class="lab">how far inside the separatrix a learned edge boundary must sit to be reliable (toy model)</span></div>
+</div>
+
+<section>
+  <span class="step">The picture</span>
+  <h2>Two seams, one recipe</h2>
+  <div class="pipe" role="img" aria-label="Two rows. Top: a kinetic particle simulation and a fluid code, joined by a learned closure with a trust gate. Bottom: a core transport code and an edge turbulence code, joined by a learned boundary flux with a trust gate.">
+    <svg viewBox="0 0 900 250">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="currentColor"/></marker></defs>
+      <g font-size="14" fill="currentColor" style="color:var(--ink)">
+        <rect x="10" y="20" width="230" height="80" rx="10" fill="none" stroke="var(--kin)" stroke-width="2"/>
+        <text x="125" y="52" text-anchor="middle" font-weight="600">Kinetic (PIC)</text><text x="125" y="74" text-anchor="middle" font-size="12" fill="var(--muted)">exact, far too expensive at scale</text>
+        <rect x="660" y="20" width="230" height="80" rx="10" fill="none" stroke="var(--flu)" stroke-width="2"/>
+        <text x="775" y="52" text-anchor="middle" font-weight="600">Fluid (MHD)</text><text x="775" y="74" text-anchor="middle" font-size="12" fill="var(--muted)">cheap, misses ion-scale physics</text>
+        <rect x="320" y="15" width="260" height="90" rx="10" fill="var(--accent-soft)" stroke="var(--accent)"/>
+        <text x="450" y="45" text-anchor="middle" font-weight="600">learned closure</text><text x="450" y="66" text-anchor="middle" font-size="12">stress (anisotropy) · slip (non-ideal E)</text><text x="450" y="86" text-anchor="middle" font-size="12">+ trust gate → call PIC when unsure</text>
+        <line x1="240" y1="60" x2="316" y2="60" stroke="currentColor" marker-end="url(#ar)"/><line x1="580" y1="60" x2="656" y2="60" stroke="currentColor" marker-end="url(#ar)"/>
+        <rect x="10" y="150" width="230" height="80" rx="10" fill="none" stroke="var(--core)" stroke-width="2"/>
+        <text x="125" y="182" text-anchor="middle" font-weight="600">Core transport</text><text x="125" y="204" text-anchor="middle" font-size="12" fill="var(--muted)">TORAX (JAX), seconds per discharge</text>
+        <rect x="660" y="150" width="230" height="80" rx="10" fill="none" stroke="var(--edge)" stroke-width="2"/>
+        <text x="775" y="182" text-anchor="middle" font-weight="600">Edge turbulence</text><text x="775" y="204" text-anchor="middle" font-size="12" fill="var(--muted)">Hermes-3 or a learned emulator</text>
+        <rect x="320" y="145" width="260" height="90" rx="10" fill="var(--accent-soft)" stroke="var(--accent)"/>
+        <text x="450" y="175" text-anchor="middle" font-weight="600">learned seam flux</text><text x="450" y="196" text-anchor="middle" font-size="12">trained through both solvers</text><text x="450" y="216" text-anchor="middle" font-size="12">+ trust gate → run the full edge</text>
+        <line x1="240" y1="190" x2="316" y2="190" stroke="currentColor" marker-end="url(#ar)"/><line x1="580" y1="190" x2="656" y2="190" stroke="currentColor" marker-end="url(#ar)"/>
+        <line x1="656" y1="205" x2="584" y2="205" stroke="currentColor" marker-end="url(#ar)"/><line x1="316" y1="205" x2="244" y2="205" stroke="currentColor" marker-end="url(#ar)"/>
+      </g>
+    </svg>
+  </div>
+  <p class="one">Top: astrophysical turbulence (collisionless, so a fluid code needs a closure for what the ions do). Bottom: a tokamak, where the core and the turbulent edge are simulated by different codes and the inner edge boundary is a convention. The double arrows are the point: the seam has to work in both directions.</p>
+</section>
+
+<section>
+  <span class="step">Seam 1 · kinetic → fluid · new closure</span>
+  <h2>Field-line slip: Hall MHD gets the pattern, not the dissipation</h2>
+  <div class="frame"><img src="media/slip_closure_physics.jpg" alt="Eight panels. Top: mid-plane slices of field strength, of the non-ideal electric field a fluid code misses, of the Hall term, and of what remains after Hall. Bottom: the local field-energy dissipation (red and blue), the best scalar resistivity (red only), a point-by-point comparison with correlation 0.41, and distributions showing about 36% of the volume gives energy back." loading="lazy"></div>
+  <p class="one">An MHD code at ion scale needs the electric field the ideal law misses, R = ⟨E⟩ + ⟨V⟩×⟨B⟩ (all fields smoothed to one ion skin depth). The Hall term, which any fluid code can compute, explains about 90% of it (panels b, c). But the Hall term does no work. All of the field-energy dissipation is in the remainder (d, e), and about a third of the volume returns energy to the field (blue). A single resistivity can match the mean dissipation (η ≈ 0.0065 c·d<sub>i</sub>, the same at mass ratios 64 and 115) but not where it happens (g, correlation 0.4) and never the backscatter (h). That remainder is the second closure we now train, from the same pretrained representation as the anisotropy closure. <span class="chip run">training queued</span></p>
+</section>
+
+<section>
+  <span class="step">Seam 1 · kinetic → fluid · the real test</span>
+  <h2>Does the closure work while the fluid code runs on its own?</h2>
+  <div class="cols">
+    <div class="panel">
+      <h3>The driven replica</h3>
+      <ul>
+        <li>A periodic MHD box started from a saturated PIC snapshot (the whole box, smoothed to 1 d<sub>i</sub>).</li>
+        <li>Stirred with the PIC code's own forcing: six box-scale vortical modes, random in time with the PIC correlation time.</li>
+        <li>Closures in the loop: none (isotropic MHD), the literature rule (anisotropy pinned at the mirror threshold), and the learned closure.</li>
+        <li>Three random forcing histories each. The forcing differs from PIC's, so the comparison is statistical.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>What it is scored on</h3>
+      <ul>
+        <li>Growth of magnetic energy (these PIC boxes are kinetic dynamos), and the share at box scale.</li>
+        <li>Magnetic and kinetic spectra up to the ion scale.</li>
+        <li>Where the plasma sits in the anisotropy–β plane (the mirror/firehose "Brazil plot").</li>
+        <li>Heating by pressure anisotropy, and field-line curvature (folding).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="flag"><b>First finding before any closure test.</b> The PIC stirring is strong, and it is balanced by a thermostat that caps particle momenta, which acts as a drag on every particle. With the literal stirring amplitude and no such drag, the MHD box runs away: flows pass the speed of light in two snapshots. So the stirring amplitude is tuned once, on isotropic MHD, to PIC's kinetic energy and then frozen for every closure. A one-snapshot shakedown ran stably with all three closures. <span class="chip run">full runs queued on the cluster</span></div>
+</section>
+
+<section>
+  <span class="step">Seam 2 · core ↔ edge · toy model</span>
+  <h2>Where can you cut the edge code off from the core?</h2>
+  <div class="frame"><img src="media/gap_curve_final.png" alt="Six panels of error versus how deep inside the separatrix the cut-off domain starts, for six inner-boundary choices plus the noise floor." loading="lazy"></div>
+  <p class="one">A published 2D edge/SOL turbulence model (Decristoforo et al. 2021), run over the full domain as the reference, then cut off at a depth inside the separatrix with different inner boundaries. Depth is measured in radial correlation lengths λ<sub>r</sub>. The Hermes-3-style boundary (gold) is biased by 30–40% at every depth. Pasting in data from a separately evolving full run (pink) dephases the turbulence. A learned boundary (purple) is accurate from about 2 λ<sub>r</sub>, and fails closer in unless it is trained through the solver.</p>
+  <div class="scroll"><table>
+    <caption style="caption-side:top;text-align:left;padding:0 0 8px;font-size:14px;color:var(--ink-2)">Long, fully out-of-sample test (60,000 time units, 5× the fitting window). Mean-profile error, %; noise floor from a perturbed twin run = 4%.</caption>
+    <tr><th>Inner boundary</th><th>1 λ<sub>r</sub> inside</th><th>2 λ<sub>r</sub> inside</th></tr>
+    <tr><td>Hermes-3 style (convention)</td><td class="worst">58</td><td class="worst">unstable late in the window</td></tr>
+    <tr><td>Learned, fitted offline</td><td class="worst">75</td><td class="best">7</td></tr>
+    <tr><td>Learned, trained through the solver (3 training runs)</td><td>3 · 14 · 46</td><td>12 · 15</td></tr>
+    <tr><td>Noise floor</td><td>4</td><td>4</td></tr>
+  </table></div>
+  <p class="one">Training the boundary inside the solver can reach the noise floor one correlation length from the separatrix, but only in one of three training runs, and a short validation loss does not tell you which. That is the same lesson as for the closures, and the reason for a trust gate. Next: the real thing, with a learned edge emulator coupled to the TORAX core code.</p>
+</section>
+
+<section>
+  <span class="step">Knowing when it is wrong</span>
+  <h2>Disagreement between models ranks the risk, but is overconfident</h2>
+  <div class="scroll"><table>
+    <caption style="caption-side:top;text-align:left;padding:0 0 8px;font-size:14px;color:var(--ink-2)">Closure error left after sending the 20% most doubtful volume to the kinetic truth (fraction of the error with nothing sent).</caption>
+    <tr><th>Test set</th><th>sent by model disagreement</th><th>sent at random</th><th>perfect router (ceiling)</th></tr>
+    <tr><td>Bigger box, never seen</td><td class="best">0.33–0.35</td><td>0.48–0.49</td><td>0.20</td></tr>
+    <tr><td>Real proton mass, never seen</td><td class="best">0.41</td><td>0.51</td><td>0.25</td></tr>
+    <tr><td>Training-like data</td><td>0.19</td><td>0.21</td><td>0.14</td></tr>
+  </table></div>
+  <p class="one">The disagreement of an ensemble of closures points at the right places, most of all where the data are unfamiliar. Its size is 2–6× too small, though: the truth falls inside the ±1 spread 12–19% of the time instead of 68%. Calibrating it so it can be read as a probability is the third piece of the plan.</p>
+</section>
+
+<section>
+  <span class="step">Next</span>
+  <h2>What is running and what comes after</h2>
+  <div class="panel"><ul>
+    <li><b>Driven replica, three closures × three forcing histories</b> <span class="chip run">queued</span>. This page will be updated with the energy, spectra, Brazil-plot and heating comparisons.</li>
+    <li><b>Slip closure training</b> on the pretrained representation <span class="chip run">queued</span>, scored on dissipation, not just pattern.</li>
+    <li><b>Longer pretraining</b> with the levers that worked for the TCV model (spectral masking, distribution and covariance losses), with one in-regime run fully held out <span class="chip run">running</span>.</li>
+    <li><b>Core–edge:</b> a learned edge emulator coupled to the TORAX core, both in JAX, trained through the coupled loop.</li>
+  </ul></div>
+</section>
+
+<footer>Stan DeLaurentiis · with Lorenzo Sironi (Columbia Astronomy) and Ben Zhu (Columbia APAM). PIC data: Sironi's driven, initially unmagnetized kinetic turbulence runs (unpublished; shown only as smoothed, derived quantities). Exploratory notes: single realizations where stated, numbers with caveats. Earlier closure results and interactive slices: <a href="/lab/kinetic-closures/">kinetic closures</a>.</footer>
+</div>
