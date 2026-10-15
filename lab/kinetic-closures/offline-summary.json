@@ -1,0 +1,22 @@
+{
+  "mime64.5e2": {
+    "fine_tuned": {
+      "force_relative_mse": 0.382928046087424,
+      "router_20pct_vs_random_improvement": 0.15433248416669265
+    },
+    "post_trained": {
+      "force_relative_mse": 0.4275013556083043,
+      "router_20pct_vs_random_improvement": 0.19741607866788602
+    }
+  },
+  "mime16.5e2": {
+    "fine_tuned": {
+      "force_relative_mse": 0.5816290080547333,
+      "router_20pct_vs_random_improvement": 0.16603021378103877
+    },
+    "post_trained": {
+      "force_relative_mse": 0.6162279943625132,
+      "router_20pct_vs_random_improvement": 0.17385435986258735
+    }
+  }
+}

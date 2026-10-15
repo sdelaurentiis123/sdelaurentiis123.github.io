@@ -1,0 +1,8 @@
+{
+  "steps_per_model": 25,
+  "final_time_di_over_c": 0.707005737349391,
+  "minimum_density": 0.8029858469963074,
+  "max_absolute_relative_mass_drift": 1.1897498808366436e-07,
+  "max_absolute_momentum_drift": 1.4901161193847656e-08,
+  "max_divB_rms": 4.675241971341393e-09
+}
