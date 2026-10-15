@@ -1,0 +1,14 @@
+{
+  "seen": {
+    "run": "mime64.5e2",
+    "width_di": 18.0,
+    "force_limit": 0.011021822560578584,
+    "anisotropy_limit": 0.5426870518922805
+  },
+  "unseen": {
+    "run": "mime16.5e2",
+    "width_di": 36.0,
+    "force_limit": 0.005483745383098714,
+    "anisotropy_limit": 0.7037823027372357
+  }
+}
