@@ -119,7 +119,13 @@ footer { margin-top: 40px; border-top:1px solid var(--line); padding-top:14px; f
 
 <section id="slip">
   <h2>Appendix · Hall MHD and the field-line slip</h2>
-  <figure><img src="media/T4_slip_closure.png" alt="Non-ideal electric field, Hall term and remainder; local dissipation and best resistivity" loading="lazy"><figcaption><span class="k">Compared</span>At 1 d<sub>i</sub>, the electric field MHD misses, R = ⟨E⟩+⟨V⟩×⟨B⟩ from PIC, vs the Hall term J×B/ρ; local dissipation J·(R−Hall) vs the best single resistivity ηJ². <span class="k">Result</span>Hall explains ~90% of R but does no work. All field-energy dissipation is in the remainder, which is not a resistivity (36% of the volume gives energy back). This motivates learned closures as fields, not coefficients. A slip closure is queued as an exploratory test.</figcaption></figure>
+  <figure><img src="media/T4_slip_closure.png" alt="Non-ideal electric field, Hall term and remainder; local dissipation and best resistivity" loading="lazy"><figcaption><span class="k">Compared</span>At 1 d<sub>i</sub>, the electric field MHD misses, R = ⟨E⟩+⟨V⟩×⟨B⟩ from PIC, vs the Hall term J×B/ρ; local dissipation J·(R−Hall) vs the best single resistivity ηJ². <span class="k">Result</span>Hall explains ~90% of R but does no work. All field-energy dissipation is in the remainder, which is not a resistivity (36% of the volume gives energy back). This motivates learned closures as fields, not coefficients. A slip closure was then trained as an exploratory test (below).</figcaption></figure>
+  <p><b>Learned slip closure (Oct 16).</b> The same pretrained network was trained to predict the remainder R − Hall from the fluid state, with the same training runs and pixel loss as the anisotropy closure. Scored on dissipation J·(R − Hall):</p>
+  <ul>
+    <li>It puts the dissipation in the right places: the spatial correlation with PIC is 0.73–0.89 on unseen runs, against 0.32–0.40 for the best single resistivity.</li>
+    <li>It reproduces the share of the volume that gives energy back: 30–34%, against 34–43% in PIC.</li>
+    <li>Its total is wrong away from training: 0.23–0.47× PIC's dissipation for heavier ions, and 1.3–1.5× in the 125 d<sub>i</sub> boxes. On validation times of the training runs it is within 6%.</li>
+  </ul>
 </section>
 
 <footer>Stan DeLaurentiis with Lorenzo Sironi (Columbia Astronomy) and Ben Zhu (Columbia APAM). Kinetic data: Sironi's driven turbulence runs (unpublished), shown only as smoothed, derived quantities. Edge data: Hermes-3 TCV simulations (Zhu group). Code: plasma-master, core-edge-router, JAX-Hermes3 (private).</footer>
