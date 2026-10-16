@@ -1,0 +1,111 @@
+{
+  "models": [
+    {
+      "name": "joint_distribution",
+      "label": "Short reference \u00b7 joint distribution",
+      "group": "short",
+      "style": "--"
+    },
+    {
+      "name": "pretrained_balanced",
+      "label": "Long \u00b7 pretrained + balanced",
+      "group": "long",
+      "style": "-"
+    },
+    {
+      "name": "pretrained_covariance",
+      "label": "Long \u00b7 pretrained + covariance",
+      "group": "long",
+      "style": "-"
+    },
+    {
+      "name": "pretrained_distribution",
+      "label": "Long \u00b7 pretrained + joint distribution",
+      "group": "long",
+      "style": "-"
+    },
+    {
+      "name": "scratch_balanced",
+      "label": "Long \u00b7 scratch + balanced",
+      "group": "long",
+      "style": ":"
+    },
+    {
+      "name": "scratch_covariance",
+      "label": "Long \u00b7 scratch + covariance",
+      "group": "long",
+      "style": ":"
+    },
+    {
+      "name": "scratch_distribution",
+      "label": "Long \u00b7 scratch + joint distribution",
+      "group": "long",
+      "style": ":"
+    }
+  ],
+  "figures": [
+    "overlay_fields",
+    "overlay_transport",
+    "overlay_modes_Ne",
+    "overlay_modes_Te",
+    "overlay_modes_Ti",
+    "overlay_modes_phi",
+    "overlay_modes_Vi",
+    "overlay_pair_Ne_Te",
+    "overlay_pair_Ne_Ti",
+    "overlay_pair_Ne_phi",
+    "overlay_pair_Ne_Vi",
+    "overlay_pair_Te_Ti",
+    "overlay_pair_Te_phi",
+    "overlay_pair_Te_Vi",
+    "overlay_pair_Ti_phi",
+    "overlay_pair_Ti_Vi",
+    "overlay_pair_phi_Vi",
+    "overlay_heat_electron",
+    "overlay_heat_ion",
+    "overlay_heat_total",
+    "overlay_transport_time",
+    "overlay_field_time"
+  ],
+  "local_phase_models": [
+    "joint_distribution",
+    "pretrained_balanced",
+    "pretrained_covariance",
+    "pretrained_distribution",
+    "scratch_balanced",
+    "scratch_covariance",
+    "scratch_distribution"
+  ],
+  "source_hashes": {
+    "artifacts/evaluation_review_20261015/saved/historical/R1/reconstruction_score.json": "8796ca886a248d951f92c6fc2b4b15e1bbb742c1ca4ba1e236d7e0ccba1cec66",
+    "artifacts/joint_losses_20261013/results/control/reconstruction_score.json": "e46cfdf5ded9905317c0a7bcc78b5dfb96eb0af482dd12a23a4f71a8b8fcbf46",
+    "artifacts/joint_losses_20261013/results/local_covariance/reconstruction_score.json": "8c2f13a9157f1f849145b71dca7e72c2b64cd5334c3126509a339a13a2eada77",
+    "artifacts/joint_losses_20261013/results/joint_distribution/reconstruction_score.json": "860c563c8e528119f8785397e0707b1d750e0299cf8a954356584ab7ea5f6c1e",
+    "artifacts/evaluation_review_20261015/saved/long/pretrained_balanced/reconstruction_score.json": "9c9efd1c44fa7b547448c3f7549eaffc603b1090c3464536ef4d908f9eea5ef1",
+    "artifacts/evaluation_review_20261015/saved/long/pretrained_covariance/reconstruction_score.json": "e846b48b1035aef3b9794fe83837c7fe97128a3793fbc3b4424c5bb234aaf791",
+    "artifacts/evaluation_review_20261015/saved/long/pretrained_distribution/reconstruction_score.json": "37bc21a6ebe6d3667506a151829fbaad8fa9a0fd37016c1e7a5c070dab629d97",
+    "artifacts/evaluation_review_20261015/saved/long/scratch_balanced/reconstruction_score.json": "af4b60e00409d10ec9a68c98484668fa58b46e2834da29735e9aa82c2d7fd04d",
+    "artifacts/evaluation_review_20261015/saved/long/scratch_covariance/reconstruction_score.json": "b7b486d794f38ae416ba4f52d195dafe1747785f81ead6627523a32203eb7a19",
+    "artifacts/evaluation_review_20261015/saved/long/scratch_distribution/reconstruction_score.json": "af0b7f3bb6282334b80c329284ca6649c1439f19c255e5fc2a07a51ab8b4e706",
+    "artifacts/reconstruction_review_20261015/reference/joint/joint_distribution/supplement.json": "394a929cdab18ca40a6a2185034330df3e491be60753dcb8ab07555cfbae440e",
+    "artifacts/evaluation_review_20261015/supplement/long/pretrained_balanced/supplement.json": "d7f28c0d8547d9bd2bbb0d3d38659ae4fe8acccedb50c5d1482bf07459bab3cc",
+    "artifacts/evaluation_review_20261015/supplement/long/pretrained_covariance/supplement.json": "b3f6557f6e8102227a7b4a70f336ae8e2a85882baf374854fd946dabfc685381",
+    "artifacts/evaluation_review_20261015/supplement/long/pretrained_distribution/supplement.json": "7dabe7943af71c014004edce828b18331b5b626d0f51ef0f3d8a7f10a83ccc52",
+    "artifacts/evaluation_review_20261015/supplement/long/scratch_balanced/supplement.json": "855d9d553611cebe8bd8b2a0ed4773cf78c3327c165e50a237a05b1b36b37ada",
+    "artifacts/evaluation_review_20261015/supplement/long/scratch_covariance/supplement.json": "d559fe1259a39e0adc4aed2553cf598c309978bfdec96651e7c628912220be42",
+    "artifacts/evaluation_review_20261015/supplement/long/scratch_distribution/supplement.json": "12d3337e659719499b990c7e68a5a6dc4901ad4bc88a6283d6c23baa1d2fcbb5",
+    "artifacts/physical_truth_review_20261009/exports/original04/physical_maps.npz": "7b814e44678fd4f703ddac99a5b52e6a9ce9f61e97276c0537544ddf1ca65ee9",
+    "artifacts/joint_losses_20261013/results/joint_distribution/reconstruction_heat.npz": "e9c3a6d49862e3b7c4ff2ec0f4f8af9e9947a68f062693091ab3222dbcea3984",
+    "artifacts/reconstruction_review_20261015/results/pretrained_balanced/reconstruction_heat.npz": "574c120d89ff971b3f95b9d37e217754316afdb7c62dd6c1cddce9e123bfcfab",
+    "artifacts/reconstruction_review_20261015/results/pretrained_covariance/reconstruction_heat.npz": "5d9e9b2b95c4c9e8def1b7ac0830746f23db64982b94f7d1aa3f2de223e8c98a",
+    "artifacts/reconstruction_review_20261015/results/pretrained_distribution/reconstruction_heat.npz": "3fd2d26f1630956fa3c010bf2cc48842d4799b1cb34b0acbe9d837abf9cf9e33",
+    "artifacts/reconstruction_review_20261015/results/scratch_balanced/reconstruction_heat.npz": "2216018c14eca4b797b58fe6341116a9745f2c1799b115f8801bb5b99b7b6fd1",
+    "artifacts/reconstruction_review_20261015/results/scratch_covariance/reconstruction_heat.npz": "3186183b321f8a2e7ed815e6ac3137fb8fc84d387dded17bc7e9a80874d93b82",
+    "artifacts/reconstruction_review_20261015/results/scratch_distribution/reconstruction_heat.npz": "4ae2aa6e3be9048e610990c7f26b1e5a0ae5b17f9b7f6981b66e44908d4ac09d"
+  },
+  "finite_fraction": {
+    "short": 1.0,
+    "long": 0.9789748311847759
+  },
+  "scope": "Saved-array plotting only; own-source truth, separate geometry, no causal data-scaling claim; local phase uses identical inference-only supplement metrics"
+}

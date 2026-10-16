@@ -1,0 +1,31 @@
+{
+  "calculation": "Previously recovered sheath estimator, re-used on final-run geometry by user instruction",
+  "exact_new_source_verified": false,
+  "recorded_revision": "29c1d80c6e16066444c018128335efc239de566c",
+  "verified": [
+    "Geometry and surface projection from final run",
+    "Manufactured SI identities",
+    "Nine saved density/potential/ion-velocity boundary checks",
+    "Same operator and same truth for all seven models"
+  ],
+  "not_verified": [
+    "Exact new solver source energy bookkeeping",
+    "Radiative/neutral target energy",
+    "Experimental tile heat loading"
+  ],
+  "access_attempts": [
+    "Perlmutter author source paths: Permission denied",
+    "boutproject/hermes-3 exact commit raw source: HTTP 404",
+    "yichenfu/hermes-3 exact commit raw source: HTTP 404",
+    "Shared final output: revision available, no embedded source diff or dedicated sheath-energy diagnostic found"
+  ],
+  "audit_files": {
+    "scratch_balanced": "89f4e1591fb9774dca13c01fa7faa073cd464a476ae010c8fbf3fe27547519e6",
+    "pretrained_covariance": "29ca1ae7b57729b253aba932e3a9b5bf61ba346d0883450b707ae0568848456f",
+    "pretrained_distribution": "063c40979ee51c6dc12bb0b16fc384d805c1e7da92824aaeb087ade176510084",
+    "scratch_distribution": "948851d00d76034e053b6455ab109797117a0e5a8247c116f6ddf2c31181bf08",
+    "scratch_covariance": "1b53367fbcfb21a68c55ffb6d3f6026ad61a0c02da9a1d8894e1d8b1e7546306",
+    "historical_parent": "1cc90bcd0b3544873a8f94c0c7f26687a0f9e5bdd7cac06490c089dd65c821c1",
+    "pretrained_balanced": "4e041c151ea8a3a45dfd0e7cb5201c3eff4df5dfcc939a02053d86463e7f044b"
+  }
+}

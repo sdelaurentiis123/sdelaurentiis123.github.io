@@ -1,0 +1,41 @@
+model,quantity,relative_l2,correlation,rmse_skill
+Full OMP XZ input,particle/strict_face_contributions,0.5118548918216863,0.8615962397851438,0.48779116148910906
+Full OMP XZ input,particle/separatrix_wedge,0.0907429110143547,0.967225416916315,0.8072674367496901
+Full OMP XZ input,electron_internal_energy/strict_face_contributions,0.49442883259118464,0.8718307337462858,0.5050206341128088
+Full OMP XZ input,electron_internal_energy/separatrix_wedge,0.09811376253763775,0.9770413015246716,0.8420827688172577
+Full OMP XZ input,ion_internal_energy/strict_face_contributions,0.4931544883026887,0.8724666516543637,0.5064347817653161
+Full OMP XZ input,ion_internal_energy/separatrix_wedge,0.09564625396333838,0.9750563070205382,0.8356176370754431
+Full OMP XZ input,total_internal_energy/strict_face_contributions,0.49338260456508093,0.8723731370081711,0.5061470582091673
+Full OMP XZ input,total_internal_energy/separatrix_wedge,0.09390632422483816,0.9772518554590378,0.8430955722570538
+Direct XY patch,particle/strict_face_contributions,0.8514277078426835,0.5448368593203042,0.1479835315083453
+Direct XY patch,particle/separatrix_wedge,0.2531729248387911,0.8085728928606729,0.46227571714071003
+Direct XY patch,electron_internal_energy/strict_face_contributions,0.839470652693573,0.5614516273947244,0.15959461916182005
+Direct XY patch,electron_internal_energy/separatrix_wedge,0.29715772710713645,0.8335388932541213,0.5217151572256304
+Direct XY patch,ion_internal_energy/strict_face_contributions,0.8432041015067422,0.5571664143057274,0.15609362532838833
+Direct XY patch,ion_internal_energy/separatrix_wedge,0.3148530728904026,0.8208033073282766,0.45887800147802427
+Direct XY patch,total_internal_energy/strict_face_contributions,0.8414269312541959,0.5592621962585839,0.15777094397517555
+Direct XY patch,total_internal_energy/separatrix_wedge,0.3045146337996961,0.8280177709902787,0.4911983324861473
+XZ-pretrained XY patch,particle/strict_face_contributions,0.8512037437288777,0.5552195357706358,0.14820765049291207
+XZ-pretrained XY patch,particle/separatrix_wedge,0.22751039732124553,0.8360287318539749,0.5167814041706948
+XZ-pretrained XY patch,electron_internal_energy/strict_face_contributions,0.8388886017384605,0.5719480960037525,0.16017731821512105
+XZ-pretrained XY patch,electron_internal_energy/separatrix_wedge,0.27066635692574303,0.8517313164280461,0.5643538627556307
+XZ-pretrained XY patch,ion_internal_energy/strict_face_contributions,0.8409883069874725,0.56820800679077,0.15831126530005435
+XZ-pretrained XY patch,ion_internal_energy/separatrix_wedge,0.28886130148239375,0.8344301383476157,0.5035487399920608
+XZ-pretrained XY patch,total_internal_energy/strict_face_contributions,0.8398858785914376,0.5701013185036469,0.1593134657096591
+XZ-pretrained XY patch,total_internal_energy/separatrix_wedge,0.27762533892458124,0.84457268038853,0.5361266103163992
+XZ-pretrained XY patch · longer,particle/strict_face_contributions,0.8772689197101129,0.534606348289319,0.12212445049180431
+XZ-pretrained XY patch · longer,particle/separatrix_wedge,0.24457390522147673,0.7819346901482543,0.48053952501020347
+XZ-pretrained XY patch · longer,electron_internal_energy/strict_face_contributions,0.864859269081626,0.5508986039637658,0.13417773322769722
+XZ-pretrained XY patch · longer,electron_internal_energy/separatrix_wedge,0.2989759082388126,0.8083659836395126,0.5187887366840387
+XZ-pretrained XY patch · longer,ion_internal_energy/strict_face_contributions,0.8660181179110351,0.547836111032276,0.13326060798295314
+XZ-pretrained XY patch · longer,ion_internal_energy/separatrix_wedge,0.3032416172772575,0.7842812046479789,0.4788340209935823
+XZ-pretrained XY patch · longer,total_internal_energy/strict_face_contributions,0.8653298287706808,0.5494333093536975,0.13384526004019648
+XZ-pretrained XY patch · longer,total_internal_energy/separatrix_wedge,0.2992356581420327,0.797914326172844,0.5000187677600427
+XZ → radial line → XY patch,particle/strict_face_contributions,0.8476169054342996,0.56208914120829,0.15179696907938411
+XZ → radial line → XY patch,particle/separatrix_wedge,0.24546655573643442,0.8299830966046889,0.4786435882377178
+XZ → radial line → XY patch,electron_internal_energy/strict_face_contributions,0.8334344459672139,0.5790196012057645,0.1656375470431064
+XZ → radial line → XY patch,electron_internal_energy/separatrix_wedge,0.29237344239760127,0.844583868687204,0.5294156161110992
+XZ → radial line → XY patch,ion_internal_energy/strict_face_contributions,0.8368117797975534,0.5754108415651749,0.1624912709632904
+XZ → radial line → XY patch,ion_internal_energy/separatrix_wedge,0.3027166489960661,0.8309559765929905,0.4797362573378908
+XZ → radial line → XY patch,total_internal_energy/strict_face_contributions,0.8351568896861483,0.5772408377787589,0.1640469627177914
+XZ → radial line → XY patch,total_internal_energy/separatrix_wedge,0.295960445726546,0.839578323051314,0.50549119290319

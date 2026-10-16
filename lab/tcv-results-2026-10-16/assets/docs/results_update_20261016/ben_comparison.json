@@ -1,0 +1,37 @@
+{
+  "earlier_report": "Site linked in Oct 14 email to Ben; historical adaptive mean/fluctuation + clean replay downstream model",
+  "earlier_spectral_support": "Interior downstream x16:64, y19:31, strict native mask; y31 excluded",
+  "current_spectral_support": "Interior downstream x16:64, y20:31, strict native mask; y31 excluded",
+  "target_support": "x16:64,y31,valid penalty mask,all81z",
+  "target_124_frame_fluctuation_rmse_old": [
+    1.264593665240622e+17,
+    0.9366999314932382,
+    3.859859143879375,
+    7.2050702573796395,
+    3841.8371967524504
+  ],
+  "target_124_frame_fluctuation_rmse_current": [
+    1.2501996769397483e+17,
+    0.9359547825177206,
+    3.8189989838598724,
+    7.066991134712497,
+    3805.9990231664306
+  ],
+  "target_change_percent": [
+    -1.1382303024691232,
+    -0.07955044624906593,
+    -1.0585919976975,
+    -1.9164160477924241,
+    -0.9328394658762229
+  ],
+  "matched_spectral_snapshot_frames": [
+    512,
+    560,
+    623
+  ],
+  "identical_snapshot_truth": true,
+  "target_spectrum_matches_saved_current": true,
+  "snapshot_scope": "Three saved snapshots only; not the full 124-frame spectral average",
+  "training_or_inference_launched": false,
+  "old_maps_sha256": "3490f39d87118abde72424cd850a1ddf673231e5fb9d498bd745e720a59ce08d"
+}

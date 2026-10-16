@@ -1,0 +1,13 @@
+{
+  "source": "artifacts/omp_patch_20261015/legacy_geometry.nc",
+  "sha256": "0eeffe4c550d71eacd4c2d09874280bf85f394c2e08558712e15dca0495e8bf8",
+  "scope": "Geometry only. Native polygons join saved cell centers respecting topology. Rendered polygons interpolate coordinates within connected strips; neither display adds field resolution. Toroidal wire lines decimated for clarity. Physical XY patch remains interpolated in both display modes.",
+  "patch_native_y_range": [
+    17.83114479572765,
+    18.190791603808638
+  ],
+  "input_full_xz": "all x, native y18, all81 z",
+  "target": "x16:64, y31, all81 z",
+  "downstream_supervision": "x16:64,y20:32,all81z",
+  "patch": "64 radial \u00d721 physical-height samples at physical toroidal angle0; native support rows17,18,19"
+}
