@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>petch — machine settings in, measured profiles out</title>
+<meta name="description" content="petch: a GPU plasma-etch profile simulator checked against measured wafers, driven from a tool's own settings, and run in 3-D on real chip layouts.">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<style>
+:root { --bg:#0b1220; --panel:#121c30; --panel2:#0f1728; --ink:#e8edf6; --dim:#8fa3bf;
+        --teal:#2ab3b6; --pink:#d05fb2; --line:#26344f; --amber:#e0b458; --good:#4cc38a; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--ink);
+       font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+.sitebar { height:46px; display:flex; align-items:center; border-bottom:1px solid var(--line);
+           background:var(--panel2); font-size:.82rem; }
+.sitebar .in { width:100%; max-width:1080px; margin:0 auto; padding:0 1.2rem;
+               display:flex; align-items:center; gap:1.1rem; }
+.sitebar a { color:var(--dim); text-decoration:none; }
+.sitebar a:hover, .sitebar a.here { color:var(--ink); }
+.sitebar a.back { font-size:1rem; line-height:1; }
+nav { position:sticky; top:0; z-index:10; background:rgba(11,18,32,.93); backdrop-filter:blur(6px);
+      border-bottom:1px solid var(--line); padding:.6rem 1.2rem; display:flex; gap:1.05rem;
+      flex-wrap:wrap; font-size:.82rem; }
+nav a { color:var(--dim); text-decoration:none; } nav a:hover { color:var(--ink); }
+header.top { padding:3rem 1.2rem 1.4rem; max-width:1080px; margin:0 auto; }
+header.top h1 { font-size:2.05rem; letter-spacing:.01em; }
+header.top .sub { color:var(--dim); margin-top:.55rem; max-width:66ch; font-size:1.02rem; }
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:.9rem;
+         max-width:1080px; margin:1.2rem auto 0; padding:0 1.2rem; }
+.stat { background:var(--panel); border:1px solid var(--line); border-radius:10px;
+        padding:1rem 1.1rem; }
+.stat .v { font-size:1.7rem; font-weight:700; color:var(--teal); font-variant-numeric:tabular-nums; }
+.stat .k { color:var(--dim); font-size:.8rem; margin-top:.15rem; }
+section { max-width:1080px; margin:0 auto; padding:2.4rem 1.2rem; border-top:1px solid var(--line); }
+section:first-of-type { border-top:none; }
+h2 { font-size:1.35rem; margin-bottom:.35rem; }
+h2 .n { color:var(--teal); font-family:ui-monospace,Menlo,monospace; margin-right:.5rem; }
+.kicker { color:var(--dim); margin-bottom:1.2rem; max-width:76ch; }
+.grid { display:grid; gap:1.2rem; } @media(min-width:860px){ .grid.two { grid-template-columns:1fr 1fr; } }
+figure { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:.8rem; }
+figure img, figure video { width:100%; height:auto; border-radius:6px; display:block; background:#fff; }
+figure img.dark, figure video.dark { background:transparent; }
+figure video { max-height:72vh; object-fit:contain; }
+figure.tallmovie { text-align:center; }
+figure.tallmovie video { width:auto; max-width:100%; max-height:640px; margin:0 auto;
+                         background:#0b1220; }
+figure img { cursor:zoom-in; }
+figcaption { color:var(--dim); font-size:.82rem; margin-top:.6rem; }
+table.res { border-collapse:collapse; width:100%; margin:.8rem 0; font-size:.92rem; }
+table.res th, table.res td { border:1px solid var(--line); padding:.45rem .7rem; text-align:right; }
+table.res th:first-child, table.res td:first-child { text-align:left; }
+table.res th { color:var(--dim); font-weight:600; }
+table.score { border-collapse:collapse; width:100%; margin:1rem 0; font-size:.9rem; }
+table.score th, table.score td { border:1px solid var(--line); padding:.55rem .75rem; text-align:left;
+                                 vertical-align:top; }
+table.score th { color:var(--dim); font-weight:600; background:var(--panel2); }
+table.score td.y { color:var(--good); } table.score td.n { color:var(--dim); }
+table.score td:first-child { font-weight:600; }
+.callout { background:var(--panel2); border:1px solid var(--line); border-left:3px solid var(--teal);
+           border-radius:8px; padding:1rem 1.2rem; margin:1.2rem 0; font-size:.92rem; }
+.steps { display:flex; flex-wrap:wrap; gap:0; margin:1.4rem 0; counter-reset:step; }
+.step { flex:1 1 160px; min-width:150px; position:relative; padding:0 .9rem 0 0; }
+.step .dot { width:30px; height:30px; border-radius:50%; background:var(--panel);
+             border:2px solid var(--teal); color:var(--teal); font-weight:700; font-size:.85rem;
+             display:flex; align-items:center; justify-content:center; margin-bottom:.55rem;
+             counter-increment:step; }
+.step .dot::before { content:counter(step); }
+.step:not(:last-child)::after { content:""; position:absolute; top:14px; left:38px; right:6px;
+                                height:2px; background:linear-gradient(90deg,var(--teal),var(--line)); }
+.step h4 { font-size:.9rem; margin-bottom:.2rem; }
+.step p { color:var(--dim); font-size:.78rem; line-height:1.4; padding-right:.4rem; }
+ul.tight { margin:.6rem 0 .6rem 1.2rem; font-size:.92rem; } ul.tight li { margin:.25rem 0; }
+details.appendix { max-width:1080px; margin:0 auto; padding:1.4rem 1.2rem 3rem; color:var(--dim);
+                   font-size:.85rem; border-top:1px solid var(--line); }
+details.appendix summary { cursor:pointer; color:var(--dim); font-weight:600; }
+details.appendix p { margin:.7rem 0 0; max-width:80ch; }
+#lightbox { display:none; position:fixed; inset:0; z-index:100; background:rgba(5,9,18,.96);
+            align-items:center; justify-content:center; cursor:zoom-out; }
+#lightbox.open { display:flex; }
+#lightbox img { max-width:96vw; max-height:96vh; border-radius:6px; background:#fff;
+                transform-origin:center center; transition:transform .08s linear; cursor:grab; }
+#lightbox .hint { position:fixed; bottom:14px; left:0; right:0; text-align:center;
+                  color:var(--dim); font-size:.75rem; pointer-events:none; }
+footer { max-width:1080px; margin:0 auto; padding:1.6rem 1.2rem 3rem; color:var(--dim);
+         font-size:.8rem; }
+
+.p3d{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-height:calc(min(62vh,560px) + 46px)}
+.p3d-stage{position:relative;height:min(62vh,560px);background:var(--bg)}
+.p3d-stage canvas{display:block;width:100%;height:100%;cursor:grab}
+.p3d-hud{position:absolute;left:12px;top:10px;font-size:.85rem;background:rgba(11,18,32,.75);padding:.15rem .55rem;border-radius:6px;pointer-events:none}
+.p3d-bar{display:flex;gap:.5rem;align-items:center;padding:.55rem .7rem;border-top:1px solid var(--line);flex-wrap:wrap}
+.p3d-bar button{background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:.2rem .7rem;cursor:pointer;font:inherit;font-size:.82rem}
+.p3d-bar button:hover{border-color:var(--teal)} .p3d-bar button.on{border-color:var(--teal);color:var(--teal)}
+.p3d-bar input[type=range]{flex:1;min-width:120px;accent-color:var(--teal)}
+.p3d-legend{display:flex;gap:.9rem;font-size:.78rem;color:var(--dim);margin-left:auto}
+.p3d-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:.35rem;vertical-align:-1px}
+.p3d-cap{color:var(--dim);font-size:.82rem;padding:.6rem .8rem .8rem}
+.facts{display:grid;gap:.9rem;margin-top:1.2rem} @media(min-width:860px){.facts{grid-template-columns:repeat(3,1fr)}}
+.fact{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem}
+.fact h4{font-size:.92rem;margin-bottom:.3rem} .fact p{color:var(--dim);font-size:.84rem}
+.fact .big{font-size:1.35rem;font-weight:700;color:var(--teal);font-variant-numeric:tabular-nums;margin-bottom:.15rem}
+.tag{display:inline-block;font-size:.7rem;border:1px solid var(--line);border-radius:4px;padding:0 .4rem;color:var(--dim);margin-left:.35rem;vertical-align:1px}
+.miss{border-left-color:var(--amber)} .miss ul{margin:.4rem 0 0 1.1rem} .miss li{margin:.25rem 0}
+figure img.svg{background:transparent;cursor:zoom-in}
+.pv{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pv-bar{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;padding:.55rem .7rem;border-bottom:1px solid var(--line)}
+.pv-bar button{background:var(--panel2);border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:.18rem .6rem;cursor:pointer;font:inherit;font-size:.8rem}
+.pv-bar button.on{border-color:var(--teal);color:var(--teal)} .pv-lab{color:var(--dim);font-size:.78rem;margin-right:.2rem}
+.pv-grid{display:grid;grid-template-columns:minmax(0,1fr)} @media(min-width:860px){.pv-grid{grid-template-columns:minmax(0,3fr) minmax(0,1fr)}}
+.pv-chamber,.pv-sheath{min-height:120px;background:var(--bg)} .pv-sheath{border-top:1px solid var(--line)}
+.pv-read{padding:.8rem 1rem;font-size:.8rem;display:grid;gap:.35rem;align-content:center;border-left:1px solid var(--line)}
+.pv-read div{display:flex;justify-content:space-between;gap:.6rem} .pv-read span{color:var(--dim)} .pv-read b{font-weight:600;font-variant-numeric:tabular-nums}
+.newbadge{display:inline-block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal);border-radius:999px;padding:.05rem .6rem;margin-bottom:.8rem}
+</style></head><body>
+<div class="sitebar"><div class="in">
+  <a class="back" href="/lab/" title="Back to lab">&larr;</a>
+  <a href="/">about</a>
+  <a href="/writing.html">writing</a>
+  <a class="here" href="/lab/">lab</a>
+</div></div>
+<nav>
+  <a href="#s0">Knobs to wafer</a><a href="#s1">Layout to 3-D</a><a href="#s2">Settings to profile</a><a href="#s2b">Held-out wafers</a><a href="#s3">vs ViennaPS</a>
+  <a href="#s4">Textbook checks</a><a href="#s5">What's new</a><a href="petch-evidence.html">July evidence pack</a>
+</nav>
+
+<header class="top">
+  <span class="newbadge">October 2026 update</span>
+  <h1>petch — machine settings in, measured profiles out</h1>
+  <p class="sub">petch starts from a plasma tool's own settings and ends with the etched 3-D profile, on one GPU,
+  in seconds. It runs on real chip layouts, it is scored against measured wafers, and it reproduces textbook
+  physics with its production code.</p>
+</header>
+<div class="stats">
+  <div class="stat"><div class="v">0.70–0.95&times;</div><div class="k">hole etch rate against measured, at all five
+    biases, starting from a Lam TCP&nbsp;9400's settings with nothing tuned</div></div>
+  <div class="stat"><div class="v">7 of 10</div><div class="k">held-out wafer holes predicted within 15&nbsp;% (median
+    error 8.5&nbsp;%, from 30&nbsp;% with the published surface model)</div></div>
+  <div class="stat"><div class="v">32&times;</div><div class="k">faster than ViennaPS on the same GPU and the same holes</div></div>
+  <div class="stat"><div class="v">~1&cent;</div><div class="k">per 3-D gate-window etch at 5&nbsp;nm on one rented
+    RTX&nbsp;4090 (70–110&nbsp;s)</div></div>
+</div>
+
+<section id="s0">
+  <h2><span class="n">01</span>From the tool's knobs to the wafer surface</h2>
+  <p class="kicker">Pick a bias. The chamber view shows the plasma a Lam TCP&nbsp;9400 makes at 800&nbsp;W and 25&nbsp;mTorr; the
+  numbers on the right are what reactorlab predicts lands on the wafer. Below, the sheath: the thin dark layer where the
+  bias accelerates ions straight down into the features while electrons, much lighter and hotter, are held back
+  except for a brief burst each rf cycle. The ion trajectories and the energy histogram come from petch's sheath model.</p>
+  <div class="pv" id="pv"><div class="pv-bar"></div><div class="pv-grid"><div class="pv-chamber"></div><div class="pv-read"></div></div>
+    <div class="pv-sheath"></div></div>
+  <script type="module">import {mountPlasma} from "./media/petch-stp/plasma_viz.js"; const el = document.getElementById("pv");
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); mountPlasma(el, "media/petch-stp/plasma.json"); } },
+  {rootMargin: "300px"}).observe(el);</script>
+  <p class="p3d-cap">Plasma density drawn as the lowest diffusion mode of the chamber, scaled to reactorlab's electron
+  density; particles are illustrative. Sheath: collisionless Child-law model with reactorlab's sheath voltage, electron
+  temperature and ion transit time; the 2&nbsp;MHz button shows the same plasma with a slower bias, where ions cross in
+  under a cycle and their energies split into two peaks. Not to scale: the sheath is about a thousand times thicker than
+  the features.</p>
+</section>
+
+<section id="s1">
+  <h2><span class="n">02</span>From a chip layout to etched gates, in 3-D</h2>
+  <p class="kicker">Our automated chip-production chain designs a small AI accelerator tile, builds it from
+  real standard cells, and finds the densest patch of polysilicon gates. petch then etches that patch in 3-D
+  and reports, gate by gate, whether the film cleared, how far it recessed, and the etched gate length.
+  Design and process are scored in one loop.</p>
+  <div id="gate3d" class="p3d"></div>
+<script type="module">import {mountViewer} from "./media/petch-stp/petch3d.js"; const el = document.getElementById("gate3d"); new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); mountViewer(el, {"meshes": {"gate_before": {"file": "gate_before.bin", "n_vert": 43140, "n_tri": 85680, "index": "u2", "lo": [0.003112050238996744, 0.003112050238996744, -0.046887949109077454], "hi": [0.5987499952316284, 0.5987499952316284, 0.15000000596046448], "bytes": 772920, "run": "1d4280134c72", "dx_um": 0.00125, "step": 4, "url": "media/petch-stp/mesh/gate_before.bin"}, "gate_after": {"file": "gate_after.bin", "n_vert": 54691, "n_tri": 108690, "index": "u2", "lo": [0.0037066296208649874, 0.0037066296208649874, -0.04629337042570114], "hi": [0.5987499952316284, 0.5987499952316284, 0.15000000596046448], "bytes": 980286, "run": "1d4280134c72", "dx_um": 0.00125, "step": 4, "url": "media/petch-stp/mesh/gate_after.bin"}}, "frames": [{"mesh": "gate_before", "label": "as drawn: six gates of a placed Nangate45 window"}, {"mesh": "gate_after", "label": "after the SF\u2086/O\u2082 etch (10 s)"}], "bands": [[-1.0, 0.0, "#7f8aa3", "Si"], [0.0, 0.1, "#e0b458", "poly-Si"], [0.1, 0.2, "#2ab3b6", "hard mask"]], "bandTol": 0.003, "fps": 0.5, "zScale": 1.0, "distance": 1.45}); } }, {rootMargin: "300px"}).observe(el);</script>
+  <p class="p3d-cap">Drag to rotate, scroll to zoom, <em>cut</em> to slice. A 0.6&nbsp;&times;&nbsp;0.6&nbsp;&micro;m window
+  of the placed layout: 100&nbsp;nm poly-Si under a 50&nbsp;nm hard mask, SF<sub>6</sub>/O<sub>2</sub> for 10&nbsp;s,
+  computed at 1.25&nbsp;nm (the mesh is thinned to 5&nbsp;nm for your browser). Colours mark height bands:
+  Si, poly-Si, mask.</p>
+  <div class="steps">
+    <div class="step"><div class="dot"></div><h4>RTL</h4><p>16&times;16 INT4&times;INT8 multiply-accumulate tile, checked
+      against a golden model (31 cases)</p></div>
+    <div class="step"><div class="dot"></div><h4>Synthesis</h4><p>yosys onto the open Nangate45 cell library</p></div>
+    <div class="step"><div class="dot"></div><h4>Placement</h4><p>real standard-cell GDS, placed in rows</p></div>
+    <div class="step"><div class="dot"></div><h4>Window</h4><p>the densest polysilicon patch, clipped from the layout</p></div>
+    <div class="step"><div class="dot"></div><h4>3-D etch</h4><p>petch on one GPU, film and mask from the process stack</p></div>
+    <div class="step"><div class="dot"></div><h4>Metrology</h4><p>clearing, recess and gate length per gate</p></div>
+  </div>
+  <div class="facts">
+    <div class="fact"><div class="big">clears</div><h4>Every opening clears</h4><p>petch reports, gap by gap, that the
+      100&nbsp;nm film between the gates is fully removed at this recipe, with no residue at the window edges.</p></div>
+    <div class="fact"><div class="big">0.2–0.5&nbsp;s</div><h4>The recipe punches the gate oxide</h4><p>With a 1.5&nbsp;nm
+      gate oxide added, the poly clears in about 3&nbsp;s, so the 10&nbsp;s recipe is about 230&nbsp;% over-etch. The oxide is
+      exposed at 3.3&nbsp;s and punched through 0.2–0.5&nbsp;s later. That recipe cannot be used on that oxide. (The
+      oxide etch law is taken from the literature, not fitted to this tool.)</p></div>
+    <div class="fact"><div class="big">1&cent; · 6&nbsp;min · 1–2.5&nbsp;h</div><h4>Cost per window</h4><p>Wall time at 5, 2.5 and
+      1.25&nbsp;nm on a shared, rented RTX&nbsp;4090: 70–110&nbsp;s, 6–9&nbsp;min and 50–150&nbsp;min. That is cheap enough
+      to screen recipes against a whole layout.</p></div>
+  </div>
+</section>
+
+<section id="s2">
+  <h2><span class="n">03</span>Machine settings in, profile out</h2>
+  <p class="kicker">A plasma model (<em>reactorlab</em>, 0-D SF<sub>6</sub>/O<sub>2</sub>/Ar) turns the settings of a Lam
+  TCP&nbsp;9400 &mdash; 800&nbsp;W, 25&nbsp;mTorr, SF<sub>6</sub>/O<sub>2</sub> 40/40&nbsp;sccm, rf bias &minus;20 to
+  &minus;160&nbsp;V &mdash; into fluorine, oxygen and ion fluxes, ion energies and ion angles. petch takes those and etches
+  0.35&nbsp;&micro;m holes through a 1.2&nbsp;&micro;m oxide mask for 150&nbsp;s. Nothing is fitted to the holes, and the
+  test was written down and frozen in the repository before the first run.</p>
+  <div class="grid two" style="margin-bottom:1.2rem"><div><div id="hole3d_0" class="p3d"></div>
+<script type="module">import {mountViewer} from "./media/petch-stp/petch3d.js"; const el = document.getElementById("hole3d_0"); new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); mountViewer(el, {"meshes": {"hole_b20_0": {"file": "hole_b20_0.bin", "n_vert": 12244, "n_tri": 24074, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1997618675231934], "bytes": 217908, "t_s": 0.4851685781001935, "cell_um": 0.85, "step": 3, "depth_um": 0.009, "rate_um_min": 0.97, "url": "media/petch-stp/mesh/hole_b20_0.bin"}, "hole_b20_2": {"file": "hole_b20_2.bin", "n_vert": 12452, "n_tri": 24490, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.19602632522583], "bytes": 221652, "t_s": 11.510759163969086, "cell_um": 0.85, "step": 3, "depth_um": 0.185, "rate_um_min": 0.96, "url": "media/petch-stp/mesh/hole_b20_2.bin"}, "hole_b20_4": {"file": "hole_b20_4.bin", "n_vert": 12725, "n_tri": 25036, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1920571327209473], "bytes": 226566, "t_s": 22.867236047216895, "cell_um": 0.85, "step": 3, "depth_um": 0.364, "rate_um_min": 0.93, "url": "media/petch-stp/mesh/hole_b20_4.bin"}, "hole_b20_6": {"file": "hole_b20_6.bin", "n_vert": 13060, "n_tri": 25706, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1878547668457031], "bytes": 232596, "t_s": 34.67276225731579, "cell_um": 0.85, "step": 3, "depth_um": 0.545, "rate_um_min": 0.9, "url": "media/petch-stp/mesh/hole_b20_6.bin"}, "hole_b20_8": {"file": "hole_b20_8.bin", "n_vert": 13401, "n_tri": 26388, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1842880249023438], "bytes": 238734, "t_s": 47.02762835448532, "cell_um": 0.85, "step": 3, "depth_um": 0.726, "rate_um_min": 0.87, "url": "media/petch-stp/mesh/hole_b20_8.bin"}, "hole_b20_10": {"file": "hole_b20_10.bin", "n_vert": 13768, "n_tri": 27122, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1812372207641602], "bytes": 245340, "t_s": 59.829525304068426, "cell_um": 0.85, "step": 3, "depth_um": 0.909, "rate_um_min": 0.84, "url": "media/petch-stp/mesh/hole_b20_10.bin"}, "hole_b20_12": {"file": "hole_b20_12.bin", "n_vert": 14215, "n_tri": 28016, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1782822608947754], "bytes": 253386, "t_s": 73.2477611844537, "cell_um": 0.85, "step": 3, "depth_um": 1.092, "rate_um_min": 0.8, "url": "media/petch-stp/mesh/hole_b20_12.bin"}, "hole_b20_14": {"file": "hole_b20_14.bin", "n_vert": 14514, "n_tri": 28616, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1743135452270508], "bytes": 258780, "t_s": 87.43399597860248, "cell_um": 0.85, "step": 3, "depth_um": 1.274, "rate_um_min": 0.75, "url": "media/petch-stp/mesh/hole_b20_14.bin"}, "hole_b20_16": {"file": "hole_b20_16.bin", "n_vert": 14877, "n_tri": 29342, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.16694974899292], "bytes": 265314, "t_s": 102.26363893325843, "cell_um": 0.85, "step": 3, "depth_um": 1.456, "rate_um_min": 0.71, "url": "media/petch-stp/mesh/hole_b20_16.bin"}, "hole_b20_18": {"file": "hole_b20_18.bin", "n_vert": 15237, "n_tri": 30062, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.161168098449707], "bytes": 271794, "t_s": 117.82797326193932, "cell_um": 0.85, "step": 3, "depth_um": 1.637, "rate_um_min": 0.68, "url": "media/petch-stp/mesh/hole_b20_18.bin"}, "hole_b20_20": {"file": "hole_b20_20.bin", "n_vert": 15650, "n_tri": 30888, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.157541275024414], "bytes": 279228, "t_s": 134.0862251313727, "cell_um": 0.85, "step": 3, "depth_um": 1.817, "rate_um_min": 0.65, "url": "media/petch-stp/mesh/hole_b20_20.bin"}, "hole_b20_22": {"file": "hole_b20_22.bin", "n_vert": 16131, "n_tri": 31850, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1546077728271484], "bytes": 287886, "t_s": 150.0, "cell_um": 0.85, "step": 3, "depth_um": 1.988, "rate_um_min": 0.64, "url": "media/petch-stp/mesh/hole_b20_22.bin"}}, "frames": [{"mesh": "hole_b20_0", "label": "\u221220 V \u00b7 t = 0 s \u00b7 depth 0.01 \u00b5m \u00b7 0.97 \u00b5m/min"}, {"mesh": "hole_b20_2", "label": "\u221220 V \u00b7 t = 12 s \u00b7 depth 0.18 \u00b5m \u00b7 0.96 \u00b5m/min"}, {"mesh": "hole_b20_4", "label": "\u221220 V \u00b7 t = 23 s \u00b7 depth 0.36 \u00b5m \u00b7 0.93 \u00b5m/min"}, {"mesh": "hole_b20_6", "label": "\u221220 V \u00b7 t = 35 s \u00b7 depth 0.55 \u00b5m \u00b7 0.90 \u00b5m/min"}, {"mesh": "hole_b20_8", "label": "\u221220 V \u00b7 t = 47 s \u00b7 depth 0.73 \u00b5m \u00b7 0.87 \u00b5m/min"}, {"mesh": "hole_b20_10", "label": "\u221220 V \u00b7 t = 60 s \u00b7 depth 0.91 \u00b5m \u00b7 0.84 \u00b5m/min"}, {"mesh": "hole_b20_12", "label": "\u221220 V \u00b7 t = 73 s \u00b7 depth 1.09 \u00b5m \u00b7 0.80 \u00b5m/min"}, {"mesh": "hole_b20_14", "label": "\u221220 V \u00b7 t = 87 s \u00b7 depth 1.27 \u00b5m \u00b7 0.75 \u00b5m/min"}, {"mesh": "hole_b20_16", "label": "\u221220 V \u00b7 t = 102 s \u00b7 depth 1.46 \u00b5m \u00b7 0.71 \u00b5m/min"}, {"mesh": "hole_b20_18", "label": "\u221220 V \u00b7 t = 118 s \u00b7 depth 1.64 \u00b5m \u00b7 0.68 \u00b5m/min"}, {"mesh": "hole_b20_20", "label": "\u221220 V \u00b7 t = 134 s \u00b7 depth 1.82 \u00b5m \u00b7 0.65 \u00b5m/min"}, {"mesh": "hole_b20_22", "label": "\u221220 V \u00b7 t = 150 s \u00b7 depth 1.99 \u00b5m \u00b7 0.64 \u00b5m/min"}], "bands": [[-9.0, 0.0, "#7f8aa3", "Si"], [0.0, 1.3, "#2ab3b6", "SiO\u2082 mask"]], "bandTol": 0.012, "fps": 5, "holdLast": 10, "tile": {"nx": 3, "ny": 3, "cell": [0.85, 0.85]}, "distance": 1.75, "view": [-0.8, -1.2, 0.5], "cut": true, "section": 0.5}); } }, {rootMargin: "300px"}).observe(el);</script></div><div><div id="hole3d_1" class="p3d"></div>
+<script type="module">import {mountViewer} from "./media/petch-stp/petch3d.js"; const el = document.getElementById("hole3d_1"); new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); mountViewer(el, {"meshes": {"hole_b160_0": {"file": "hole_b160_0.bin", "n_vert": 12244, "n_tri": 24074, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1997618675231934], "bytes": 217908, "t_s": 0.17955552287493645, "cell_um": 0.85, "step": 3, "depth_um": 0.009, "rate_um_min": 2.61, "url": "media/petch-stp/mesh/hole_b160_0.bin"}, "hole_b160_3": {"file": "hole_b160_3.bin", "n_vert": 12588, "n_tri": 24762, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1878547668457031], "bytes": 224100, "t_s": 6.262597533991139, "cell_um": 0.85, "step": 3, "depth_um": 0.272, "rate_um_min": 2.56, "url": "media/petch-stp/mesh/hole_b160_3.bin"}, "hole_b160_7": {"file": "hole_b160_7.bin", "n_vert": 13137, "n_tri": 25862, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.174546718597412], "bytes": 233994, "t_s": 15.078077625702651, "cell_um": 0.85, "step": 3, "depth_um": 0.629, "rate_um_min": 2.34, "url": "media/petch-stp/mesh/hole_b160_7.bin"}, "hole_b160_10": {"file": "hole_b160_10.bin", "n_vert": 13588, "n_tri": 26764, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1589322090148926], "bytes": 242112, "t_s": 22.547806674577622, "cell_um": 0.85, "step": 3, "depth_um": 0.9, "rate_um_min": 2.04, "url": "media/petch-stp/mesh/hole_b160_10.bin"}, "hole_b160_13": {"file": "hole_b160_13.bin", "n_vert": 14111, "n_tri": 27812, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1503667831420898], "bytes": 251538, "t_s": 30.96049028661181, "cell_um": 0.85, "step": 3, "depth_um": 1.168, "rate_um_min": 1.76, "url": "media/petch-stp/mesh/hole_b160_13.bin"}, "hole_b160_16": {"file": "hole_b160_16.bin", "n_vert": 14659, "n_tri": 28908, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1305804252624512], "bytes": 261402, "t_s": 40.679103980843855, "cell_um": 0.85, "step": 3, "depth_um": 1.433, "rate_um_min": 1.51, "url": "media/petch-stp/mesh/hole_b160_16.bin"}, "hole_b160_20": {"file": "hole_b160_20.bin", "n_vert": 15493, "n_tri": 30578, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.1041226387023926], "bytes": 276426, "t_s": 56.02577566161271, "cell_um": 0.85, "step": 3, "depth_um": 1.785, "rate_um_min": 1.24, "url": "media/petch-stp/mesh/hole_b160_20.bin"}, "hole_b160_23": {"file": "hole_b160_23.bin", "n_vert": 16106, "n_tri": 31806, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.085167407989502], "bytes": 287472, "t_s": 69.62710775400237, "cell_um": 0.85, "step": 3, "depth_um": 2.045, "rate_um_min": 1.07, "url": "media/petch-stp/mesh/hole_b160_23.bin"}, "hole_b160_26": {"file": "hole_b160_26.bin", "n_vert": 16801, "n_tri": 33198, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.0619468688964844], "bytes": 299994, "t_s": 85.0054115525344, "cell_um": 0.85, "step": 3, "depth_um": 2.302, "rate_um_min": 0.94, "url": "media/petch-stp/mesh/hole_b160_26.bin"}, "hole_b160_29": {"file": "hole_b160_29.bin", "n_vert": 17525, "n_tri": 34648, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.0377106666564941], "bytes": 313038, "t_s": 102.29962322089146, "cell_um": 0.85, "step": 3, "depth_um": 2.555, "rate_um_min": 0.82, "url": "media/petch-stp/mesh/hole_b160_29.bin"}, "hole_b160_33": {"file": "hole_b160_33.bin", "n_vert": 18607, "n_tri": 36818, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 1.0000381469726562], "bytes": 332550, "t_s": 128.55462147396494, "cell_um": 0.85, "step": 3, "depth_um": 2.894, "rate_um_min": 0.74, "url": "media/petch-stp/mesh/hole_b160_33.bin"}, "hole_b160_36": {"file": "hole_b160_36.bin", "n_vert": 19525, "n_tri": 38656, "index": "u2", "lo": [0.018913568928837776, 0.018913568928837776, -3.217714309692383], "hi": [0.8500000238418579, 0.8500000238418579, 0.9647698402404785], "bytes": 349086, "t_s": 150.0, "cell_um": 0.85, "step": 3, "depth_um": 3.143, "rate_um_min": 0.66, "url": "media/petch-stp/mesh/hole_b160_36.bin"}}, "frames": [{"mesh": "hole_b160_0", "label": "\u2212160 V \u00b7 t = 0 s \u00b7 depth 0.01 \u00b5m \u00b7 2.61 \u00b5m/min"}, {"mesh": "hole_b160_3", "label": "\u2212160 V \u00b7 t = 6 s \u00b7 depth 0.27 \u00b5m \u00b7 2.56 \u00b5m/min"}, {"mesh": "hole_b160_7", "label": "\u2212160 V \u00b7 t = 15 s \u00b7 depth 0.63 \u00b5m \u00b7 2.34 \u00b5m/min"}, {"mesh": "hole_b160_10", "label": "\u2212160 V \u00b7 t = 23 s \u00b7 depth 0.90 \u00b5m \u00b7 2.04 \u00b5m/min"}, {"mesh": "hole_b160_13", "label": "\u2212160 V \u00b7 t = 31 s \u00b7 depth 1.17 \u00b5m \u00b7 1.76 \u00b5m/min"}, {"mesh": "hole_b160_16", "label": "\u2212160 V \u00b7 t = 41 s \u00b7 depth 1.43 \u00b5m \u00b7 1.51 \u00b5m/min"}, {"mesh": "hole_b160_20", "label": "\u2212160 V \u00b7 t = 56 s \u00b7 depth 1.78 \u00b5m \u00b7 1.24 \u00b5m/min"}, {"mesh": "hole_b160_23", "label": "\u2212160 V \u00b7 t = 70 s \u00b7 depth 2.04 \u00b5m \u00b7 1.07 \u00b5m/min"}, {"mesh": "hole_b160_26", "label": "\u2212160 V \u00b7 t = 85 s \u00b7 depth 2.30 \u00b5m \u00b7 0.94 \u00b5m/min"}, {"mesh": "hole_b160_29", "label": "\u2212160 V \u00b7 t = 102 s \u00b7 depth 2.56 \u00b5m \u00b7 0.82 \u00b5m/min"}, {"mesh": "hole_b160_33", "label": "\u2212160 V \u00b7 t = 129 s \u00b7 depth 2.89 \u00b5m \u00b7 0.74 \u00b5m/min"}, {"mesh": "hole_b160_36", "label": "\u2212160 V \u00b7 t = 150 s \u00b7 depth 3.14 \u00b5m \u00b7 0.66 \u00b5m/min"}], "bands": [[-9.0, 0.0, "#7f8aa3", "Si"], [0.0, 1.3, "#2ab3b6", "SiO\u2082 mask"]], "bandTol": 0.012, "fps": 5, "holdLast": 10, "tile": {"nx": 3, "ny": 3, "cell": [0.85, 0.85]}, "distance": 1.75, "view": [-0.8, -1.2, 0.5], "cut": true, "section": 0.5}); } }, {rootMargin: "300px"}).observe(el);</script></div></div>
+<p class="kicker" style="font-size:.85rem">Each hole is one simulated cell of a square array with mirror walls, shown 3&nbsp;&times;&nbsp;3 and cut in half (press <em>cut</em> to close it). The frames come from a rerun of the scored runs with the same inputs; final depths agree within 3&nbsp;nm.</p>
+  <div class="grid two">
+    <figure><video class="dark" src="media/petch-stp/hole_e2e.mp4" poster="media/petch-stp/hole_e2e.png" autoplay loop muted playsinline></video>
+      <figcaption>Centre cross-sections of the same runs, four cells side by side. The dashed lines are the walls
+      Belen&nbsp;et&nbsp;al. (2005) measured after 150&nbsp;s. At &minus;20&nbsp;V the prediction lands on them. At
+      &minus;160&nbsp;V the measured hole is deeper still: section&nbsp;04 shows what closes that gap.</figcaption></figure>
+    <figure><img class="svg" src="media/petch-stp/rate_vs_bias.svg" alt="Hole etch rate against rf bias: petch from machine settings, petch with one calibrated flux, and the measured rates">
+      <figcaption>Etch rate against bias. Straight from machine settings, petch is within 0.70–0.95&times; of the measured
+      rate at every bias. Calibrating one fluorine-flux knob at &minus;20&nbsp;V barely changes the curve: the gap at high
+      bias is in how the etch responds to bias, not in the overall flux level.</figcaption></figure>
+  </div>
+  <figure style="margin-top:1.2rem"><img class="svg" src="media/petch-stp/depth_vs_time.svg" alt="Hole depth and floor etch rate against time at -20 V and -160 V">
+    <figcaption>The same two runs through the whole etch. At &minus;20&nbsp;V the floor etch rate barely changes. At
+    &minus;160&nbsp;V petch starts at 2.6&nbsp;&micro;m/min and slows to 0.7 as the hole deepens, averaging 1.26 against a
+    measured 1.69&nbsp;&micro;m/min. The wafers were only imaged at 150&nbsp;s, so the circles are averages, not a time
+    history. The shortfall builds up as the hole gets deep, which points at how much fluorine reaches the floor of a
+    deep hole.</figcaption></figure>
+  <div class="callout">Not independent of the data: reactorlab's own calibration used the fluxes Belen fitted to this
+  chamber. What the test does show is that the chain from settings to profile runs end to end with no per-case
+  tuning and lands within a factor of 0.7–0.95 on rate.</div>
+</section>
+<section id="s2b">
+  <h2><span class="n">04</span>Predicting wafers it was not tuned on</h2>
+  <p class="kicker">The published SF<sub>6</sub>/O<sub>2</sub> surface model (Belen 2005, the one ViennaPS ships) etches
+  deep holes too slowly at high bias. Raising one of its constants, the ion-enhanced etch threshold, from 15 to
+  25&nbsp;eV &mdash; set on Belen's bias scan alone, by a rule frozen in the repository before the test &mdash; lets the
+  model run on fluxes close to the ones Belen measured. Then it predicts the oxygen and pressure scans it never saw.</p>
+  <div class="facts">
+    <div class="fact"><div class="big">8.5&nbsp;%</div><h4>Median depth error on held-out holes</h4><p>Ten conditions
+      across two oxygen scans and two pressures, none used to set anything. The published model: 30&nbsp;%.</p></div>
+    <div class="fact"><div class="big">7 of 10</div><h4>Within 15&nbsp;% of the wafer</h4><p>Up from 1 of 10. The
+      0.5&nbsp;&micro;m holes at 44 and 50&nbsp;% O<sub>2</sub> land within 0.3&nbsp;%.</p></div>
+    <div class="fact"><div class="big">0.77</div><h4>Of Belen's measured fluxes</h4><p>The one flux scale the model
+      needs, up from 0.40: with the right threshold, the measured fluxes and the measured holes come within 25&nbsp;% of each other.</p></div>
+  </div>
+  <figure style="margin-top:1.2rem;max-width:560px"><img class="svg" src="media/petch-stp/v2_parity.svg" alt="Predicted against measured hole depth for every Belen 2005 condition, published surface model and petch">
+    <figcaption>Every Belen 2005 hole. Hollow: the bias scan the threshold was set on. Solid: predictions. The two
+    points far above the line are the oxygen cut-off at 62&nbsp;% O<sub>2</sub>, where real etching collapses and the
+    model's does not yet; the low one is the 10&nbsp;mTorr hole. Protocol BELEN-2005-PROFILES-V2.</figcaption></figure>
+</section>
+
+<section id="s3">
+  <h2><span class="n">05</span>Against ViennaPS, on measured wafers</h2>
+  <p class="kicker">We gave ViennaPS&nbsp;4.6.2 and petch the same job: Belen's fitted fluxes for five bias settings, the
+  same ion energies and angles, the same 20&nbsp;nm grid, one flux scale calibrated on the &minus;20&nbsp;V hole, and the
+  same RTX&nbsp;4090 (ViennaPS on its OptiX GPU engine). Then we scored all of them against the holes Belen measured.</p>
+  <figure class="tallmovie" style="margin-bottom:1.2rem"><video class="dark" src="media/petch-stp/race.mp4" poster="media/petch-stp/race.png" autoplay loop muted playsinline></video>
+    <figcaption>The &minus;160&nbsp;V hole, both engines on one wall clock. petch finishes the 150&nbsp;s etch in
+    20&nbsp;s; ViennaPS takes 562&nbsp;s. The dashed line is the measured depth.</figcaption></figure>
+  <div class="facts">
+    <div class="fact"><div class="big">32&times;</div><h4>Faster on the same GPU</h4><p>Median wall time per
+      150&nbsp;s hole: 17&nbsp;s for petch, 540&nbsp;s for ViennaPS.</p></div>
+    <div class="fact"><div class="big">22 vs 17&nbsp;nm</div><h4>Wall shape</h4>
+      <p>Median wall error against the measured profiles over the four uncalibrated biases, petch vs ViennaPS
+      (petch running ViennaPS's own physics: 30&nbsp;nm). The wall is compared down to
+      90&nbsp;% of the shallower hole, so the shallower ViennaPS holes are scored over less wall.</p></div>
+    <div class="fact"><div class="big">25&nbsp;% / 34&nbsp;%</div><h4>Depth: both miss</h4>
+      <p>Median depth error (petch / ViennaPS). Both etch too slowly at high bias: the shared surface model is the limit there, not the engine.</p></div>
+  </div>
+  <div class="grid two" style="margin-top:1.2rem">
+    <figure><img class="svg" src="media/petch-stp/h2h_depth.svg" alt="Hole depth against bias for ViennaPS, petch and the measurements">
+      <figcaption>Depth after 150&nbsp;s across the bias scan. All three engines are pinned to the measured depth at
+      &minus;20&nbsp;V by the one calibrated flux scale.</figcaption></figure>
+    <figure><img class="svg" src="media/petch-stp/h2h_walls_b160.svg" alt="Wall profiles of the -160 V hole for ViennaPS, petch and the measurement">
+      <figcaption>The &minus;160&nbsp;V hole walls against the measured profile.</figcaption></figure>
+  </div>
+  <figure style="margin-top:1.2rem"><img class="svg" src="media/petch-stp/h2h_time.svg" alt="Wall time per hole for each engine">
+    <figcaption>Wall time per hole on one RTX&nbsp;4090, median over the five biases, each run alone on the GPU.</figcaption></figure>
+</section>
+
+<section id="s4">
+  <h2><span class="n">06</span>Checked against textbook physics</h2>
+  <p class="kicker">Where the answer is known exactly, petch's production code reproduces it: the ion-energy spread
+  of an rf sheath across three decades of frequency, the Clausing transmission of a tube, and the line-of-sight flux
+  reaching the floor of a trench. And the numbers hold when the grid is refined.</p>
+  <figure><img class="svg" src="media/petch-stp/analytics.svg" alt="petch against three analytic solutions: rf sheath ion energy splitting, Clausing tube transmission, trench floor view factor">
+    <figcaption>Markers: petch. Lines: the analytic results &mdash; Benoit-Cattin's high-frequency sheath limit and the
+    quasi-static 2eV<sub>rf</sub> limit (agreement within 1.7&nbsp;% and 0.1&nbsp;%), Santeler's closed form for the
+    Clausing tube (within 0.6&nbsp;%, inside the formula's own 0.7&nbsp;% accuracy), and the exact view factor for a
+    trench (within Monte Carlo noise).</figcaption></figure>
+  <div class="grid two" style="margin-top:1.2rem">
+    <figure><img class="svg" src="media/petch-stp/grid_convergence.svg" alt="Gate length against grid spacing, with the extrapolation to zero spacing">
+      <figcaption>Gate length on the layout window against grid spacing: first-order convergence, about 1&nbsp;nm of
+      grid error at 2.5&nbsp;nm. Extrapolated: 42.4 / 43.9 / 47.8&nbsp;nm (foot / mid / top) for a 50&nbsp;nm drawn
+      gate, within about 1&nbsp;nm of ViennaPS on the same window.</figcaption></figure>
+    <figure><img class="svg" src="media/petch-stp/hole_profile_m20V.svg" alt="petch hole profile at -20 V against the measured walls">
+      <figcaption>The &minus;20&nbsp;V hole from section&nbsp;03 as a profile, against Belen 2005's measured walls.</figcaption></figure>
+  </div>
+</section>
+
+<section id="s5">
+  <h2><span class="n">07</span>What's new since July</h2>
+  <div class="facts">
+    <div class="fact"><h4>Reactor in the loop</h4><p>A plasma model turns power, pressure, gas flows and bias into the
+      fluxes, ion energies and angles petch etches with, so a recipe can be the input.</p></div>
+    <div class="fact"><h4>Real layouts in 3-D</h4><p>GDS windows from a placed design go straight into a 3-D etch, with
+      clearing, recess and gate length reported per gate.</p></div>
+    <div class="fact"><h4>Seconds per feature</h4><p>A 150&nbsp;s hole etch in about 20&nbsp;s on one RTX&nbsp;4090; GPU
+      surface meshing 18–55&times; faster than the CPU path with identical meshes.</p></div>
+    <div class="fact"><h4>More physics</h4><p>Ion fragmentation on reflection, Yamamura–Tawara sputter yields, two-component
+      ion angular distributions, an eroding SiO<sub>2</sub> mask, gate-oxide punch-through, e-beam exposure.</p></div>
+    <div class="fact"><h4>Scored against wafers</h4><p>Test protocols are written down and frozen in the repository before
+      the first run, and every verdict is published as it falls.</p></div>
+    <div class="fact"><h4>Movies from the solver</h4><p>Every frame on this page is the solver's own level set, saved during
+      the run and drawn in your browser.</p></div>
+  </div>
+</section>
+
+<details class="appendix"><summary>Status &amp; claim boundaries</summary>
+  <p><strong>Known limits.</strong> The oxygen cut-off at 62&nbsp;% O<sub>2</sub> and the 10&nbsp;mTorr hole are not yet
+  reproduced. Wall shapes are about 35&nbsp;nm off in the median. Sections 03 and 05 run the published surface
+  model; section 04's threshold is set on Belen's bias scan with Belen's fitted fluxes. With reactorlab's fluxes the
+  high-bias holes are still short, because the plasma model's ion flux is about 2.3&times; below the ion flux Belen
+  measured for this chamber; that is the next fix.</p>
+  <p>Hole tests: Gomez 2004 and Belen 2005 (same chamber); protocols frozen before the first scored run
+  (GOMEZ-2004-HOLE-PROFILE-V1, BELEN-2005-PROFILES-V1, REACTORLAB-PETCH-GOMEZ-E2E-V1). The machine-settings chain
+  is not independent of Belen's data (reactorlab's calibration used Belen's fluxes). Gate-window results are
+  geometric metrology on the level set for one etch step, with literature chemistry not calibrated to any fab;
+  device-level verdicts are not claimed. The gate-oxide finding rests on transferred SiO<sub>2</sub> etch laws.
+  Costs are wall time on a shared, rented RTX&nbsp;4090 at $0.46/h. Meshes in the 3-D viewers are thinned for the
+  browser; the metrology uses the full-resolution fields.</p>
+</details>
+
+<footer>petch &mdash; October 2026 update. Follows the <a href="petch-evidence.html" style="color:var(--teal)">July
+evidence pack</a>. Every number traces to a run in the repository.</footer>
+
+<div id="lightbox"><img alt="zoom"><div class="hint">scroll to zoom &middot; drag to pan &middot;
+double-click to toggle &middot; Esc to close</div></div>
+<script>
+(function(){
+  const lb = document.getElementById('lightbox');
+  const im = lb.querySelector('img');
+  let scale = 1, tx = 0, ty = 0, dragging = false, sx = 0, sy = 0;
+  function apply(){ im.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`; }
+  function reset(){ scale = 1; tx = ty = 0; apply(); }
+  document.querySelectorAll('figure img').forEach(el => {
+    el.addEventListener('click', () => { im.src = el.src; reset(); lb.classList.add('open'); });
+  });
+  lb.addEventListener('click', e => { if (!dragging && e.target !== im) lb.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+  lb.addEventListener('wheel', e => {
+    e.preventDefault();
+    scale = Math.min(8, Math.max(1, scale * (e.deltaY < 0 ? 1.12 : 0.89)));
+    if (scale === 1) { tx = ty = 0; }
+    apply();
+  }, { passive:false });
+  im.addEventListener('mousedown', e => { dragging = false; sx = e.clientX - tx; sy = e.clientY - ty;
+    const move = ev => { dragging = true; tx = ev.clientX - sx; ty = ev.clientY - sy; apply(); };
+    const up = () => { document.removeEventListener('mousemove', move);
+                       document.removeEventListener('mouseup', up);
+                       setTimeout(() => dragging = false, 0); };
+    document.addEventListener('mousemove', move); document.addEventListener('mouseup', up);
+    e.preventDefault(); });
+  im.addEventListener('dblclick', () => { scale = scale > 1 ? 1 : 2.5; if (scale === 1) { tx = ty = 0; } apply(); });
+})();
+</script>
+</body></html>
